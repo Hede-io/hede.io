@@ -52,15 +52,15 @@ export const getRate = () =>
   };
 
 export const getRewardFund = () => (dispatch, getSelection, { steemAPI }) => {
-  const getRewardFundAsync = Promise.promisify(steemAPI.getRewardFund, { context: steemAPI });
+  const getRewardFund = Promise.promisify(steemAPI.getRewardFund, { context: steemAPI });
   return dispatch({
     type: GET_REWARD_FUND,
-    payload: { promise: getRewardFundAsync('post') },
+    payload: { promise: getRewardFund('post') },
   });
 };
 
 export const getCurrentMedianHistoryPrice = () => (dispatch, getState, { steemAPI }) => {
-  const getCurrentMedianHistoryPriceAsync = Promise.promisify(steemAPI.getCurrentMedianHistoryPrice, { context: steemAPI });
+  const getCurrentMedianHistoryPrice = Promise.promisify(steemAPI.getCurrentMedianHistoryPrice, { context: steemAPI });
   return dispatch({
     type: GET_CURRENT_MEDIAN_HISTORY_PRICE,
     payload: { promise: getCurrentMedianHistoryPriceAsync() },
@@ -68,11 +68,11 @@ export const getCurrentMedianHistoryPrice = () => (dispatch, getState, { steemAP
 };
 
 export const getTrendingTopics = () => (dispatch, getState, { steemAPI }) => {
-  const getTrendingTagsAsync = Promise.promisify(steemAPI.getTrendingTags, { context: steemAPI });
+  const getTrendingTags = Promise.promisify(steemAPI.getTrendingTags, { context: steemAPI });
   dispatch({
     type: GET_TRENDING_TOPICS,
     payload: {
-      promise: getTrendingTagsAsync(undefined, 50)
+      promise: getTrendingTags(undefined, 50)
         .then(result => Object.values(result).map(tag => tag.name).filter(tag => tag !== '')),
     },
   });

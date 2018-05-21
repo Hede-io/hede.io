@@ -18,7 +18,7 @@ function getLoginUrl(state) {
   const scopes = [
     'vote',
     'comment',
-    'comment_delete',
+    'delete_comment',
     'comment_options',
     'custom_json',
     'claim_reward_balance',
@@ -31,7 +31,10 @@ function getLoginUrl(state) {
 function profile() {
   const endpoint = process.env.HEDE_API + 'sc2/profile';
   const session = Cookie.get('session');
-  return request.post(endpoint).set('session', session).then(res => {
+  return request.post(endpoint).set('session', session).timeout({
+    response: 12000,  // Wait 5 seconds for the server to start sending,
+    deadline: 17000, // but allow 1 minute for the file to finish loading.
+  }).then(res => {
     return res.body;
   });
 }
@@ -40,6 +43,10 @@ function updateMetadata(metadata) {
   const endpoint = process.env.HEDE_API + 'sc2/profile';
   const session = Cookie.get('session');
   return request.put(endpoint)
+                .timeout({
+                  response: 12000,  // Wait 5 seconds for the server to start sending,
+                  deadline: 17000, // but allow 1 minute for the file to finish loading.
+                })
                 .send({user_metadata: metadata})
                 .set('session', session)
                 .then(res => res.body);
@@ -49,6 +56,10 @@ function broadcast(operations) {
   const endpoint = process.env.HEDE_API + 'sc2/broadcast';
   const session = Cookie.get('session');
   return request.post(endpoint)
+                .timeout({
+                  response: 12000,  // Wait 5 seconds for the server to start sending,
+                  deadline: 17000, // but allow 1 minute for the file to finish loading.
+                })
                 .send({ operations })
                 .set('session', session)
                 .then(res => res.body);

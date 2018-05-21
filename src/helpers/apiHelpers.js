@@ -26,47 +26,48 @@ export const getDiscussionsFromAPI = function getDiscussionsFromAPI(sortBy, orig
       console.log("BY FEED")
       return steemAPI.getDiscussionsByFeedAsync(query);
       */
-    case 'project':
-      console.log("BY PROJECT");
+    case 'topic':
+      console.log("BY TOPIC");
       query = {
         tag: originalQuery.tag,
         limit: 10,
         ["select_tags"]: [process.env.HEDE_CATEGORY],
       };
-      return steemAPI.getDiscussionsByTrendingAsync(query);
+      return steemAPI.getDiscussionsByTrending(query);
     case 'hot':
       console.log("BY HOT")
       query.tag = process.env.HEDE_CATEGORY; // @HEDE filtered query
-      return steemAPI.getDiscussionsByHotAsync(query);
+      return steemAPI.getDiscussionsByHot(query);
     case 'created':
       console.log("BY CREATED")
       query.tag = process.env.HEDE_CATEGORY; // @HEDE filtered query
-      return steemAPI.getDiscussionsByCreatedAsync(query);
+      return steemAPI.getDiscussionsByCreated(query);
     case 'active':
       console.log("BY ACTIVE")
       query.tag = process.env.HEDE_CATEGORY; // @HEDE filtered query
-      return steemAPI.getDiscussionsByActiveAsync(query);
+      return steemAPI.getDiscussionsByActive(query);
     case 'trending':
       console.log("BY TRENDING", query)
       query.tag = process.env.HEDE_CATEGORY; // @HEDE filtered query
-      return steemAPI.getDiscussionsByTrendingAsync(query);
+      return steemAPI.getDiscussionsByTrending(query);
     case 'blog':
       console.log("BY BLOG", query)
-      return steemAPI.getDiscussionsByBlogAsync(query);
+      return steemAPI.getDiscussionsByBlog(query);
     /*case 'comments':
       return steemAPI.getDiscussionsByCommentsAsync(query);
       */
     case 'promoted':
       console.log("BY PROMOTED")
       query.tag = process.env.HEDE_CATEGORY; // @HEDE filtered query
-      return steemAPI.getDiscussionsByPromotedAsync(query);
+      return steemAPI.getDiscussionsByPromoted(query);
     default:
       throw new Error('There is not API endpoint defined for this sorting');
   }
 };
 
 export const getAccount = username =>
-  SteemAPI.getAccountsAsync([username]).then((result) => {
+  SteemAPI.getAccounts([username]).then((result) => {
+    console.log("username getAccount called:", username);
     if (result.length) {
       const userAccount = result[0];
       userAccount.json_metadata = jsonParse(result[0].json_metadata);
@@ -75,7 +76,7 @@ export const getAccount = username =>
     throw new Error('User Not Found');
   });
 
-export const getFollowingCount = username => SteemAPI.getFollowCountAsync(username);
+export const getFollowingCount = username => SteemAPI.getFollowCount(username);
 
 export const getAccountWithFollowingCount = username =>
   Promise.all([
@@ -88,12 +89,12 @@ export const getAccountWithFollowingCount = username =>
   }));
 
 export const getFollowing = (username, startForm = '', type = 'blog', limit = 100) =>
-  SteemAPI.getFollowingAsync(username, startForm, type, limit).then(result =>
+  SteemAPI.getFollowing(username, startForm, type, limit).then(result =>
     result.map(user => user.following),
   );
 
 export const getFollowers = (username, startForm = '', type = 'blog', limit = 100) =>
-  SteemAPI.getFollowersAsync(username, startForm, type, limit).then(result =>
+  SteemAPI.getFollowers(username, startForm, type, limit).then(result =>
     result.map(user => user.follower),
   );
 

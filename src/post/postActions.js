@@ -25,7 +25,7 @@ export const getContent = (postAuthor, postPermlink, afterLike) =>
       type: GET_CONTENT,
       payload: {
         promise: steemAPI
-          .getContentAsync(postAuthor, postPermlink),
+          .getContent(postAuthor, postPermlink),
       },
       meta: {
         afterLike,

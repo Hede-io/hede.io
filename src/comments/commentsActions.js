@@ -30,6 +30,7 @@ const getRootCommentsList = apiRes =>
     .filter(commentKey => apiRes.content[commentKey].depth === 1)
     .map(commentKey => apiRes.content[commentKey].id);
 
+
 const getCommentsChildrenLists = (apiRes) => {
   const listsById = {};
   Object.keys(apiRes.content).forEach((commentKey) => {
@@ -61,7 +62,7 @@ export const getComments = (postId, reload = false, focusedComment = undefined) 
   dispatch({
     type: GET_COMMENTS,
     payload: {
-      promise: steemAPI.getStateAsync(`/${category}/@${author}/${permlink}`).then(apiRes => ({
+      promise: steemAPI.getState(`/${category}/@${author}/${permlink}`).then(apiRes => ({
         rootCommentsList: getRootCommentsList(apiRes),
         commentsChildrenList: getCommentsChildrenLists(apiRes),
         content: apiRes.content,
@@ -147,7 +148,7 @@ export const likeComment = (commentId, weight = 10000, vote = 'like', retryCount
     payload: {
       promise: sc2.vote(voter, author, permlink, weight).then((res) => {
         // reload comment data to fetch payout after vote
-        steemAPI.getContentAsync(author, permlink).then((data) => {
+        steemAPI.getContent(author, permlink).then((data) => {
           dispatch(reloadExistingComment(data));
           return data;
         });

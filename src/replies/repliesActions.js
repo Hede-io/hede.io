@@ -17,7 +17,7 @@ export const getReplies = () => (dispatch, getState, { steemAPI }) => {
     type: GET_REPLIES,
     payload: {
       promise: steemAPI
-        .getStateAsync(`/@${username}/recent-replies`)
+        .getState(`/@${username}/recent-replies`)
         .then(apiRes => mapAPIContentToId(apiRes)),
     },
     meta: { username },
@@ -42,7 +42,7 @@ export const getMoreReplies = () => (dispatch, getState, { steemAPI }) => {
     type: GET_MORE_REPLIES,
     payload: {
       promise: steemAPI
-        .getRepliesByLastUpdateAsync(startAuthor, startPermlink, limit + 1)
+        .getRepliesByLastUpdate(startAuthor, startPermlink, limit + 1)
         .then(apiRes => apiRes.slice(1))
         .then(mapToId),
     },
