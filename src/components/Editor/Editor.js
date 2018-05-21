@@ -808,7 +808,6 @@ class Editor extends React.Component {
               ],
             })(
               <Select
-                showSearch
                 style={{ width: 200 }}
                 placeholder="Select content type"
                 optionFilterProp="children"
@@ -853,7 +852,6 @@ class Editor extends React.Component {
               ],
             })(
               <Select
-                showSearch
                 style={{ width: 200 }}
                 placeholder="Auto detect"
                 optionFilterProp="children"
@@ -899,7 +897,6 @@ class Editor extends React.Component {
               ]
             })(
               <Select
-                showSearch
                 style={{ width: 200 }}
                 placeholder="Select theme"
                 optionFilterProp="children"
