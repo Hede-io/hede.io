@@ -11,6 +11,7 @@ import Button from 'antd/lib/button';
 import Select from 'antd/lib/select';
 import Pagination from 'antd/lib/pagination';
 
+const Option = Select.Option;
 
 //let totalTitles = 0;
 
@@ -81,7 +82,6 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
     <Button style={{marginBottom:5, flex:1, width:"100%", marginRight:5, borderWidth: 0}} key="getLastTitles" onClick={()=>getLastTitles(getLeftTitles)}>REFRESH</Button>
 
     <Select
-        showSearch
         style={{ width: "100%", marginBottom:5, marginRight: 5 }}
         placeholder="All languages"
         optionFilterProp="children"
