@@ -32,6 +32,8 @@ export const addEditedPost = createAction(ADD_EDITED_POST);
 
 export const DELETE_EDITED_POST = '@editor/DELETE_EDITED_POST';
 export const deleteEditedPost = createAction(DELETE_EDITED_POST);
+import { slug } from '../../vendor/steemitHelpers';
+import { removeHedeReference2 } from '../../helpers/regexHelpers';
 
 export const saveDraft = (post, redirect) => dispatch =>
   dispatch({
@@ -67,7 +69,7 @@ export const editPost = post => (dispatch) => {
   const jsonMetadata = jsonParse(post.json_metadata);
   const draft = {
     ...post,
-    originalBody: post.body,
+    originalBody: post.body.replace(removeHedeReference2, "").replace(/<br\s?\/\>\s*$/, ""),
     jsonMetadata,
     isUpdating: true,
   };
@@ -108,7 +110,7 @@ export const broadcastComment = (
   ];
   operations.push(commentOp);
 
-  console.log("commentOp", commentOp);
+  //console.log("commentOp", commentOp);
 
   const commentOptionsConfig = {
     author,
@@ -137,7 +139,7 @@ export const broadcastComment = (
 
   return sc2.broadcast(operations).catch(e => {
     if (commentOp) console.log("ORIGINAL COMMENT OBJECT: ", commentOp);
-    alert("Hede could not connect to Steem. Please see https://hede.io/faq#errors for more details, or try using a different browser. \n \n Your post may have been saved in Drafts: https://hede.io/drafts");
+    alert("Hede could not connect to Steem. Please try again in few minutes.");
   });
 };
 
@@ -160,7 +162,7 @@ export function createPost(postData) {
       extensions,
     } = postData;
 
-    console.log("POST DATA", postData);
+    //console.log("POST DATA", postData);
 
     const getPermLink = isUpdating
       ? Promise.resolve(postData.permlink)
@@ -170,8 +172,9 @@ export function createPost(postData) {
       type: CREATE_POST,
       payload: {
         promise: getPermLink.then(permlink => {
-            const newBody = isUpdating ? getBodyPatchIfSmaller(postData.originalBody, body) : body;// + `\n\n<br /><hr/><em>Posted on <a href="https://hede.io/${process.env.HEDE_CATEGORY}/@${author}/${permlink}">Hede.io -  Knowledge Sharing Dictionary </a></em><hr/>`;
+            //const newBody = isUpdating ? getBodyPatchIfSmaller(postData.originalBody, body) : body + `\n\n<br /><hr/><em>Posted on <a href="https://hede.io/${process.env.HEDE_CATEGORY}/@${author}/${permlink}">Hede.io -  Knowledge Sharing Dictionary </a></em><hr/>`;
 
+            const newBody = body + `\n\n<hr/><em>Posted on <a href="https://hede.io">Hede.io -  Knowledge Sharing Dictionary </a><br/> Read <a href="https://hede.io/${process.env.HEDE_CATEGORY}/@${author}/${permlink}">this entry</a> or <a href="https://hede.io/${slug(jsonMetadata.title)}--${jsonMetadata.titleId}">all entries about ${jsonMetadata.title}.</a></em><hr/>`;
             return broadcastComment(
               parentAuthor,
               parentPermlink,
