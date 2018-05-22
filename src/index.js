@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Cookie from 'js-cookie';
-import steem from 'steem';
 import Raven from 'raven-js';
 import Logger from 'js-logger';
 import { AppContainer } from 'react-hot-loader';
@@ -39,10 +38,6 @@ if (!session && process.env.HEDE_LANDING_URL) {
   window.location.href = process.env.HEDE_LANDING_URL;
 }*/
 
-steem.api.setOptions({ transport: 'http' });
-if (process.env.STEEMJS_URL) {
-  steem.api.setOptions({ url: process.env.STEEMJS_URL });
-}
 
 message.config({
   top: 62,
