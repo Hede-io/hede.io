@@ -172,7 +172,7 @@ export default class Buttons extends React.Component {
 
     return (
       <div className="Buttons">
-        <Tooltip title={likeTooltip}>
+        
           <a role="presentation" className={likeClass} onClick={this.props.onLikeClick}>
             {pendingLike ? (
               <Icon type="loading" />
@@ -186,7 +186,7 @@ export default class Buttons extends React.Component {
               </span>
             )}
           </a>
-        </Tooltip>
+        
         <span
           className={classNames('Buttons__number', {
             'Buttons__reactions-count': upVotes.length > 0 || downVotes.length > 0,
