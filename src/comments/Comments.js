@@ -97,7 +97,6 @@ export default class Comments extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     const { post, show } = this.props;
-
     if (nextProps.show && (nextProps.post.id !== post.id || !show)) {
       this.props.getComments(nextProps.post.id);
     }
@@ -167,7 +166,7 @@ export default class Comments extends React.Component {
     if (fetchedCommentsList && fetchedCommentsList.length) {
       commentsChildren = this.getNestedComments(comments, comments.childrenById[postId], {});
     }
-
+   
     return (
       fetchedCommentsList && (
         <CommentsList

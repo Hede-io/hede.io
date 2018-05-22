@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import './Confirmation.less';
+import Icon from 'antd/lib/icon';  
 
 const Confirmation = ({ onConfirm, onCancel }) => (
   <div className="Confirmation">
