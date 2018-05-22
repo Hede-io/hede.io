@@ -136,7 +136,6 @@ class Story extends React.Component {
 
 
     const metaData = post.json_metadata;
-    const repository = metaData.repository;
     const reviewed = post.reviewed || false;
 
     let followText = '';

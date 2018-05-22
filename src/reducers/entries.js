@@ -19,6 +19,8 @@ const entries = (state = [], action) => {
       const reset = action.additionalParams.reset;
       const newEntrys = action.response.results;
 
+      //console.log("newEntries:", newEntrys);
+
       if (reset) {
         return newEntrys;
       }
@@ -32,12 +34,18 @@ const entries = (state = [], action) => {
     case Actions.UPDATE_ENTRY_SUCCESS:
     case Actions.GET_ENTRY_SUCCESS: {
       const entry = action.response;
-      const entries = state;
+      //return [entry];
 
+      const entries = state;
+      //console.log("entry success: ", entry);
+      if(!entry)
+        return state;
+        
       if (!find(propEq('id', entry.id))(entries)) {
         return [
           ...entries,
-          entry
+          entry,
+
         ];
       }
 

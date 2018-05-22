@@ -83,7 +83,7 @@ class TopicSelector extends React.Component {
                 id={`sort_${sort}`}
                 defaultMessage={sort.charAt(0).toUpperCase() + sort.slice(1)}
               />
-              <i className="iconfont icon-unfold" />
+              <Icon type="down"/>
             </span>
           </Popover>
         </div>

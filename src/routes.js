@@ -95,6 +95,11 @@ export default (
       <Route path="/search/titles" component={PageHede} />
    
       <Route exact path="/:title" component={PageHede} />
+      <Route render={() => (
+          <span>
+            There is no router that fits for your request
+          </span>
+        )} />
 
     </Switch>
   </Wrapper>

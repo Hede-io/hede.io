@@ -17,7 +17,6 @@ const initialState = {
     pendingFollows: [],
     isFetching: false,
   },
-  repos: [],
 };
 
 export default function userReducer(state = initialState, action) {

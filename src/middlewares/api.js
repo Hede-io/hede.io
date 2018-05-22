@@ -14,7 +14,8 @@ function processReq(req, session) {
   }).catch(err => {
     if (err.status === 407 && session) {
       Cookie.remove('session');
-      window.location.reload(true);
+      if(typeof window !== "undefined")
+        window.location.reload(true);
     }
   })
 }
@@ -22,6 +23,7 @@ function processReq(req, session) {
 const callApi = (endpoint, schema, method, payload, additionalParams, absolute) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) && !absolute
           ? API_ROOT + endpoint : endpoint;
+  
   let session = undefined;
   if (fullUrl.indexOf(API_ROOT) !== -1) {
     session = Cookie.get('session');
@@ -85,13 +87,13 @@ export default store => next => action => {
   next(actionWith({ type: requestType, additionalParams }))
 
   return callApi(endpoint, schema, method, payload, additionalParams, absolute).then(
-    response => next(actionWith({
+    response => {return next(actionWith({
       response,
       type: successType,
       payload,
       additionalParams,
       absolute
-    })),
+    }))},
     error => {
       const errBody = path(['response', 'text'], error)
       const errResponse = errBody ? JSON.parse(errBody) : {}

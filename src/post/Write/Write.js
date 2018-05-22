@@ -93,7 +93,6 @@ class Write extends React.Component {
       initialReward: '50',
       initialType: 'entry',
       initialBody: '',
-      initialRepository: null,
       initialPullRequests: [],
       isUpdating: false,
       warningModal: false,

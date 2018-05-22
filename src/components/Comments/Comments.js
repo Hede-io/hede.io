@@ -155,7 +155,6 @@ class Comments extends React.Component {
       defaultVotePercent,
     } = this.props;
     const { sort } = this.state;
-
     return (
       <div className="Comments">
         <div className="Comments__header">
