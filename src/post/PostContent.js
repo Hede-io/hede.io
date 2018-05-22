@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import find from 'lodash/find';
 import { Helmet } from 'react-helmet';
 const domPurify = require('dompurify');
+let domPurifyImp = null;
+
 import { getHasDefaultSlider } from '../helpers/user';
 import getImage from '../helpers/getImage';
 import {
@@ -211,7 +213,11 @@ class PostContent extends React.Component {
     const { title, category, created, author, body } = content;
     const postMetaImage = postMetaData.image && postMetaData.image[0];
     const htmlBody = getHtml(body, {}, 'text');
-    const bodyText = domPurify.sanitize(htmlBody, { ALLOWED_TAGS: [] });
+
+    if(!domPurifyImp)
+      domPurifyImp = domPurify(window);
+
+    const bodyText = domPurifyImp.sanitize(htmlBody, { ALLOWED_TAGS: [] });
     const desc = `${bodyText.substring(0, 140)} by ${author}`;
     const image = postMetaImage || getImage(`@${author}`);
     const canonicalUrl = `${canonicalHost}${content.url}`;
