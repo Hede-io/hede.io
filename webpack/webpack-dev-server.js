@@ -12,7 +12,6 @@ require('dotenv').config();
 const USE_SSL = process.env.SERVER_SSL_CERT && process.env.SERVER_SSL_KEY;
 let STEEMCONNECT_REDIRECT_URL = process.env.STEEMCONNECT_REDIRECT_URL;
 let HEDE_API = process.env.HEDE_API;
-let HEDE_GITHUB_REDIRECT_URL = process.env.HEDE_GITHUB_REDIRECT_URL;
 
 if (!STEEMCONNECT_REDIRECT_URL) {
   if (USE_SSL) {
@@ -33,6 +32,9 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(baseDir, 'dist'),
+  },
+  resolve: {
+    extensions: ['.jsx', '.js']
   },
   plugins: [
     new HardSourceWebpackPlugin({

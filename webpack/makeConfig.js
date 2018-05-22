@@ -18,7 +18,7 @@ const DEFAULTS = {
 
 let HEDE_LANDING_URL = process.env.HEDE_LANDING_URL;
 if (!DEFAULTS.isDevelopment && HEDE_LANDING_URL === undefined) {
-  HEDE_LANDING_URL = 'http://join.hede.io';
+  HEDE_LANDING_URL = 'http://hede.io';
 }
 
 const POSTCSS_LOADER = {
@@ -56,13 +56,13 @@ function makePlugins(options) {
         IMG_HOST: JSON.stringify(process.env.IMG_HOST || 'https://img.busy.org'),
         SENTRY_PUBLIC_DSN: isDevelopment ? null : JSON.stringify(process.env.SENTRY_PUBLIC_DSN),
         STEEMCONNECT_HOST: JSON.stringify(process.env.STEEMCONNECT_HOST || 'https://v2.steemconnect.com'),
-        STEEMCONNECT_REDIRECT_URL: JSON.stringify(process.env.STEEMCONNECT_REDIRECT_URL || 'https://hede.io/callback'),
+        STEEMCONNECT_REDIRECT_URL: JSON.stringify(isDevelopment? "http://localhost:8080/callback" : 'https://hede.io/callback'),
         STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
         STEEM_NODE: JSON.stringify(process.env.STEEM_NODE || isDevelopment? 'https://testnet.steem.vc':'https://api.steemit.com'),
         HEDE_CATEGORY: JSON.stringify(process.env.HEDE_CATEGORY || 'test-category'),
         HEDE_STEEM_ACCOUNT: JSON.stringify(process.env.HEDE_STEEM_ACCOUNT || 'hede-io'),
         HEDE_LANDING_URL: JSON.stringify(HEDE_LANDING_URL),
-        HEDE_API: JSON.stringify(process.env.HEDE_API || 'https://localhost:4040/api/'),
+        HEDE_API: JSON.stringify(process.env.HEDE_API || 'http://localhost:4040/api/'),
         HEDE_DOMAIN: JSON.stringify(process.env.HEDE_DOMAIN || 'hede.io'),
         DEFAULT_CATEGORY: JSON.stringify('entry'),
         IS_BROWSER: JSON.stringify(true),
@@ -217,6 +217,9 @@ function makeConfig(options = {}) {
 
   return {
     devtool: isDevelopment ? 'eval-source-map' : false,
+    resolve: {
+      extensions: ['.jsx', '.js']
+    },
     entry: {
       main: (isDevelopment ? [
         'webpack-hot-middleware/client?reload=true',
@@ -240,7 +243,7 @@ function makeConfig(options = {}) {
         {
           test: /\.js?$/,
           exclude: /node_modules/,
-          use: (options.isDevelopment ? [{ loader: 'react-hot-loader/webpack' }] : []).concat(
+          use: (/*options.isDevelopment ? [{ loader: 'react-hot-loader/webpack' }] : */[]).concat(
             [
               {
                 loader: 'babel-loader',
