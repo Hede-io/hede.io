@@ -1,10 +1,19 @@
 import base58 from 'bs58';
-import steem from 'steem';
+import steem from '../steemAPI';
+
 import getSlug from 'speakingurl';
 import secureRandom from 'secure-random';
 import diff_match_patch from 'diff-match-patch';
 
+
 const dmp = new diff_match_patch();
+
+export const lowerCaseEntry = (body) => {
+  //return body;
+  return body.replace(/[^\s]+/g, function (match) {
+    return match.indexOf('http') === 0 ? match : match.toLowerCase("en-US");
+  })
+}
 /**
  * This function is extracted from steemit.com source code and does the same tasks with some slight-
  * adjustments to meet our needs. Refer to the main one in case of future problems:
@@ -98,7 +107,7 @@ function checkPermLinkLength(permlink) {
   return permlink;
 }
 
-function slug(text) {
+export function slug(text) {
   return getSlug(text.replace(/[<>]/g, ''), { truncate: 128 });
 }
 
@@ -108,6 +117,7 @@ function slug(text) {
  */
 
 export function createPermlink(title, author, parent_author, parent_permlink) {
+
   let permlink;
   if (title && title.trim() !== '') {
     let s = slug(title);
@@ -116,7 +126,7 @@ export function createPermlink(title, author, parent_author, parent_permlink) {
     }
 
     return steem.api
-      .getContentAsync(author, s)
+      .getContent(author, s)
       .then(content => {
         let prefix;
         if (content.body !== '') {
