@@ -18,6 +18,7 @@ import { getEntry, setEntry } from '../actions/entry';
 
 import find from 'ramda/src/find';
 import propEq from 'ramda/src/propEq';
+import whereEq from 'ramda/src/whereEq';
 
 
 @connect(
@@ -53,7 +54,7 @@ export default class Post extends React.Component {
     const { entry, entries, getEntry, setEntry } = this.props;
     const paramAuthor = this.props.match.params.author;
     const paramPermlink = this.props.match.params.permlink;
-    const stateEntry = find(propEq('author', paramAuthor) && propEq('permlink', paramPermlink))(entries);
+    const stateEntry = find(whereEq({author: paramAuthor, permlink: paramPermlink}))(entries);
 
     if (stateEntry) {
       setEntry(stateEntry);
@@ -78,7 +79,7 @@ export default class Post extends React.Component {
       const { author, permlink } = nextProps.match.params;
       const { entry, entries, getEntry, setEntry } = this.props;
       const stateEntry = find(propEq('author', author) && propEq('permlink', permlink))(entries);
-
+      
       if (!Object.keys(entry).length) {
         if (stateEntry) {
           setEntry(stateEntry);
@@ -98,6 +99,7 @@ export default class Post extends React.Component {
     }
 
   }
+
 
   componentWillUnmount() {
     if (process.env.IS_BROWSER) {
