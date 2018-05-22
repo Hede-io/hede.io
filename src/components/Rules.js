@@ -24,9 +24,9 @@ export const Rules = ({type, acceptRules, inEditor}) => {
         <h2><CategoryIcon from="from-rules"  type="entry"/> Entry Rules</h2>
         {inEditor ? <p><small><a href="https://hede.io/rules" target="_blank"></a></small></p> : null}
         <ul>
-          <li>✅ Please share your knowledge only and directly about the topic.</li>
-          <li>✅ You should define tha topic in the first sentence.</li>
-          <li>✅ Entries need to be informative and descriptive in order to help readers understand them. Give reasons about your opinions.</li>
+          <li>✅ Please share your knowledge only and directly about the topic. Sub-topics should be written in their own title.</li>
+          <li>✅ Definition is highly advised but not required if someone else did it before.</li>
+          <li>✅ Write for large audience. Lots of people will read this so give background information.</li>
           <li>🚫 Don't duplicate another entry's content if you will not add more value into it.</li>
           <li>🚫 Don't respond or comment to another user's entry in your's. To do so, open that entry and write your comment under it.</li>
           <li>🚫 Don't ask questions or request information in the entry.</li>

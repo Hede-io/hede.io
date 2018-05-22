@@ -83,7 +83,8 @@ class StoryFull extends React.Component {
     onEditClick: PropTypes.func,
     sendComment: PropTypes.func,
     moderatorAction: PropTypes.func.isRequired,
-    moderators: PropTypes.array
+    moderators: PropTypes.array,
+    titleUrl: PropTypes.string
   };
 
   static defaultProps = {
@@ -104,7 +105,8 @@ class StoryFull extends React.Component {
     onShareClick: () => { },
     onEditClick: () => { },
     sendComment: () => { },
-    postState: {}
+    postState: {},
+    titleUrl: ''
   };
 
   constructor(props) {
@@ -115,8 +117,8 @@ class StoryFull extends React.Component {
       moderatorCommentModal: false,
       shareModal: false,
       reviewsource: 0,
-      commentDefaultFooter: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/moderators)**',
-      commentFormText: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/moderators)**',
+      commentDefaultFooter: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/p/moderators)**',
+      commentFormText: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/p/moderators)**',
       modTemplate: '',
       lightbox: {
         open: false,
@@ -181,7 +183,7 @@ class StoryFull extends React.Component {
 
   setModTemplateByName(name) {
     /* Moderator Templates Variable */
-    var editImage = "![](https://res.cloudinary.com/hpiynhbhq/image/upload/v1509788371/nbgbomithszxs3nxq6gx.png)";
+    var editImage = "![]()";
     var modTemplates = {
       "pendingDefault": 'Your entry cannot be approved yet. See the [Hede Rules](https://hede.io/rules). Please edit your entry to reapply for editor picks.\n\nYou may edit your post [here](https://hede.io/hede-io/@' + this.props.post.author + '/' + this.props.post.permlink + '), as shown below: \n' + editImage,
       "pendingTheme": 'Your entry cannot be approved yet because it is defined in the wrong theme. Please edit your entry and fix the repository to reapply for editor picks.\n\nYou may edit your post [here](https://hede.io/hede-io/@' + this.props.post.author + '/' + this.props.post.permlink + '), as shown below: \n' + editImage,
@@ -196,7 +198,9 @@ class StoryFull extends React.Component {
       "flaggedSpam": 'Your entry was removed because it does not follow the [Hede Rules](https://hede.io/rules), and is considered as **spam**.',
       "flaggedPlagiarism": 'Your entry was removed because it does not follow the [Hede Rules](https://hede.io/rules), and is considered as **plagiarism**. Plagiarism is not allowed on Hede, and posts that engage in plagiarism will be flagged and hidden forever.',
       "flaggedTooShort": 'Your entry was removed because it is not as informative as other entries. See the [Hede Rules](https://hede.io/rules). Entries need to be informative and descriptive in order to help readers and developers understand them.',
-      "flaggedLanguageMistakes": 'Your entry was removed because the entry category you have chosen requires your post to be in English. See the [Hede Rules](https://hede.io/rules).'
+      "flaggedCommentToEntry": 'Your entry was removed because the entry you wrote was a comment for another entry. Please comment on that entry instead of writing a new one.  See the [Hede Rules](https://hede.io/rules).',
+      "flaggedMultipleConcepts": 'Your entry was removed because an entry can only be related to one concept. Please pick one and write about that.  See the [Hede Rules](https://hede.io/rules).',
+      "flaggedTooPersonal": 'Your entry was removed because it was too personal. Please avoid talking only about yourself and write more about the topic.  See the [Hede Rules](https://hede.io/rules).',
     }
     this.setState({ modTemplate: name });
     this.setState({ commentFormText: modTemplates[name] + this.state.commentDefaultFooter });
@@ -235,6 +239,7 @@ class StoryFull extends React.Component {
       moderatorAction,
       moderators,
       history,
+      titleUrl
     } = this.props;
 
     const { open, index } = this.state.lightbox;
@@ -288,8 +293,6 @@ class StoryFull extends React.Component {
 
     let popoverMenu = [];
 
-    console.log("OWN POST", ownPost)
-
     if (ownPost && post.cashout_time !== '1969-12-31T23:59:59') {
       popoverMenu = [...popoverMenu, <PopoverMenuItem key="edit">
         {saving ? <Icon type="loading" /> : <i className="iconfont icon-write" />}
@@ -320,7 +323,6 @@ class StoryFull extends React.Component {
     ];
 
     const metaData = post.json_metadata;
-    const repository = metaData.repository;
     const postType = post.json_metadata.type;
     const alreadyChecked = isModerator && (post.reviewed || post.pending || post.flagged);
     const mobileView = (window.innerWidth <= 736);
@@ -525,11 +527,14 @@ class StoryFull extends React.Component {
               <ul className="list">
                 <li className="list__item"><input type="radio" value="flaggedDefault" id="flaggedDefault" name="modTemplate" checked={this.state.modTemplate === 'flaggedDefault'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedDefault") }} for="flaggedDefault" class="label">Default</label><br /></li>
                 <li className="list__item"><input type="radio" value="flaggedDuplicate" id="flaggedDuplicate" name="modTemplate" checked={this.state.modTemplate === 'flaggedDuplicate'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedDuplicate") }} for="flaggedDuplicate" class="label">Duplicate Contribution</label><br /></li>
-                <li className="list__item"><input type="radio" value="flaggedContentType" id="flaggedContentType" name="modTemplate" checked={this.state.modTemplate === 'flaggedContentType'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedContentType") }} for="flaggedNotOpenSource" class="label">Contentt type not allowed</label><br /></li>
+                <li className="list__item"><input type="radio" value="flaggedContentType" id="flaggedContentType" name="modTemplate" checked={this.state.modTemplate === 'flaggedContentType'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedContentType") }} for="flaggedContentType" class="label">Content type not allowed</label><br /></li>
+                <li className="list__item"><input type="radio" value="flaggedMultipleConcepts" id="flaggedMultipleConcepts" name="modTemplate" checked={this.state.modTemplate === 'flaggedMultipleConcepts'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedMultipleConcepts") }} for="flaggedMultipleConcepts" class="label">Multiple concepts in one entry</label><br /></li>
+                <li className="list__item"><input type="radio" value="flaggedCommentToEntry" id="flaggedCommentToEntry" name="modTemplate" checked={this.state.modTemplate === 'flaggedCommentToEntry'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedCommentToEntry") }} for="flaggedCommentToEntry" class="label">Comment to another entry</label><br /></li>
+                <li className="list__item"><input type="radio" value="flaggedTooPersonal" id="flaggedTooPersonal" name="modTemplate" checked={this.state.modTemplate === 'flaggedTooPersonal'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedTooPersonal") }} for="flaggedTooPersonal" class="label">Too personal</label><br /></li>
                 <li className="list__item"><input type="radio" value="flaggedSpam" id="flaggedSpam" name="modTemplate" checked={this.state.modTemplate === 'flaggedSpam'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedSpam") }} for="flaggedSpam" class="label">Spam</label><br /></li>
                 <li className="list__item"><input type="radio" value="flaggedPlagiarism" id="flaggedPlagiarism" name="modTemplate" checked={this.state.modTemplate === 'flaggedPlagiarism'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedPlagiarism") }} for="flaggedPlagiarism" class="label">Plagiarism</label><br /></li>
                 <li className="list__item"><input type="radio" value="flaggedTooShort" id="flaggedTooShort" name="modTemplate" checked={this.state.modTemplate === 'flaggedTooShort'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedTooShort") }} for="flaggedTooShort" class="label">Too Short</label><br /></li>
-                <li className="list__item"><input type="radio" value="flaggedLanguageMistakes" id="flaggedLanguageMistakes" name="modTemplate" checked={this.state.modTemplate === 'flaggedLanguageMistakes'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedNotEnglish") }} for="flaggedNotEnglish" class="label">Not in English</label><br /></li>
+                <li className="list__item"><input type="radio" value="flaggedLanguageMistakes" id="flaggedLanguageMistakes" name="modTemplate" checked={this.state.modTemplate === 'flaggedLanguageMistakes'} class="radio-btn" /> <label onClick={() => { this.setModTemplateByName("flaggedLanguageMistakes") }} for="flaggedLanguageMistakes" class="label">Language Mistakes</label><br /></li>
               </ul>
             </div>
             : null}
@@ -581,7 +586,7 @@ class StoryFull extends React.Component {
 
         {replyUI}
 
-        <Link to={`/?q=${post.title}`}>
+        <Link to={titleUrl}>
            
           <h1 className="StoryFull__title">
             {post.title}
