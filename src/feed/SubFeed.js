@@ -23,6 +23,7 @@ import "./SubFeed.less";
 
 const TabPane = Tabs.TabPane;
 
+
 @connect(
   state => ({
     authenticated: getIsAuthenticated(state),
@@ -83,7 +84,6 @@ class SubFeed extends React.Component {
     }
   }
 
-
   loadEntries (nextProps = false) {
     const { match, getEntries, user } = nextProps || this.props;
     const skip =  nextProps ? 0 : this.state.skip;
@@ -92,7 +92,7 @@ class SubFeed extends React.Component {
     this.total = nextProps ? 0 : this.total;
 
 
-    getEntries({
+    return getEntries({
       limit,
       skip,
       section: 'author',
@@ -102,7 +102,8 @@ class SubFeed extends React.Component {
       status: 'any',
       moderator: 'any',
       type: match.params.type || 'all',
-      sortDirection:'d'
+      sortDirection:'d',
+      reset: (skip == 0)
     }).then(res => {
       this.total = res.response.total;
       this.setState({skip: skip + limit});
