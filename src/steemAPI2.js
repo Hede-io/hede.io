@@ -148,6 +148,5 @@ export const broadcast1 = steem.broadcast;
 
 /* assign the wrappers to the exported SteemApi class */
 SteemApiS.api = _api;
-console.log("steem api functions:", _api);
 
 setNextNode();

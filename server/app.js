@@ -152,8 +152,6 @@ function loadCachedRoutes(){
     console.log('Could not evaluate routes for ssr', e);
   }
 
-  console.log("routes for request:", routes);
-
 }
 
 loadCachedRoutes();
