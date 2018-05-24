@@ -11,19 +11,13 @@ require('dotenv').config();
 
 const USE_SSL = process.env.SERVER_SSL_CERT && process.env.SERVER_SSL_KEY;
 let STEEMCONNECT_REDIRECT_URL = process.env.STEEMCONNECT_REDIRECT_URL;
-let HEDE_API = process.env.HEDE_API;
 
-if (!STEEMCONNECT_REDIRECT_URL) {
-  if (USE_SSL) {
-    STEEMCONNECT_REDIRECT_URL = 'https://localhost:3000/callback';
-    HEDE_API = 'https://localhost:4040/api/';
-    HEDE_GITHUB_REDIRECT_URL = 'https://localhost:3000/github/callback';
-  } else {
-    STEEMCONNECT_REDIRECT_URL = 'http://localhost:3000/callback';
-    HEDE_API = 'http://localhost:4040/api/';
-    HEDE_GITHUB_REDIRECT_URL = 'http://localhost:3000/github/callback';
-  }
+if (USE_SSL) {
+  STEEMCONNECT_REDIRECT_URL = 'https://localhost:3000/callback';
+} else {
+  STEEMCONNECT_REDIRECT_URL = 'http://localhost:3000/callback';
 }
+
 
 module.exports = {
   cache: true,
@@ -58,8 +52,8 @@ module.exports = {
         SERVER_SSL_KEY: JSON.stringify(process.env.SERVER_SSL_KEY),
         HEDE_STEEM_ACCOUNT: JSON.stringify(process.env.HEDE_STEEM_ACCOUNT || 'hede-io'),
         HEDE_CATEGORY: JSON.stringify(process.env.HEDE_CATEGORY || 'test-category'),
-        HEDE_LANDING_URL: JSON.stringify(process.env.HEDE_LANDING_URL || 'http://join.hede.io'),
-        HEDE_API: JSON.stringify(HEDE_API),
+        HEDE_LANDING_URL: JSON.stringify(process.env.HEDE_LANDING_URL || 'http://hede.io'),
+        HEDE_API: JSON.stringify(process.env.HEDE_API || "http://localhost:4040/api/"),
         STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'wss://steemd-int.steemit.com'),
         IS_BROWSER: JSON.stringify(true),
       },

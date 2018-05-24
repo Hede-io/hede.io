@@ -44,7 +44,7 @@ var setNextNode = function() {
   current_node_index = (current_node_index + 1) % nodes.length;
   current_node = nodes[current_node_index];
   steem.api.setOptions({ url: current_node });
-  console.log("Retry with " + current_node);
+  //console.log("Retry with " + current_node);
 };
 
 
@@ -148,5 +148,6 @@ export const broadcast1 = steem.broadcast;
 
 /* assign the wrappers to the exported SteemApi class */
 SteemApiS.api = _api;
+//console.log("steem api functions:", _api);
 
 setNextNode();

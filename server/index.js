@@ -86,7 +86,7 @@ if (!module.parent) {
   server.listen(port);
 }
 
-/*if (process.env.SERVER_SSL_CERT && process.env.SERVER_SSL_KEY) {
+if (process.env.SERVER_SSL_CERT && process.env.SERVER_SSL_KEY) {
   const options = {
     cert: fs.readFileSync(process.env.SERVER_SSL_CERT),
     key: fs.readFileSync(process.env.SERVER_SSL_KEY)
@@ -97,7 +97,7 @@ if (!module.parent) {
 } else {
   http.createServer(app).listen(80);
   console.log("http server created for UI")
-}*/
+}
 
 server.on('error', onError);
 server.on('listening', onListening);

@@ -9,7 +9,7 @@
   "main": "./server",
   "private": true,
   "scripts": {
-    "dev-server": "run-p dev-server:server dev-server:client --max-old-space-size=4096",
+    "dev-server": "run-p dev-server:auth-server dev-server:client --max-old-space-size=4096",
     "dev-server:client": "webpack-dev-server --watch-poll --config ./webpack/webpack-dev-server.js --inline --hot",
     "dev-server:auth-server": "cross-env NODE_ENV=development HEDE_API=http://localhost:4040/api/ node ./server/auth-server.js",
     "dev-server:server": "cross-env NODE_ENV=development webpack -p --config ./webpack/webpack.server.config.js",

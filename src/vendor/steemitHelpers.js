@@ -1,5 +1,6 @@
 import base58 from 'bs58';
 import steem from '../steemAPI';
+import {formatter} from '../steemAPI';
 
 import getSlug from 'speakingurl';
 import secureRandom from 'secure-random';
@@ -125,7 +126,7 @@ export function createPermlink(title, author, parent_author, parent_permlink) {
       s = base58.encode(secureRandom.randomBuffer(4));
     }
 
-    return steem.api
+    return steem
       .getContent(author, s)
       .then(content => {
         let prefix;
@@ -187,14 +188,14 @@ export const calculateVoteValue = (vests, recentClaims, rewardBalance, currentMe
 
 export const calculateTotalDelegatedSP = (user, totalVestingShares, totalVestingFundSteem) => {
   const receivedSP = parseFloat(
-    steem.formatter.vestToSteem(
+    formatter.vestToSteem(
       user.received_vesting_shares,
       totalVestingShares,
       totalVestingFundSteem,
     ),
   );
   const delegatedSP = parseFloat(
-    steem.formatter.vestToSteem(
+    formatter.vestToSteem(
       user.delegated_vesting_shares,
       totalVestingShares,
       totalVestingFundSteem,

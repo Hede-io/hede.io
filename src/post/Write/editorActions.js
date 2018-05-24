@@ -35,6 +35,8 @@ export const deleteEditedPost = createAction(DELETE_EDITED_POST);
 import { slug } from '../../vendor/steemitHelpers';
 import { removeHedeReference2 } from '../../helpers/regexHelpers';
 
+import { getEntry, setEntry } from '../../actions/entry';
+
 export const saveDraft = (post, redirect) => dispatch =>
   dispatch({
     type: SAVE_DRAFT,
@@ -174,7 +176,7 @@ export function createPost(postData) {
         promise: getPermLink.then(permlink => {
             //const newBody = isUpdating ? getBodyPatchIfSmaller(postData.originalBody, body) : body + `\n\n<br /><hr/><em>Posted on <a href="https://hede.io/${process.env.HEDE_CATEGORY}/@${author}/${permlink}">Hede.io -  Knowledge Sharing Dictionary </a></em><hr/>`;
 
-            const newBody = body + `\n\n<hr/><em>Posted on <a href="https://hede.io">Hede.io -  Knowledge Sharing Dictionary </a><br/> Read <a href="https://hede.io/${process.env.HEDE_CATEGORY}/@${author}/${permlink}">this entry</a> or <a href="https://hede.io/${slug(jsonMetadata.title)}--${jsonMetadata.titleId}">all entries about ${jsonMetadata.title}.</a></em><hr/>`;
+            const newBody = body;
             return broadcastComment(
               parentAuthor,
               parentPermlink,
@@ -195,7 +197,7 @@ export function createPost(postData) {
                 }
 
                 // @HEDE
-                if (!isUpdating) {
+                /*if (!isUpdating) {
                   const createOnAPI = entryData => dispatch(
                     createEntry(entryData.author, entryData.permlink)
                   );
@@ -211,7 +213,11 @@ export function createPost(postData) {
                   updateOnAPI({ author, permlink }).then(() => dispatch(
                     push(`/${parentPermlink}/@${author}/${permlink}`)
                   ));
-                }
+                }*/
+                dispatch(getEntry(author, permlink));
+
+                dispatch(push(`/${parentPermlink}/@${author}/${permlink}`));
+
 
                 if (window.ga) {
                   window.ga('send', 'event', 'post', 'submit', '', 10);

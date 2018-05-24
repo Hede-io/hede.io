@@ -97,7 +97,7 @@ module.exports = {
       'process.env': {
         IMG_HOST: JSON.stringify(process.env.IMG_HOST || 'https://img.busy.org'),
         STEEMCONNECT_HOST: JSON.stringify(process.env.STEEMCONNECT_HOST || 'https://v2.steemconnect.com'),
-        STEEMCONNECT_REDIRECT_URL: JSON.stringify(process.env.STEEMCONNECT_REDIRECT_URL || 'https://hede.io/callback'),
+        STEEMCONNECT_REDIRECT_URL: JSON.stringify(isDevelopment? "http://localhost:8080/callback" : 'https://hede.io/callback'),
         STEEM_NODE: JSON.stringify(process.env.STEEM_NODE || 'https://api.steemit.com'),
         STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'https://api.steemit.com'),
         SERVER_SSL_CERT: JSON.stringify(process.env.SERVER_SSL_CERT),

@@ -67,7 +67,6 @@ export const getDiscussionsFromAPI = function getDiscussionsFromAPI(sortBy, orig
 
 export const getAccount = username =>
   SteemAPI.getAccounts([username]).then((result) => {
-    console.log("username getAccount called:", username);
     if (result.length) {
       const userAccount = result[0];
       userAccount.json_metadata = jsonParse(result[0].json_metadata);
@@ -99,9 +98,9 @@ export const getFollowers = (username, startForm = '', type = 'blog', limit = 10
   );
 
 export const getAllFollowing = username =>
-  getFollowingCount(username)
-    .get('following_count')
-    .then((followingCount) => {
+
+  getFollowingCount(username).then(res=>{
+      const followingCount = res['following_count'];
       const chunkSize = 100;
       const limitArray = Array.fill(Array(Math.ceil(followingCount / chunkSize)), chunkSize);
       return Promise.reduce(
@@ -114,12 +113,12 @@ export const getAllFollowing = username =>
         },
         [],
       );
-    });
+  });
+  
 
 export const getAllFollowers = username =>
-  getFollowingCount(username)
-    .get('follower_count')
-    .then((followerCount) => {
+  getFollowingCount(username).then(res=>{
+    const followerCount = res['follower_count'];
       const chunkSize = 100;
       const limitArray = Array.fill(Array(Math.ceil(followerCount / chunkSize)), chunkSize);
       return Promise.reduce(
