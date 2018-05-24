@@ -373,7 +373,7 @@ class Topnav extends React.Component {
                 
               </Link>
               <Link className="Topnav__brand" to="/">
-                <span>Hede</span>
+                <img src="https://hede.io/img/HedeLogo.png"/>
               </Link>
               <span className="Topnav__version"><Link to="/" className="Topnav__version">{window.innerWidth > 736 && <span>&nbsp;&nbsp;</span>}beta</Link></span>
             </div>
