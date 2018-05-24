@@ -350,7 +350,7 @@ class Write extends React.Component {
     const links = [];
     const linkRegex = /\[([^\]]+)\]\(([^\)]+)\)/g;
     const images = [];
-    const imageRegex = /!\[.+?]\((.*?)\)/g;
+    const imageRegex = /!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)/g;
     let matches;
 
     let postBody = data.body;
@@ -392,6 +392,10 @@ class Write extends React.Component {
       if (images.indexOf(matches[1]) === -1 && matches[1].search(/https?:\/\//) === 0) {
         images.push(matches[1]);
       }
+    }
+
+    if(images.length>=2){
+      images.shift();
     }
 
     if (!this.permlink) {
