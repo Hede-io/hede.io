@@ -18,13 +18,9 @@ export const SteemApi = SteemApiS;
 const num_retries = 5;
 /* List of nodes, borrowed from beem */
 const nodes = [
-  "https://rpc.steemviz.com",
+  "https://api.steemit.com/",
   "https://rpc.buildteam.io",
   "https://steemd.pevo.science",
-  "https://api.steemit.com/",
-  "https://steemd.minnowsupportproject.org",
-  "https://steemd.privex.io",
-  "https://gtg.steem.house:8090",
   "https://rpc.curiesteem.com",
   "https://steemd.steemgigs.org"
 ];
