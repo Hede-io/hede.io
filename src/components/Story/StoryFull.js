@@ -6,6 +6,7 @@ import Tag from 'antd/lib/tag';
 import Icon from 'antd/lib/icon';
 import Popover from 'antd/lib/popover';
 import Tooltip from 'antd/lib/tooltip';
+import { getModerators } from '../../actions/moderators';
 
 
 import { union, has } from 'lodash';
@@ -117,8 +118,8 @@ class StoryFull extends React.Component {
       moderatorCommentModal: false,
       shareModal: false,
       reviewsource: 0,
-      commentDefaultFooter: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/p/moderators)**',
-      commentFormText: '\n\nYou can contact us on [Discord](https://discord.gg/ceqAf3B).\n**[[hede-moderator]](https://hede.io/p/moderators)**',
+      commentDefaultFooter: '\n\nYou can contact us on [Discord](https://discord.gg/KDbmXyH).',
+      commentFormText: '\n\nYou can contact us on [Discord](https://discord.gg/KDbmXyH).',
       modTemplate: '',
       lightbox: {
         open: false,
@@ -293,7 +294,7 @@ class StoryFull extends React.Component {
 
     let popoverMenu = [];
 
-    if (ownPost && post.cashout_time !== '1969-12-31T23:59:59') {
+    if ((isModerator || ownPost) && post.cashout_time !== '1969-12-31T23:59:59') {
       popoverMenu = [...popoverMenu, <PopoverMenuItem key="edit">
         {saving ? <Icon type="loading" /> : <i className="iconfont icon-write" />}
         <FormattedMessage id="edit_post" defaultMessage="Edit post" />
@@ -727,7 +728,7 @@ class StoryFull extends React.Component {
               <TwitterShareButton
                 url={shareUrl}
                 title={shareTitle}
-                via={"utopian_io"}
+                via={"hede_io"}
                 hashtags={["hede-io", "IAmHede", "open-source"]}
                 className="ShareButtons__button ShareButtons__Twitter__btn">
                 <a href="#">

@@ -110,6 +110,7 @@ class Write extends React.Component {
     this.title = "";
     this.titleId = 0;
     this.titleObj = null;
+    this.originalAuthor = null;
   }
 
 
@@ -180,6 +181,8 @@ class Write extends React.Component {
       if (draftPost.originalBody) {
         this.originalBody = draftPost.originalBody;
       }
+
+      this.originalAuthor = draftPost.author;
 
       this.titleId = draftPost.hede_title;
       this.title = draftPost.title;
@@ -328,7 +331,7 @@ class Write extends React.Component {
 
     
     data.parentAuthor = '';
-    data.author = this.props.user.name || '';
+    data.author =  this.originalAuthor || this.props.user.name;
 
     let tags = [process.env.HEDE_CATEGORY ||'test-category', ...(form.topics || []) ];
 
