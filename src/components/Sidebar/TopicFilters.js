@@ -244,11 +244,13 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
 
           {keys(groupByLanguage).map((k)=>
                (<div key={k + '-' + groupByLanguage[k]} id="announcement1" className="Announcement__single">
-                {qsParams.get("l") !== k?
+                {groupByLanguage[k]>0?
+                (qsParams.get("l") !== k?
                   <a className="Announcement__content" href={getLanguageLink(k)} onClick={(e)=>onLanguageClick(e, k)}>{k} ({groupByLanguage[k]})</a>
                 :
                   <a className="Announcement__content" href={removeFilterLink("l")} onClick={(e)=>onRemoveFilter(e, "l")}>{k} ({groupByLanguage[k]}) X</a>
-                }
+                ):null
+               }
               </div>)
            
             )
@@ -262,12 +264,14 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
 
           {keys(groupByTheme).map((k)=>
                (<div key={k + '-' + groupByTheme[k]} id="announcement1" className="Announcement__single">
-                {qsParams.get("h") !== k?
+                {groupByTheme[k]>0?
+                  (qsParams.get("h") !== k?
                    <a className="Announcement__content" href={getThemeLink(k)} onClick={(e)=>onThemeClick(e, k)}>{k} ({groupByTheme[k]})</a>
                    :
                    <a className="Announcement__content" href={removeFilterLink("h")} onClick={(e)=>onRemoveFilter(e, "h")}>{k} ({groupByTheme[k]}) X</a>
 
-                }
+                ):null
+              }
               </div>)
            
             )
@@ -283,11 +287,13 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
 
       {keys(groupByContentType).map((k)=>
                (<div key={k + '-' +groupByContentType[k]} id="announcement1" className="Announcement__single">
-                {qsParams.get("c") !== k?
+               {groupByContentType[k]>0?
+                (qsParams.get("c") !== k?
                  <a className="Announcement__content" href={getTypeLink(k)} onClick={(e)=>onTypeClick(e, k)}>{k} ({groupByContentType[k]})</a>
                  :
                    <a className="Announcement__content" href={removeFilterLink("c")} onClick={(e)=>onRemoveFilter(e, "c")}>{k} ({groupByContentType[k]}) X</a>
 
+               ):null
                 }
               </div>)
            
