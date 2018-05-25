@@ -11,7 +11,6 @@ const LeftSidebar = () => (
     <Route path="/activity" component={NavigationUser} />
     <Route path="/replies" component={NavigationUser} />
     <Route path="/bookmarks" component={NavigationUser} />
-    <Route path="/drafts" component={NavigationUser} />
     <Route path="/edit-profile" component={NavigationUser} />
     <Route path="/settings" component={NavigationUser} />
     <Route path="/" component={Navigation} />
