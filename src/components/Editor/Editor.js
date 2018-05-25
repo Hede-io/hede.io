@@ -825,8 +825,6 @@ class Editor extends React.Component {
                 <Option key="quotation" value="quotation">Quotation</Option>
                 <Option key="spoiler" value="spoiler">Spoiler</Option>
                 <Option key="translation" value="translation">Translation</Option>
-                <Option key="confession" value="confession">Confession</Option>
-                <Option key="memory" value="memory">Memory</Option>
                 <Option key="hedereference" value="hedereference">Hede Reference</Option>
 
               </Select>,
