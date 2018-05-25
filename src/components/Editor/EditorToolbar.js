@@ -38,15 +38,27 @@ const EditorToolbar = ({ intl, onSelect }) => {
         </Button>
       </Tooltip>
 
-      <Tooltip title={tooltip(intl.formatMessage({ id: 'innerLink', defaultMessage: 'Hede inner link to title' }), 'Ctrl+h')}>
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'innerLink', defaultMessage: 'Inner reference to topic' }), 'Ctrl+h')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('innerlink')}>
           `Hede`
         </Button>
       </Tooltip>
 
-      <Tooltip title={tooltip(intl.formatMessage({ id: 'seeAlsoLink', defaultMessage: '\"See also\" link to title' }), 'Ctrl+j')}>
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'seeAlsoLink', defaultMessage: 'Reference to topic' }), 'Ctrl+j')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('seealso')}>
           (Hede:)
+        </Button>
+      </Tooltip>
+
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'quote', defaultMessage: 'Add quote' }), 'Ctrl+q')}>
+        <Button className="EditorToolbar__button" onClick={() => onSelect('q')}>
+          <i className="iconfont icon-q1" />
+        </Button>
+      </Tooltip>
+
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'image', defaultMessage: 'Add image' }), 'Ctrl+m')}>
+        <Button className="EditorToolbar__button" onClick={() => onSelect('image')}>
+          <i className="iconfont icon-picture" />
         </Button>
       </Tooltip>
 
