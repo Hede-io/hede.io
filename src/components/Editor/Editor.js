@@ -18,6 +18,8 @@ import Dropdown from 'antd/lib/dropdown';
 import Menu from 'antd/lib/menu'; 
 import Button from 'antd/lib/button'; 
 import Switch from 'antd/lib/switch';
+import propEq from 'ramda/src/propEq';
+import find from 'ramda/src/find';
 
 import Dropzone from 'react-dropzone';
 import EditorToolbar from './EditorToolbar';
@@ -36,6 +38,8 @@ import Cookies from "js-cookie";
 import {removeHedeReference2 } from '../../helpers/regexHelpers';
 
 import {lowerCaseEntry} from '../../vendor/steemitHelpers';
+import { getModerators } from '../../actions/moderators';
+import { getIsAuthenticated, getAuthenticatedUser } from '../../reducers';
 
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
@@ -53,11 +57,15 @@ import { DELETE_DRAFT } from '../../post/Write/editorActions';
 @connect(
   state => ({
     titlesFound : state.titlesFound,
+    moderators: state.moderators,
+    user: getAuthenticatedUser(state),
+
 //    leftTitlesVisible: state.leftTitlesVisible
 
   }),
   {
     searchTitles,
+    getModerators
    },
 )
 class Editor extends React.Component {
@@ -205,6 +213,12 @@ class Editor extends React.Component {
         }
       }
     }*/
+
+    const { moderators, getModerators} = this.props;
+
+    if (!moderators || !moderators.length) {
+      getModerators();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -704,6 +718,10 @@ class Editor extends React.Component {
     });*/
   }
 
+  isModerator () {
+    const { moderators, user } = this.props;
+    return find(propEq('account', user.name))(moderators)
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -921,6 +939,7 @@ class Editor extends React.Component {
                 <Option value="education">Education</Option>
                 <Option value="food">Food</Option>
                 <Option value="game">Game</Option>
+                <Option value="geography">Geography</Option>
                 <Option value="hede">Hede</Option>
                 <Option value="health">Health</Option>
                 <Option value="history">History</Option>
@@ -932,6 +951,7 @@ class Editor extends React.Component {
                 <Option value="programming">Programming</Option>
                 <Option value="relations">Relations</Option>
                 <Option value="science">Science</Option>
+                <Option value="social-media">Social Media</Option>
                 <Option value="sports">Sports</Option>
                 <Option value="steem">Steem</Option>
                 <Option value="tech">Tech</Option>
@@ -1002,13 +1022,15 @@ class Editor extends React.Component {
               )}
           </Form.Item>
           
+          {this.isModerator() &&
+
           <Form.Item
             label={
               <span className="Editor__label">
-              Moderator Title
+              Moderator Topic
             </span>
             }
-            extra='This title will be shown on steemit.com, busy.org instead of topic name'
+            extra='Change this to move entry into another topic'
           >
             {getFieldDecorator('titleModerator', {
                 rules: [
@@ -1032,7 +1054,7 @@ class Editor extends React.Component {
               />
               )}
           </Form.Item>
-
+          }
           <Form.Item
             className={classNames({ Editor__hidden: isUpdating })}
             label={

@@ -1,6 +1,6 @@
 import sc2 from '../sc2';
 import Promise from 'bluebird';
-import { updateEntry } from '../actions/entry';
+import { updateEntry, getEntry } from '../actions/entry';
 
 
 import find from 'ramda/src/find';
@@ -54,13 +54,12 @@ export const votePost = (postId, author, permlink, weight = 10000) => (dispatch,
             window.ga('send', 'event', 'vote', 'submit', '', 1);
           }
 
-          // Delay to make sure you get the latest data (unknown issue with API)
           setTimeout(
             () =>
               dispatch(
                 updateEntry(entry.author, entry.permlink)
               ),
-            1000,
+            500,
           );
           return res;
         }),

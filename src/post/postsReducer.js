@@ -57,7 +57,6 @@ const posts = (state = initialState, action) => {
     case Actions.UPDATE_ENTRY_SUCCESS:
     case postsActions.GET_CONTENT_SUCCESS:
       if (action.type === Actions.UPDATE_ENTRY_SUCCESS) {
-        // @TODO @HEDE temporary to match Busy.org setup. Full refactoring required for all the reducers
         return {
           ...state,
           pendingLikes: state.pendingLikes.filter(post => post !== action.response.id)
