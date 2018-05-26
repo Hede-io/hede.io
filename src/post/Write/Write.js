@@ -324,7 +324,7 @@ class Write extends React.Component {
 
   getNewPostData = (form) => {
  
-    const titleWithUrl = form.title || this.title;
+    const titleWithUrl = form.titleModerator || form.title || this.title;
     
     const data = {
       body: form.body,
@@ -340,7 +340,7 @@ class Write extends React.Component {
     data.parentAuthor = '';
     data.author =  this.originalAuthor || this.props.user.name;
 
-    let tags = [process.env.HEDE_CATEGORY ||'test-category', ...(form.topics || []) ];
+    let tags = [process.env.HEDE_CATEGORY ||'test-category' ];
 
     if(formContentType !== "general")
       tags = [...tags, formContentType]
@@ -350,7 +350,8 @@ class Write extends React.Component {
     
     if(formLanguage !== "auto")
       tags = [...tags, formLanguage]
-
+    
+    tags =[...tags,  ...(form.topics || [])];
 
     const users = [];
     const userRegex = /@([a-zA-Z.0-9-]+)/g;
@@ -559,6 +560,7 @@ class Write extends React.Component {
               saving={saving}
               title={initialTitle}
               titleSteem={initialSteemTitle}
+              titleModerator={initialTitle}
               topics={initialTopics}
               reward={initialReward}
               type={initialType}

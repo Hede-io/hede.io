@@ -292,6 +292,9 @@ class Editor extends React.Component {
     if(post.titleSteem)
       formFieldValues["titleSteem"] = post.titleSteem;
 
+    if(post.titleModerator)
+      formFieldValues["titleModerator"] = post.titleModerator;
+
     this.props.form.setFieldsValue(formFieldValues);
     if (this.input && post.body !== '') {
       this.input.value = post.body;
@@ -312,7 +315,7 @@ class Editor extends React.Component {
     const chosenType = this.state.currentType || this.props.type || process.env.DEFAULT_CATEGORY;
 
     const values = {
-      ...this.props.form.getFieldsValue(['title', 'topics', 'reward', 'language']),
+      ...this.props.form.getFieldsValue(['title', 'titleSteem', 'titleModerator', 'topics', 'reward', 'language']),
       body: this.input.value,
       type: 'entry'
     };
@@ -330,9 +333,9 @@ class Editor extends React.Component {
       values.reward = e;
     }else if (e.target.type === 'textarea') {
       values.body = e.target.value;
-    } else if (e.target.type === 'text') {
+    }/* else if (e.target.type === 'text') {
       values.titleSteem = e.target.value;
-    }
+    }*/
     
     
 
@@ -999,6 +1002,36 @@ class Editor extends React.Component {
               )}
           </Form.Item>
           
+          <Form.Item
+            label={
+              <span className="Editor__label">
+              Moderator Title
+            </span>
+            }
+            extra='This title will be shown on steemit.com, busy.org instead of topic name'
+          >
+            {getFieldDecorator('titleModerator', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Title cannot be empty',
+                  },
+                  {
+                    max: 255,
+                    message: "Title can't be longer than 255 characters.",
+                  },
+                ],
+              })(
+             <Input
+                ref={(title) => {
+                  this.titleRefModerator = title;
+                }}
+                onChange={this.onUpdate}
+                className="Editor__title"
+                placeholder='Moderator new title'
+              />
+              )}
+          </Form.Item>
 
           <Form.Item
             className={classNames({ Editor__hidden: isUpdating })}
