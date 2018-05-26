@@ -289,6 +289,9 @@ class Editor extends React.Component {
     if(post.theme)
       formFieldValues["theme"] = post.theme;
 
+    if(post.titleSteem)
+      formFieldValues["titleSteem"] = post.titleSteem;
+
     this.props.form.setFieldsValue(formFieldValues);
     if (this.input && post.body !== '') {
       this.input.value = post.body;
@@ -328,7 +331,7 @@ class Editor extends React.Component {
     }else if (e.target.type === 'textarea') {
       values.body = e.target.value;
     } else if (e.target.type === 'text') {
-      values.title = e.target.value;
+      values.titleSteem = e.target.value;
     }
     
     
@@ -705,7 +708,6 @@ class Editor extends React.Component {
     const chosenType = this.state.currentType || type || 'entry';
 
     const chosenTitle = this.state.title || this.props.title || ''
-
     //console.log("selected type", chosenType)
     //console.log("selected title", chosenTitle)
 
@@ -966,6 +968,38 @@ class Editor extends React.Component {
               />,
             )}
           </Form.Item>
+          <Form.Item
+            label={
+              <span className="Editor__label">
+              Steem Title
+            </span>
+            }
+            extra='This title will be shown on steemit.com, busy.org instead of topic name'
+          >
+            {getFieldDecorator('titleSteem', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Title cannot be empty',
+                  },
+                  {
+                    max: 255,
+                    message: "Title can't be longer than 255 characters.",
+                  },
+                ],
+              })(
+             <Input
+                ref={(title) => {
+                  this.titleRef = title;
+                }}
+                onChange={this.onUpdate}
+                className="Editor__title"
+                placeholder='Steem title'
+              />
+              )}
+          </Form.Item>
+          
+
           <Form.Item
             className={classNames({ Editor__hidden: isUpdating })}
             label={

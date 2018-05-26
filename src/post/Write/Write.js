@@ -104,7 +104,8 @@ class Write extends React.Component {
       initialContentType: null,
       initialLanguage: null,
       initialTheme: null,
-      formData: null
+      formData: null,
+      initialTitleSteem: '',
     };
 
     this.title = "";
@@ -150,6 +151,7 @@ class Write extends React.Component {
         this.setState({
           initialTitle: this.title,
           initialTitleId: this.titleId,
+          initialSteemTitle: this.title,
           showTitleInput: true
         });
 
@@ -162,6 +164,7 @@ class Write extends React.Component {
 
      this.setState({
         initialTitle: this.title,
+        initialSteemTitle: this.title,
         initialTitleId: 0,
         showTitleInput: false
       });
@@ -193,6 +196,7 @@ class Write extends React.Component {
       this.setState({
         initialTitle: jsonMetadata.title,
         initialTitleId: draftPost.hede_title,
+        initialSteemTitle: draftPost.title,
         initialTopics: tags || [],
         initialReward: draftPost.reward || '50',
         initialType: jsonMetadata.type || process.env.DEFAULT_CATEGORY,
@@ -239,6 +243,7 @@ class Write extends React.Component {
     this.setState({
       initialTitle: this.title,
       initialTitleId: this.titleId,
+      initialSteemTitle: this.title,
       showTitleInput: false
     });
 
@@ -253,6 +258,7 @@ class Write extends React.Component {
       this.setState({
          initialTitle: this.title,
          initialTitleId: 0,
+         initialSteemTitle: this.title,
          showTitleInput: false
        });
   
@@ -319,9 +325,10 @@ class Write extends React.Component {
   getNewPostData = (form) => {
  
     const titleWithUrl = form.title || this.title;
+    
     const data = {
       body: form.body,
-      title: titleWithUrl,
+      title: form.titleSteem || titleWithUrl,
       reward: form.reward,
     };
 
@@ -530,6 +537,7 @@ class Write extends React.Component {
   render() {
     const {
       initialTitle,
+      initialSteemTitle,
       initialTopics,
       initialType,
       initialBody,
@@ -550,6 +558,7 @@ class Write extends React.Component {
               ref={this.setForm}
               saving={saving}
               title={initialTitle}
+              titleSteem={initialSteemTitle}
               topics={initialTopics}
               reward={initialReward}
               type={initialType}
