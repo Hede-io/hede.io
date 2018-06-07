@@ -325,7 +325,7 @@ class Topnav extends React.Component {
           <Menu className="Topnav__menu-container__menu" mode="horizontal">
           
             <Menu.Item key="signup" className="UWhite">
-              <a target="_blank" rel="noopener noreferrer" className="UWhite" href="https://steemit.com/pick_account">
+              <a onClick={()=>{          if (window.ga){ {window.ga('send', 'event', 'outbound', 'click', 'https://steemit.com/pick_account',{'transport': 'beacon','hitCallback': function(){document.location = 'https://steemit.com/pick_account'; return false;}});}} else{document.location = 'https://steemit.com/pick_account';}}} rel="noopener" className="UWhite" href="https://steemit.com/pick_account">
                 <FormattedMessage id="signup" className="UWhite" defaultMessage="Sign up"/>
               </a>
             </Menu.Item>
