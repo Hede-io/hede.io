@@ -294,7 +294,7 @@ class StoryFull extends React.Component {
 
     let popoverMenu = [];
 
-    if ((isModerator || ownPost) && post.cashout_time !== '1969-12-31T23:59:59') {
+    if (isModerator || (ownPost && post.cashout_time !== '1969-12-31T23:59:59')) {
       popoverMenu = [...popoverMenu, <PopoverMenuItem key="edit">
         {saving ? <Icon type="loading" /> : <i className="iconfont icon-write" />}
         <FormattedMessage id="edit_post" defaultMessage="Edit post" />
