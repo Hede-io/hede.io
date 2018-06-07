@@ -32,8 +32,8 @@ function profile() {
   const endpoint = process.env.HEDE_API + 'sc2/profile';
   const session = Cookie.get('session');
   return request.post(endpoint).set('session', session).timeout({
-    response: 12000,  // Wait 5 seconds for the server to start sending,
-    deadline: 17000, // but allow 1 minute for the file to finish loading.
+    response: 20000,  // Wait 5 seconds for the server to start sending,
+    deadline: 20000, // but allow 1 minute for the file to finish loading.
   }).then(res => {
     return res.body;
   });
@@ -44,8 +44,8 @@ function updateMetadata(metadata) {
   const session = Cookie.get('session');
   return request.put(endpoint)
                 .timeout({
-                  response: 12000,  // Wait 5 seconds for the server to start sending,
-                  deadline: 17000, // but allow 1 minute for the file to finish loading.
+                  response: 20000,  // Wait 5 seconds for the server to start sending,
+                  deadline: 20000, // but allow 1 minute for the file to finish loading.
                 })
                 .send({user_metadata: metadata})
                 .set('session', session)
@@ -57,8 +57,8 @@ function broadcast(operations) {
   const session = Cookie.get('session');
   return request.post(endpoint)
                 .timeout({
-                  response: 12000,  // Wait 5 seconds for the server to start sending,
-                  deadline: 17000, // but allow 1 minute for the file to finish loading.
+                  response: 20000,  // Wait 5 seconds for the server to start sending,
+                  deadline: 20000, // but allow 1 minute for the file to finish loading.
                 })
                 .send({ operations })
                 .set('session', session)
