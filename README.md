@@ -3,7 +3,7 @@ Information shared does not need to be correct and might even contain subjective
 
 Clone and Install
 ------------------
-git clone https://github.com/hede-io/hede.io utopian.io
+git clone https://github.com/hede-io/hede.io hede.io
 
 cd hede.io
 
