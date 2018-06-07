@@ -1,0 +1,404 @@
+@import (reference) "../../styles/custom.less";
+@import "../../styles/modules/variables.less";
+
+.EntryInput{
+  //text-transform: lowercase;
+}
+
+.Editor {
+  padding-bottom: 24px;
+
+  .ant-form-item-label {
+    margin-bottom: 15px;
+  }
+
+  &__showdetail{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  &__category {
+    .ant-radio-group {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 736px) {
+      .ant-radio-group {
+        justify-content: flex-start;
+
+        .box {
+          width: 120px;
+          height: 120px;
+          margin: 10px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    input[type="radio"],
+    .ant-radio-wrapper{
+      display: none;
+    }
+    .ant-radio-wrapper-checked{
+      + .box.ideas{
+        background-color: @bg-ideas;
+      }
+      + .box.sub-projects{
+        background-color: @bg-sub-projects;
+      }
+      + .box.development{
+        background-color: @bg-development;
+      }
+      + .box.bug-hunting{
+        background-color: @bg-bug-hunting;
+      }
+      + .box.translations{
+        background-color: @bg-translations;
+      }
+      + .box.graphics{
+        background-color: @bg-graphics;
+      }
+      + .box.analysis{
+        background-color: @bg-analysis;
+      }
+      + .box.social{
+        background-color: @bg-social;
+      }
+      + .box.documentation{
+        background-color: @bg-documentation;
+      }
+      + .box.tutorials{
+        background-color: @bg-tutorials;
+      }
+      + .box.video-tutorials{
+        background-color: @bg-video-tutorials;
+      }
+      + .box.copywriting{
+        background-color: @bg-copywriting;
+      }
+      + .box.blog{
+        background-color: @bg-blog;
+      }
+      + .box {
+        position: relative;
+        span {
+          color: @white;
+          transform: translateY(50px);
+          &:before {
+            color: @white;
+            transform: translateY(0px);
+            opacity: 1;
+          }
+        }
+      }
+    }
+    .box {
+      width: 150px;
+      height: 150px;
+      background-color: @white;
+      transition: all 250ms ease;
+      will-change: transition;
+      display: inline-block;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      font-weight: 900;
+
+      &:active{
+        transform: translateY(10px);
+      }
+      &.disabled {
+        background-color: @blue-linkWater !important;
+        cursor: default;
+      }
+      span {
+        position: absolute;
+        transform: translate(0, 60px);
+        left: 0;
+        right: 0;
+        transition: all 300ms ease;
+        font-size: 1.2em;
+        user-select: none;
+        color: #CCC;
+        &:before {
+          font-size: 1.5em;
+          font-family: "Material Design Icons";
+          display: block;
+          transform: translateY(-10px);
+          opacity: 10;
+          transition: all 300ms ease-in-out;
+          font-weight: normal;
+          color: #CCC;
+        }
+      }
+    }
+    .ideas {
+      span {
+        &:before {
+          content: @icon-ideas;
+        }
+      }
+    }
+    .sub-projects {
+      span {
+        &:before {
+          content: @icon-sub-projects;
+        }
+      }
+    }
+    .development {
+      span {
+        &:before {
+          content: @icon-development;
+        }
+      }
+    }
+    .bug-hunting {
+      span {
+        &:before {
+          content: @icon-bug-hunting;
+        }
+      }
+    }
+    .translations {
+      span {
+        &:before {
+          content: @icon-translations;
+        }
+      }
+    }
+    .graphics {
+      span {
+        &:before {
+          content: @icon-graphics;
+        }
+      }
+    }
+    .analysis {
+      span {
+        &:before {
+          content: @icon-analysis;
+        }
+      }
+    }
+    .social {
+      span {
+        &:before {
+          content: @icon-social;
+        }
+      }
+    }
+    .documentation {
+      span {
+        &:before {
+          content: @icon-documentation;
+        }
+      }
+    }
+    .tutorials {
+      span {
+        &:before {
+          content: @icon-tutorials;
+        }
+      }
+    }
+    .video-tutorials {
+      span {
+        &:before {
+          content: @icon-video-tutorials;
+        }
+      }
+    }
+    .copywriting {
+      span {
+        &:before {
+          content: @icon-copywriting;
+        }
+      }
+    }
+    .blog {
+      span {
+        &:before {
+          content: @icon-blog;
+        }
+      }
+    }
+  }
+
+  &__rules {
+    background: @white;
+    padding: 15px;
+    font-size: 15px;
+
+    ul {
+      padding-left: 30px;
+      padding-bottom: 15px;
+      list-style: disc;
+      list-style-position: inside;
+      li {
+        margin-top: 15px;
+      }
+    }
+    button {
+      margin-top: 15px;
+    }
+  }
+  .rulesAccepted {
+    display: block;
+  }
+
+  .rulesNotAccepted {
+    display: none;
+  }
+
+  .ant-form-item-control > div { width: 100%; }
+  .ant-row { margin-top: 15px; }
+
+  &__hidden {
+    display: none !important;
+  }
+
+  & .ant-form-item-label {
+    position: relative;
+    top: 8px !important;
+  }
+
+  & .ant-form-item-required {
+    &:before {
+      content: "" !important;
+    }
+  }
+
+  & .ant-checkbox-wrapper > :last-child {
+    vertical-align: -3px;
+  }
+
+  &__label {
+    font-weight: bold;
+  }
+
+  &__title,
+  &__repository{
+    height: 52px !important;
+    font-size: 24px !important;
+    font-weight: bold;
+    &.disabled {
+      color: #CCC;
+    }
+  }
+
+  &__topics {
+    & > div {
+      padding-top: 5px !important;
+      height: 42px !important;
+    }
+  }
+
+  &__dropzone-base {
+    position: relative;
+  }
+
+  &__dropzone {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    border-radius: 4px;
+    background: fade(@purple, 60%);
+    color: white;
+
+    & > div {
+      margin: auto;
+      font-weight: 700;
+      font-size: 20px;
+
+      & > span {
+        margin-left: 8px;
+        vertical-align: 3px;
+      }
+    }
+  }
+
+  &__imagebox {
+    input {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: 0;
+      overflow: hidden;
+      position: absolute;
+      z-index: -1;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    .iconfont {
+      font-size: 22px !important;
+      margin-right: 4px;
+      vertical-align: -2px;
+    }
+
+    .anticon {
+      font-size: 16px !important;
+      margin-right: 8px !important;
+      vertical-align: 1px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__info {
+      font-weight: bold;
+
+      .iconfont {
+        font-size: 20px;
+        vertical-align: -3px;
+        margin-right: 4px;
+      }
+    }
+
+    &__right {
+      display: flex;
+      align-items: center;
+
+      &__saving {
+        margin-right: 16px;
+      }
+    }
+
+    &__submit {
+      margin-bottom: 0 !important;
+
+      .ant-form-item-control {
+        text-align: right !important;
+      }
+    }
+  }
+
+  .ant-select-selection__choice {
+    font-weight: 500 !important;
+    border: 2px solid @green !important;
+    color: @green !important;
+    background-color: transparent !important;
+    border-radius: @btn-height-sm !important;
+
+    & > div {
+      position: relative;
+      top: -2px;
+      font-size: 14px;
+    }
+
+    & > span {
+      color: @green !important;
+    }
+  }
+}

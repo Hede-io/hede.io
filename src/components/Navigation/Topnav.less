@@ -1,0 +1,513 @@
+@import (reference) "../../styles/custom.less";
+
+@base-spacing: 0;
+
+.ant-select-dropdown {
+  position: fixed !important;
+  top:56px !important;
+
+  &-menu-item {
+    .anticon-github {
+      font-size: 16px;
+      color: rgb(255, 255, 255);
+      @media screen and (max-width: 736px) {
+        margin-right: 2px !important;
+      }
+      @media screen and (min-width: 737px) {
+        margin-right: 5px !important;
+      }
+    }
+  }
+}
+
+.ant-popover {
+  position: fixed !important;
+}
+
+.Searchmobile {
+  display: none;
+}
+
+.from-topnav.md-react-icon {
+  @media screen and (max-width: 736px) {
+    margin-right: 2px !important;
+  }
+  @media screen and (min-width: 737px) {
+    margin-right: 5px !important;
+  }
+  margin-bottom: 3px !important;
+  &.md-sub-projects {
+      margin-bottom: 5px !important;
+  }
+  &.md-documentation {
+      margin-bottom: 2px !important;
+  }
+  &.md-copywriting {
+      margin-bottom: -1px !important;
+  }
+}
+
+.from-story.md-react-icon {
+  margin-bottom: 4px !important;
+  &.md-documentation {
+    margin-bottom: 2px !important;
+  }
+  &.md-copywriting {
+    margin-bottom: 1px !important;
+  }
+  &.md-graphics {
+    margin-bottom: 3px !important;
+  }
+  &.md-bug-hunting {
+    margin-bottom: 3px !important;
+  }
+}
+
+@media screen and (max-width: 736px) {
+  .Searchmobile {
+    display: block;
+    background-color: rgb(255, 255, 255) !important;
+    .ant-select, .SearchSelector, .ant-select-selection, .ant-select-selection--single {
+      background-color: @ioslightyellow !important;
+      color: @white !important;
+    }
+  }
+  .ant-select-dropdown, .ant-select-dropdown--single, .ant-select-dropdown-placement-bottomLeft {
+    margin-top: 53px !important;
+  }
+}
+
+.ant-select-arrow {
+  color:#bfbfbf!important;
+}
+
+.PopoverMenu {
+  background-color: rgb(255, 255, 255) !important;
+}
+
+.TopRightPopover {
+  // color: @white !important;
+  .ant-popover-arrow {
+    display: none !important;
+    color: transparent !important;
+    z-index: 1040 !important;
+  }
+}
+
+.ant-popover-arrow {
+  display: none !important;
+  color: transparent !important;
+}
+
+.ant-popover-content {
+  margin-top: -12px !important;
+}
+
+.ant-select-dropdown-menu {
+  color: #fff !important;
+  background-color: @black !important;
+}
+
+.ant-select-dropdown-menu-item-active  {
+  background-color: #1294df !important;
+}
+
+.ant-select-dropdown-menu-item-selected {
+  background-color: #1294df !important;
+}
+
+.ant-select-dropdown-menu-item {
+  color: @white !important;
+}
+
+.ant-popover-inner-content {
+  background-color: #fff !important;
+}
+
+.PopoverMenuItem > a {
+  color: #99aab5 !important;
+}
+
+.TopPopover {
+  color: #1e1e1e !important;
+  background-color: #fff !important;
+}
+
+.autocomplete {
+  width: 100%;
+  height: 56px;
+}
+
+
+
+.Search,
+.Searchmobile {
+  // border-bottom: 1px solid #e9e7e7 !important;
+  .ant-input {
+    background-color: @ioslightyellow !important;
+    color:#1e1e1e !important;
+  }
+
+  ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+      color:  rgba(0, 0, 0, 0.65);
+  }
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:  rgba(0, 0, 0, 0.65);
+    opacity:  1;
+  }
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:  rgba(0, 0, 0, 0.65);
+    opacity:  1;
+  }
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:  rgba(0, 0, 0, 0.65);
+  }
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color:  rgba(0, 0, 0, 0.65);
+  }
+
+  ::placeholder { /* Most modern browsers support this now. */
+    color:  rgba(0, 0, 0, 0.65);
+  }
+
+  .ant-input-suffix{
+    background-color: @ioslightyellow !important;
+  }
+  .search-btn{
+    background-color: @ioslightyellow !important;
+    border: 0px;
+    //border: @ioslightyellow !important;
+  }
+
+  > span {
+    display: flex !important;
+    justify-content: flex-start !important;
+
+    .ant-select {
+      outline: 0;
+      min-width: 180px;
+      border-radius: 0;
+      height: 100%;
+      border: 0;
+      //border-right: 1px solid #b3b3b3cc !important;
+
+      @media screen and (max-width: 736px) {
+        min-width: 35%;
+      }
+
+      @media screen and (max-width: 400px) {
+        min-width: 35%;
+      }
+
+      .ant-select-selection {
+        height: 100%;
+        border: 0;
+        border-radius: 0 !important;
+
+        .anticon-github {
+          font-size: 16px;
+          color: rgb(255, 255, 255);
+          margin-right: 5px;
+        }
+        .ant-select-selection__rendered {
+          line-height: 54px;
+        }
+      }
+    }
+  }
+
+  input {
+    height: 56px !important;
+    border-radius: 0 !important;
+    border: 0 !important;
+    padding: 0 0 0 15px !important;
+    outline: none;
+
+    @media screen and (max-width: 736px) {
+      padding-left: 15px !important;
+    }
+
+    &:hover, &:focus {
+      box-shadow: none !important;
+      border-color: #e9e7e7 !important;
+    }
+  }
+}
+
+.Topnav {
+  background-color: @iosyellow !important;
+  // border-bottom: 1px solid #e9e7e7;
+  height: 56px;
+  line-height: 56px;
+
+  @media screen and (max-width: 736px) {
+    .topnav-layout .center {
+      display: none;
+    }
+  }
+
+  &__version {
+    margin-left: -2px;
+    color: #99aab5 !important;
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+    font-weight: 300;
+    @media screen and (max-width: 736px) {
+      font-size: 7px !important;
+      margin-left: 1px;
+    }
+  }
+
+
+  &__brand {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding-left: 0px !important;
+    margin-left: 0px !important;
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
+      text-decoration: none;
+    }
+
+    span {
+      vertical-align: text-top;
+      padding-left: 5px;
+      color: @black;
+      font-size: 22px;
+
+      @media screen and (max-width: 375px) {
+        display: none;
+      }
+    }
+
+    img {
+      // width: 80px;
+      padding-top: 0px;
+      padding-bottom: 6px;
+      height: 40px;
+      vertical-align: middle;
+
+      @media screen and (max-width: 736px) {
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 35px;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &__container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+
+  &__search-menu {
+    background: @black;
+    //border: solid 1px #b3b3b3cc;
+    overflow-y: scroll;
+    max-height: 300px;
+
+    > div {
+      height: 100%;
+    }
+  }
+  &__search-menu-reg {
+    background: white;
+    //border: solid 1px #b3b3b3cc;
+    overflow-y: scroll;
+    max-height: 300px;
+
+    > div {
+      height: 100%;
+    }
+  }
+  &__search-tip{
+    padding-left: 15px;
+  }
+  &__search-item {
+    cursor: pointer;
+    line-height: normal;
+    padding: 7.5px;
+
+    &:hover {
+      background: @blue;
+      color: @white;
+    }
+
+    > span:first-of-type {
+      display: block;
+      width: 100%;
+    }
+    > span:nth-child(2) {
+      font-size: 14px;
+    }
+  }
+  &__input-container {
+    padding: 0 @base-spacing;
+    position: relative;
+    height: 56px;
+    //border-left: solid 1.5px #b3b3b3cc;
+    border-right: solid 0px #d3d3d3;
+
+    @media screen and (max-width: 736px) {
+      padding-top: 56px;
+    }
+
+  }
+
+  .searchBar {
+    text-transform: lowercase;
+    // border-bottom: solid 5px #ffffff;
+  }
+
+  .UWhite {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .SearchSelector {
+    background-color: @ioslightyellow !important;
+    color: white !important;
+    height: 56px;
+  }
+
+  .ant-select-selection {
+    background-color: @black !important;
+  }
+
+  .SearchSelectorGit {
+    color: white !important;
+  }
+
+  &__menu-container {
+    display: flex;
+    justify-content: flex-end;
+
+    &__menu {
+      background-color: @iosyellow !important;
+      color: rgba(255, 255, 255, 0.65) !important;
+      flex-shrink: 0;
+      height: 55px !important;
+      border: 0 !important;
+      line-height: 55px !important;
+      margin-left: @base-spacing;
+
+      & > li {
+        height: 55px !important;
+        padding: 0 4px !important;
+
+        & > a {
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+  .ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover, .ant-menu-horizontal > .ant-menu-item-active, .ant-menu-horizontal > .ant-menu-submenu-active, .ant-menu-horizontal > .ant-menu-item-open, .ant-menu-horizontal > .ant-menu-submenu-open, .ant-menu-horizontal > .ant-menu-item-selected, .ant-menu-horizontal > .ant-menu-submenu-selected {
+    border-bottom: 0px solid transparent !important;
+  }
+
+  &__user {
+    display: flex !important;
+    align-items: center;
+    height: 54px;
+
+    &__username {
+      display: none;
+      margin-left: 8px;
+      color: @purple;
+
+      @media screen and (min-width: 992px) {
+        display: inline;
+      }
+    }
+  }
+
+  &__item--badge {
+    i {
+      position: relative;
+      top: -3px;
+    }
+  }
+
+  &__item-user {
+    margin: 0 10px !important;
+  }
+
+  &__item-write {
+    background-color: @blue;
+    &:hover {
+      background-color: @blue-7 !important;
+      border: none !important;
+    }
+  }
+  &__link {
+    i {
+      color: rgba(0, 0, 0, 0.65);
+      vertical-align: middle;
+    }
+
+    &--light {
+      i {
+        font-weight: normal !important;
+      }
+    }
+  }
+  &__whitelink {
+    i {
+      color: rgba(255, 255, 255, 0.65);
+      vertical-align: middle;
+    }
+
+    &--light {
+      i {
+        font-weight: normal !important;
+      }
+    }
+  }
+  &__newReport {
+    font-family: @font-family;
+    color: @white !important;
+
+    span {
+      padding: 15px;
+
+      i {
+        vertical-align: middle;
+        font-size: 14px;
+      }
+    }
+    @media screen and (max-width: 736px) {
+      &_text {
+        display: none;
+      }
+    }
+  }
+
+
+}
+
+/*.cometchat_ccmobiletab_redirect {
+  font-size: 9px !important;
+  font-family: @font-family-header;
+  width: 85px;
+  padding: 3px 3px;
+  background-color: rgba(0, 38, 255, 0.288) !important;
+} // Fix annoying comet chat mobile
+
+#cometchat_userstab.cometchat_tab {
+  background-color: rgba(0, 38, 255, 0.288) !important;
+}
+
+#cometchat_optionscontent .cometchat_options_disable label.cometchat_checkboxcontrol {
+  margin-top: -25px;
+}// Fixed notification checkboxes position
+
+.Component__block {
+  display: none;
+}
+*/

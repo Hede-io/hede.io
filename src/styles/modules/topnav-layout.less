@@ -1,0 +1,41 @@
+@import (reference) "./variables.less";
+
+.topnav-layout {
+  .left {
+    position: absolute;
+    width: @left-width;
+    margin-left: 16px;
+    
+    @media @small {
+      margin-left: 0;
+    }
+  }
+
+  .right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: auto;
+    margin-right: 16px;
+
+    @media @small {
+      margin-right: 0;
+    }
+  }
+
+  .center {
+    display: block;
+    width: 100%;
+
+    @media @small {
+      display: block;
+      width: calc(100% ~"-" (@right-width + @margin)); 
+      margin-right: @right-width + @margin;
+    }
+
+    @media @medium {
+      width: calc(100% ~"-" (@left-width + @right-width + 2 * @margin));
+      margin-left: @left-width + @margin;
+    }
+  }
+}

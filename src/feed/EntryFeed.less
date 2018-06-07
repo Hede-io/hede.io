@@ -1,0 +1,55 @@
+@import (reference) "../styles/custom.less";
+
+.EntryFeed{
+
+    border-radius: 4px;
+    background-color: @white;
+    color: #353535;
+    //border: solid 1px #e9e7e7;
+    //padding-top: 12px;
+    //padding-bottom: 12px;
+    text-align: center;
+    margin-top: 10px;
+
+    margin-left: auto;
+    margin-right: 0;
+    width: 50%;
+    padding: 5px;
+
+  
+    &__newEntry {
+        font-family: @font-family;
+        color: #353535 !important;
+        vertical-align: middle;
+        text-decoration: none;
+        span {
+        padding: 15px;
+
+        i {
+            vertical-align: middle;
+            font-size: 14px;
+        }
+        }
+    
+    }
+    
+    &__pagination{
+        margin-bottom: 30px;
+        text-align: center;
+
+    }
+
+    &__newEntryTitle{
+        //color: @blue-botticelli;
+        font-weight: 500;
+    }
+
+    &__writeEntryButton{
+        //color: @blue-botticelli;
+        font-weight: 500;
+        border: 0 !important;
+        color: @primary-color;
+    }
+
+}
+

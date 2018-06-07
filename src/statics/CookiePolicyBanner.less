@@ -1,0 +1,42 @@
+.CookiePolicyBanner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  background-color: #000;
+  color: #ccc;
+  
+  &__PolicySummary {
+    font-size: 90%;
+    max-width: 60em;
+    margin-left: 0.5em;
+    line-height: 105%;
+    text-align: justify;
+    
+    &:first-child {
+      margin-top: 0.5em;
+    }
+
+    &:last-child {
+      margin-bottom: 0.5em;
+    }
+  }
+
+  &__PolicyLink {
+    color: #fff;
+    margin-left: 1em;
+    &:before {
+      content: ' ';
+    }
+  }
+
+  &__ProceedButton {
+    margin: 0 3%;
+    height: 200%;
+  }
+}

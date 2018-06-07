@@ -1,0 +1,69 @@
+@import (reference) "../../styles/custom.less";
+
+.Announcement {
+  background: @white;
+  border: 1px solid #e9e7e7;
+  border-radius: @border-radius-base;
+  margin-bottom: 15px;
+
+  button {
+    display: block;
+    margin: 15px auto auto;
+  }
+
+  li {
+    padding: 7.5px;
+    border: 1px solid #e9e7e7;
+    margin-bottom: 5px;
+
+    a {
+      color: #444;
+      word-wrap: break-word;
+    }
+
+    .task {
+      a {
+        color: @blue-5;
+      }
+    }
+  }
+}
+
+
+.Announcement__container {
+  padding: 8px 16px 16px 16px;
+}
+
+.Announcement__supertitle {
+  color: #99aab5;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: @font-family-header;
+  margin-bottom: 5px;
+  vertical-align: middle;
+  i { color: #444 }
+}
+
+.Announcement__divider {
+  width: 100%;
+  height: 1px;
+  margin: 12px 0;
+  background-color: #e9e7e7;
+}
+
+.Announcement__content {
+  text-align: right !important;
+  color: #99aab5;
+  text-decoration: none;
+}
+
+.Announcement__subtitle {
+  text-align: left !important;
+  font-family: @font-family-header;
+  vertical-align: middle;
+
+}
+
+.Announcement__single {
+  clear: both !important;
+}

@@ -1,0 +1,120 @@
+@import "~antd/dist/antd.less";
+
+// Start with assigning color names to specific hex values.
+@white:  #fff;
+@white-darker: #f9f9f9;
+@white-darker2: #fcfcff;
+@black:  #000;
+@red:    #d9534f;
+@orange: #F6A623;
+@iosyellow: #ffcc00;
+@ioslightyellow: #ffd942;
+@myorange: #E86E0C;
+
+@yellow: #ffd500;
+@green:  #54d2a0;
+@blue:   #0275d8;
+@lllsuperblue: #95abe5;
+@llsuperblue: #7294f3;
+@lsuperblue: #5480fc;
+@superblue: #386cfe;
+@dsuperblue: #1f5bff;
+@ddsuperblue: #0b44d6;
+@dddsuperblue: #042e99;
+@teal:   #5bc0de;
+@pink:   #ff5b77;
+@purple: #5c19c7;
+@lightpurple: #d56efd;
+@dlightpurple: #842abf;
+@normal-grey: #4f545c;
+@blue-botticelli: #99aab5;
+@blue-linkWater: #c2ccd3;
+@blue-baliHai: #8798a4;
+@blue-heather: #a1afba;
+@blue-solitude: #f5f6f9;
+@grey-mortar: #595959;
+@grey-nightRider: #303030;
+
+@button-color: @myorange;
+
+@bg-blog: @blue;
+@bg-ideas: @green;
+@bg-sub-projects: #a0db8e;
+@bg-development: @black;
+@bg-bug-hunting: @red;
+@bg-translations: @yellow-5;
+@bg-graphics: @orange;
+@bg-analysis: #164265;
+@bg-social: @blue-4;
+@bg-documentation: rgb(177, 177, 177);
+@bg-tutorials: #782C51;
+@bg-video-tutorials: #EC3324;
+@bg-copywriting: #008080;
+
+@icon-ideas: "\F336";
+@icon-blog: "\F332";
+@icon-sub-projects: "\F431";
+@icon-development: "\F174";
+@icon-bug-hunting: "\F0E4";
+@icon-translations: "\F5CA";
+@icon-graphics: "\F614";
+@icon-analysis: "\F420";
+@icon-social: "\F497";
+@icon-documentation: "\F14E";
+@icon-tutorials: "\F816";
+@icon-video-tutorials: "\F448";
+@icon-copywriting: "\F366";
+
+@primary-color: @iosyellow;
+
+@font-family-sans-serif: 'Source Sans Pro',sans-serif;
+@font-family-monospace:  'Source Sans Pro',sans-serif;
+@font-family-base:       @font-family-sans-serif;
+
+@font-family-header: 'Source Sans Pro', sans-serif;
+@font-family: @font-family-base;
+@code-family: @font-family-monospace;
+
+@body-background: @white-darker2;
+@component-background: @white;
+@font-size-base: 16px;
+@font-size-lg: @font-size-base;
+
+// Buttons
+@btn-height-base: 30px;
+@btn-height-lg: 46px;
+@btn-height-sm: 25px;
+
+
+// Tooltip
+@tooltip-bg: rgb(46, 97, 236);
+@tooltip-arrow-color: rgb(46, 97, 236);
+
+// Layout
+@layout-body-background      : transparent;
+@layout-header-background    : @layout-body-background;
+@layout-header-height        : 64px;
+@layout-header-padding       : 0px;
+@layout-footer-padding       : 24px 50px;
+@layout-sider-background     : @layout-header-background;
+@layout-trigger-height       : 48px;
+@layout-zero-trigger-width   : 36px;
+@layout-zero-trigger-height  : 42px;
+
+// Comments
+@comment-text-left-margin: 12px;
+@comment-avatar-size-default: 40px;
+@comment-text-offset-default: @comment-avatar-size-default + @comment-text-left-margin;
+@comment-avatar-size-small: 32px;
+@comment-text-offset-small: @comment-avatar-size-small + @comment-text-left-margin;
+
+@media screen and (max-width: 736px) {
+    .nomobile {
+        display: none;
+    }
+}
+@media screen and (min-width: 737px) {
+    .yesmobile {
+        display: none;
+    }
+}

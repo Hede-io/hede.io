@@ -1,0 +1,116 @@
+.Sponsors {
+  padding: 15px;
+  &__intro {
+    text-align: center;
+
+    &-delegate {
+      width: auto;
+      display: inline-block;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      background: #0275d8;
+      color: #FFF;
+      padding: 17px;
+
+      i {
+        vertical-align: middle;
+        font-size: 14px;
+      }
+    }
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  &__stats {
+    padding: 15px;
+    background: #FFF;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    &-box {
+      border: 1px solid #EEE;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 15px;
+      width: 24%;
+      min-width: 220px;
+
+      h3 {
+        color: lightgreen;
+        font-size: 36px;
+      }
+    }
+  }
+
+  &__heroes {
+    display: flex;
+    background: #FFF;
+    border-radius: 4px;
+    border: 1px solid #EEE;
+    margin-top: 15px;
+    padding: 15px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    &-hero {
+      width: 49%;
+      min-width: 250px;
+      border: 1px solid #EEE;
+      margin-bottom: 15px;
+      text-align: center;
+
+      .infoCont {
+        padding: 15px;
+      }
+
+      .statsTab {
+        border: 1px solid #EEE;
+        padding: 15px;
+        h4 {
+          color: lightgreen;
+        }
+      }
+
+      .picture {
+        vertical-align: middle;
+        display: inline-block;
+        border: 1px solid #CCC;
+        border-radius: 100%;
+      }
+
+      .account {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 22px;
+        margin-left: 15px;
+      }
+    }
+  }
+
+  &__form {
+    input {
+      width: 100%;
+      height: 45px;
+      border-radius: 4px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      margin-bottom: 15px;
+    }
+    label{
+      display: block;
+      width: 100%;
+      font-weight: bold;
+      margin-bottom: 7.5px;
+    }
+  }
+}

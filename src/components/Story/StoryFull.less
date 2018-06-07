@@ -1,0 +1,206 @@
+@import (reference) "../../styles/modules/variables.less";
+@import (reference) "../../styles/custom.less";
+@import (reference) "../../styles/fonts.less";
+
+.floatRight {
+  float: right !important;
+  position: relative;
+  margin-right: 5px;
+  margin-bottom: 1px;
+}
+
+#ShareButtons {
+  line-height: 20px !important;
+}
+
+.ShareButtons {
+  display: flex !important;
+  line-height: 20px !important;
+  &__button {
+    margin-right: 20% !important;
+  }
+  &__Facebook {
+    display: flex;
+    &__btn {
+
+    }
+  }
+  &__Twitter {
+    display: flex;
+
+    &__btn { 
+
+    }
+  }
+  &__LinkedIn {
+    display: flex;
+    &__btn {
+
+    }
+  }
+}
+
+.StoryFull {
+  margin: 12px 0;
+  @media screen and (max-width: 736px) {
+    margin: 1px 0;
+  }
+
+  &.Contribution{
+    margin-bottom: 15px;
+  }
+  &__reputationTag {
+    background-color: @button-color !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    vertical-align: 10% !important;
+  }
+  &__postTag {
+    border: 1px solid @button-color !important;
+    color: @button-color !important;
+    background-color: transparent !important;
+  }
+
+  &__unreviewedPadding {
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  &__reviewP {
+    line-height: 15px !important;
+    
+  }
+
+  &__review {
+    line-height: 10px !important;
+    background: @red;
+    color: @white;
+    padding: 7.5px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: 2px crimson dotted;
+    border-radius: 7px;
+    h3 {
+      color: @white;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+    button#hide {
+      background: @black !important;
+      &:hover {
+        border: 1px solid @orange !important;
+      }
+    }
+    button#pending {
+      background: @white !important;
+      color: @black !important;
+      border: 1px solid @black !important;
+      &:hover {
+        border: 1px solid @green-6 !important;
+      }
+    }
+    button#verified {
+      background: @green-6 !important;
+      &:hover {
+        background: green !important;
+        border: 1px solid @white !important;
+      }
+    }
+    button {
+      width: auto;
+      margin-top: 15px;
+      margin-right: 15px;
+      border: 1px solid @blue-linkWater !important;
+    }
+    a {
+      color: @white;
+      font-weight: bold;
+      text-decoration: underline;
+      &:hover {
+        color: @white;
+      }
+    }
+  }
+
+  &__reply {
+    border-radius: 5px;
+    border: solid 1px #e9e7e7;
+    padding: 16px 12px;
+
+    & > &__title {
+      color: #353535;
+      font-weight: 700;
+      line-height: 1.3em;
+    }
+  }
+
+  &__title {
+    color: #353535;
+    font-weight: 700;
+    line-height: 1.3em;
+    font-size: 28px;
+
+    @media @small {
+      font-size: 34px;
+    }
+  }
+
+  &__comments_title {
+    color: @purple;
+    font-weight: 500;
+    margin-top: 8px;
+    cursor: pointer;
+  }
+
+  &__modlink {
+    text-decoration: none !important;
+    color: white;
+  }
+
+  &__topics {
+    margin: 16px 0;
+
+    & > .Topic {
+      margin: 2px 4px 2px 0;
+    }
+  }
+
+  &__header {
+    position: relative;
+    display: flex;
+    padding: 16px 0;
+
+    &__text {
+      margin-left: 16px;
+
+      & > a {
+        display: block;
+        font-size: 20px;
+        font-weight: bold;
+
+        .ant-tag {
+          margin-left: 8px;
+        }
+      }
+
+      &__date {
+        color: #99aab5;
+        font-size: 14px;
+      }
+    }
+
+    &__more {
+      position: absolute;
+      right: 8px;
+      top: 36px;
+      line-height: 12px !important;
+      font-size: 36px !important;
+      color: @purple;
+
+      &:hover {
+        cursor: pointer;
+        color: darken(@purple, 15%);
+      }
+    }
+  }
+}

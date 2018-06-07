@@ -1,0 +1,51 @@
+@import (reference) "./variables.less";
+
+.post-layout {
+  position: relative;
+  padding: 0 @mobile-padding;
+  @media @medium {
+    padding: 0;
+  }
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .right {
+    width: @right-width;
+
+    padding-right: @mobile-padding;
+
+    @media @medium {
+      padding-right: 0;
+    }
+  }
+
+  .rightContainer {
+    float: right;
+    display: none;
+    width: @right-width;
+
+    @media @small {
+      display: block;
+    }  
+  }
+
+  .center {
+    float: left;
+    width: 100%;
+    padding-right: @mobile-padding;
+    padding-left: @mobile-padding;
+
+    @media @small {
+      width: calc(100% ~"-" (@right-width + @margin));
+      padding-right: 0;
+    }
+
+    @media @medium {
+      padding-left: 0;
+    }
+  }
+}

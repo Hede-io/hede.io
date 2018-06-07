@@ -1,0 +1,116 @@
+@import (reference) "../../styles/custom.less";
+@import (reference) "../../styles/mixins.less";
+@import (reference) "../../styles/fonts.less";
+
+.Action {
+  .btn;
+  .btn-default;
+
+  .colorize-button(#c2ccd3, #99aab5);
+
+  font-family: @font-family !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 1.2px;
+  color: @white !important;
+  width: 100%;
+
+  a, a:hover, a:active, a:visited, a:focus {
+    text-decoration:none;
+  }
+
+
+  &--primary {
+    .colorize-button(@button-color, @button-color);
+    font-family: 'Roboto', sans-serif;
+
+    color: @white-darker;
+
+    &:disabled,
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+      color: @white-darker !important;
+      text-decoration: none !important;
+    }
+  }
+
+  &--compact {
+    width: 80% !important;
+    height: 35px !important;
+    letter-spacing: 0.1px !important;
+    // padding-top: 0px !important;
+    // padding-right: 0px !important;
+    // padding-left: 0px !important;
+    // padding-bottom: 0px !important;
+  }
+
+  &--cozy {
+    height: 40px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    letter-spacing: 0.1px !important;
+    @media screen and (max-width: 736px) {
+      //margin-left: 50% !important;
+      //width: 42%;
+    }
+    // padding-top: 0px !important;
+    // padding-right: 0px !important;
+    // padding-left: 0px !important;
+    // padding-bottom: 0px !important;
+  }
+
+  &--negative {
+    .colorize-button(@red, #c20e0e);
+    
+        color: @white-darker;
+    
+        &:disabled,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          color: @white-darker !important;
+        }
+  }
+  &--deepblue {
+    .colorize-button(@blue, #004fe2);
+    
+        color: @white-darker;
+    
+        &:disabled,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          color: @white-darker !important;
+        }
+  }
+  &--positive {
+    .colorize-button(@green, #00b637);
+    
+        color: @white-darker;
+    
+        &:disabled,
+        &:hover,
+        &:focus,
+        &:active,
+        &.active {
+          color: @white-darker !important;
+        }
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: @white;
+  }
+
+  & .anticon { 
+
+    vertical-align: -1px;
+    margin-right: 8px;
+  }
+}

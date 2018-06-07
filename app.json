@@ -1,0 +1,26 @@
+{
+  "name": "hede",
+  "scripts": {},
+  "env": {
+    "NEW_RELIC_LICENSE_KEY": {
+      "required": true
+    },
+    "NEW_RELIC_NO_CONFIG_FILE": {
+      "required": true
+    },
+    "NEW_RELIC_APP_NAME": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

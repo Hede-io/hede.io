@@ -1,0 +1,59 @@
+@import (reference) "../../styles/custom.less";
+
+.Sidenav {
+  min-width: 150px;
+
+
+  & > li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    & > a {
+      color: #99aab5;
+      font-weight: 400;
+
+      &:focus {
+        text-decoration: none;
+      }
+
+      i {
+        vertical-align: middle;
+        margin-right: 10px;
+        font-size: 18px;
+      }
+    }
+  }
+
+  &__total{
+   
+    width:25px;
+  }
+}
+
+.from-sidenav.md-react-icon {
+  margin-right: 15px !important;
+}
+
+.Sidenav__item--active {
+  color: @primary-color !important;
+  & > i {
+    color: @primary-color;
+  }
+}
+
+br {
+  content: "";
+  margin: 2em;
+  display: block;
+  font-size: 10%;
+}
+
+
+.SideNavContent{
+  height: 100%;
+  margin-right: 5px;
+}
