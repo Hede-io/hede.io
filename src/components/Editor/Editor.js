@@ -1022,7 +1022,7 @@ class Editor extends React.Component {
               )}
           </Form.Item>
           
-          {this.isModerator() &&
+          {this.isModerator() && 
 
           <Form.Item
             label={
@@ -1034,10 +1034,6 @@ class Editor extends React.Component {
           >
             {getFieldDecorator('titleModerator', {
                 rules: [
-                  {
-                    required: true,
-                    message: 'Title cannot be empty',
-                  },
                   {
                     max: 255,
                     message: "Title can't be longer than 255 characters.",
