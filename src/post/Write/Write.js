@@ -413,13 +413,13 @@ class Write extends React.Component {
     }
 
     //console.log("postbody before lowercase:", postBody);
-    postBody = postBody.toLocaleLowerCase("en-US");
+    //postBody = postBody.toLocaleLowerCase("en-US");
     let cLink = 0;
     //console.log("postbody after lowercase:", postBody);
 
-    postBody = postBody.replace(httpRegex, (m, ref) => {
+    /*postBody = postBody.replace(httpRegex, (m, ref) => {
       return linksToReplace[ref];
-    });
+    });*/
 
     //console.log("postbody after links:", postBody);
 
