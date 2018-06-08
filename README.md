@@ -25,4 +25,4 @@ This app connects to caching/search server between client and blockchain, and th
 
 Forked from https://github.com/busyorg/busy, and https://github.com/utopian-io/utopian.io Hede uses the [STEEM Blockchain](https://steem.io) to let users reward authors who shares their knowledge.
 
-To see it alive [click here:](https://hede.io)
+To see it live [click here:](https://hede.io)
