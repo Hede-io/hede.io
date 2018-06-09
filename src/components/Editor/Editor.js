@@ -408,7 +408,12 @@ class Editor extends React.Component {
   };
 
   checkTopics = (rule, value, callback) => {
-    if (!value || value.length < 0 || value.length > 3) {
+    if(!value){
+      callback();
+      return;
+    }
+
+    if (value.length < 0 || value.length > 3) {
       callback('Enter up to 3 tags');
     }
 
@@ -1001,10 +1006,7 @@ class Editor extends React.Component {
           >
             {getFieldDecorator('titleSteem', {
                 rules: [
-                  {
-                    required: true,
-                    message: 'Title cannot be empty',
-                  },
+                
                   {
                     max: 255,
                     message: "Title can't be longer than 255 characters.",
