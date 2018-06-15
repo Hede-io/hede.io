@@ -242,8 +242,8 @@ class Editor extends React.Component {
     const values = this.getValues(e);
 
     let v = this.input.value;
-    if(v.indexOf("İ")>-1)
-      v = v.replace("İ", "i");
+    //if(v.indexOf("İ")>-1)
+    //  v = v.replace("İ", "i");
     
     this.setState({entryValue : v});
 
