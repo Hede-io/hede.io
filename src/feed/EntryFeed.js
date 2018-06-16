@@ -267,7 +267,7 @@ class EntryFeed extends React.Component {
     const newEntryLocation = "/write" + (currentTitle?"?t="+encodeURIComponent(currentTitle.slug+"--" + currentTitle._id):"")
 
     const currentTitleUrl = currentTitle ? ("/"+encodeURIComponent(currentTitle.slug+"--" + currentTitle._id)):"";
-    const myTitle = this.q!==null?this.q : (currentTitle? currentTitle.name:"");
+    const myTitle = this.q!==null?this.q.trim().replace("İ", "i").toLowerCase(): (currentTitle? currentTitle.name:"");
 
     const canonicalHost = 'https://hede.io';
     const canonicalUrl = `${canonicalHost}${currentTitleUrl}`;

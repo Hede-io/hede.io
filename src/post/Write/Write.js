@@ -160,7 +160,7 @@ class Write extends React.Component {
 
    }else if(titleStrQ && titleStrQ.length>0){
 
-     this.title = titleStrQ;
+     this.title = titleStrQ.trim().replace("İ", "i").toLowerCase();
 
      this.setState({
         initialTitle: this.title,
@@ -251,7 +251,7 @@ class Write extends React.Component {
     }
     else if(titleStrQ && titleStrQ.length>0){
 
-      this.title = titleStrQ;
+      this.title = titleStrQ.trim().replace("İ", "i").toLowerCase();
       this.titleId = 0;
       this.titleObj = null;
 
