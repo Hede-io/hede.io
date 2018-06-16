@@ -38,7 +38,7 @@ const EditorToolbar = ({ intl, onSelect }) => {
         </Button>
       </Tooltip>
 
-      <Tooltip title={tooltip(intl.formatMessage({ id: 'innerLink', defaultMessage: 'Inner reference to topic' }), 'Ctrl+h')}>
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'innerLink', defaultMessage: 'Hidden reference to topic' }), 'Ctrl+h')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('innerlink')}>
           `Hede`
         </Button>
