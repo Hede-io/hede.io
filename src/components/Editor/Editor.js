@@ -816,7 +816,7 @@ class Editor extends React.Component {
           </div>
           <div style={{display:this.state.showFormDetail?'block':'none'}}>
 
-
+       {this.isModerator() &&  
           <Form.Item
             label={
               <span className="Editor__label">
@@ -858,7 +858,7 @@ class Editor extends React.Component {
               </Select>,
             )}
           </Form.Item>
-
+          }
           <Form.Item
             label={
               <span className="Editor__label">
