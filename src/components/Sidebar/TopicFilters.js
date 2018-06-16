@@ -280,7 +280,7 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
          
         
   </div>
-  <div className="Announcement__container">
+  {/*<div className="Announcement__container">
 
       <b className="Announcement__subtitle"><MdWeekend /> Type</b>
       <div className="Announcement__divider"/>
@@ -301,7 +301,7 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
           
           }
       
-</div> 
+        </div> */}
 </div> );
 }
 
