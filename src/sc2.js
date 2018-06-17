@@ -21,8 +21,6 @@ function getLoginUrl(state) {
     'delete_comment',
     'comment_options',
     'custom_json',
-    'claim_reward_balance',
-    'offline'
   ].join(',');
   const scope = `scope=${encodeURIComponent(scopes)}`;
   return `${auth}?${clientId}&${response}&${redirect}&${state}&${scope}`;
