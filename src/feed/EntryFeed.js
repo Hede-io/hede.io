@@ -151,6 +151,7 @@ class EntryFeed extends React.Component {
     const { match, getEntries, user, history, location:{search}} = nextProps || this.props;
     const qsParams = new URLSearchParams(search);
     this.q = qsParams.get('q');
+    this.q = this.q ? this.q.trim().replace("İ", "i").toLowerCase():null;
     this.l = qsParams.get('l');
     this.h = qsParams.get('h');
     this.c = qsParams.get('c');
@@ -267,7 +268,7 @@ class EntryFeed extends React.Component {
     const newEntryLocation = "/write" + (currentTitle?"?t="+encodeURIComponent(currentTitle.slug+"--" + currentTitle._id):"")
 
     const currentTitleUrl = currentTitle ? ("/"+encodeURIComponent(currentTitle.slug+"--" + currentTitle._id)):"";
-    const myTitle = this.q!==null?this.q.trim().replace("İ", "i").toLowerCase(): (currentTitle? currentTitle.name:"");
+    const myTitle = this.q!==null?this.q: (currentTitle? currentTitle.name:"");
 
     const canonicalHost = 'https://hede.io';
     const canonicalUrl = `${canonicalHost}${currentTitleUrl}`;
