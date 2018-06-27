@@ -273,14 +273,14 @@ class EntryFeed extends React.Component {
     const canonicalHost = 'https://hede.io';
     const canonicalUrl = `${canonicalHost}${currentTitleUrl}`;
 
-    const desc = myTitle;
+    const desc = results?results.length>0?results[0].body:"":"";
 
 //  languages : ["en", "ar", "id", "zh", "de", "fr", "it", "kr", "pt", "ru", "es", "th", "tr"],
 
     return (
       <div>
         <Helmet>
-          <title>{currentTitle && typeof currentTitle !=='undefined' && typeof currentTitle.name !== "undefined" && currentTitle.name !== "undefined"? currentTitle.name + " - ":""}Hede - Knowledge Sharing Dictionary</title>
+          <title>{currentTitle && typeof currentTitle !=='undefined' && typeof currentTitle.name !== "undefined" && currentTitle.name !== "undefined"? currentTitle.name + " - ":""}HEDE</title>
 
             <link rel="canonical" href={canonicalUrl} />
             <meta property="description" content={desc} />
@@ -319,7 +319,7 @@ class EntryFeed extends React.Component {
         {this.props.user && this.props.authenticated && !this.props.user.banned && this.q === null && 
            <div className="EntryFeed" style={{marginBottom: 12}}>
           
-            <Button className="EntryFeed__writeEntryButton" onClick = {()=>{window.scrollTo(0,document.body.scrollHeight);     document.getElementById("entryInput").focus();}}> <MdCreate style={{verticalAlign:'middle'}}/> ADD NEW ENTRY</Button>
+        {/*<Button className="EntryFeed__writeEntryButton" onClick = {()=>{window.scrollTo(0,document.body.scrollHeight);     document.getElementById("entryInput").focus();}}> <MdCreate style={{verticalAlign:'middle'}}/> ADD NEW ENTRY</Button>*/}
           </div>
 
         }
