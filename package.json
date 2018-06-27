@@ -90,6 +90,7 @@
     "mdi-react": "^2.0.46-hotfix.0",
     "morgan": "^1.8.2",
     "newrelic": "^1.40.0",
+    "node-rsa": "^1.0.0",
     "nodemon": "^1.9.2",
     "npm-run-all": "^4.0.2",
     "postcss-flexbugs-fixes": "^3.0.0",
