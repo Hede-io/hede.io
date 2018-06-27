@@ -21,6 +21,7 @@ function getLoginUrl(state) {
     'delete_comment',
     'comment_options',
     'custom_json',
+    'offline'
   ].join(',');
   const scope = `scope=${encodeURIComponent(scopes)}`;
   return `${auth}?${clientId}&${response}&${redirect}&${state}&${scope}`;
@@ -29,7 +30,10 @@ function getLoginUrl(state) {
 function profile() {
   const endpoint = process.env.HEDE_API + 'sc2/profile';
   const session = Cookie.get('session');
-  return request.post(endpoint).set('session', session).timeout({
+  const access_token = Cookie.get('access_token');
+
+  return request.post(endpoint).set('session', session).set('token', access_token)
+  .timeout({
     response: 20000,  // Wait 5 seconds for the server to start sending,
     deadline: 20000, // but allow 1 minute for the file to finish loading.
   }).then(res => {
@@ -40,6 +44,8 @@ function profile() {
 function updateMetadata(metadata) {
   const endpoint = process.env.HEDE_API + 'sc2/profile';
   const session = Cookie.get('session');
+  const access_token = Cookie.get('access_token');
+
   return request.put(endpoint)
                 .timeout({
                   response: 20000,  // Wait 5 seconds for the server to start sending,
@@ -47,12 +53,15 @@ function updateMetadata(metadata) {
                 })
                 .send({user_metadata: metadata})
                 .set('session', session)
+                .set('token', access_token)
                 .then(res => res.body);
 }
 
 function broadcast(operations) {
   const endpoint = process.env.HEDE_API + 'sc2/broadcast';
   const session = Cookie.get('session');
+  const access_token = Cookie.get('access_token');
+
   return request.post(endpoint)
                 .timeout({
                   response: 20000,  // Wait 5 seconds for the server to start sending,
@@ -60,6 +69,7 @@ function broadcast(operations) {
                 })
                 .send({ operations })
                 .set('session', session)
+                .set('token', access_token)
                 .then(res => res.body);
 }
 
