@@ -14,8 +14,8 @@ import Pagination from 'antd/lib/pagination';
 const Option = Select.Option;
 
 //let totalTitles = 0;
-
-let filterLanguage = "all";
+var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
+let filterLanguage = lang === "tr-TR" ? "all": "en";
 let currentPage = 1, perPage = 50;
 
 const getLastTitles = (getLeftTitles)=>{
@@ -86,6 +86,7 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
         placeholder="All languages"
         optionFilterProp="children"
         onChange={val => handleChange("language", val, getLeftTitles)}
+        defaultValue = {filterLanguage}
         filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
       >
         <Option value="all">All languages</Option>

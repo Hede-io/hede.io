@@ -149,6 +149,9 @@ class PageHede extends React.Component {
   }
 
   getLastTitles = ()=>{
+    var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
+    let filterLanguage = lang === "tr-TR" ? "all": "en";
+
     this.props.getLeftTitles({
       limit:50,
       skip:0,
@@ -156,7 +159,7 @@ class PageHede extends React.Component {
       sortBy: 'created',
       type: 'all',
       reset: true,
-      l: 'all',
+      l: filterLanguage || 'all',
       tag:"tag1,tag2",
     }).then(res=>{
       /*this.total = res.response.total;
@@ -190,7 +193,7 @@ class PageHede extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>Hede - Knowledge Sharing Dictionary</title>
+          <title>HEDE</title>
         </Helmet>
         <ScrollToTop />
         <ScrollToTopOnMount />
