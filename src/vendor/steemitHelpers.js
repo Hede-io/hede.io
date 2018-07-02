@@ -205,6 +205,7 @@ export const calculateTotalDelegatedSP = (user, totalVestingShares, totalVesting
 };
 
 export const calculateVotingPower = (user) => {
-  const secondsago = (new Date().getTime() - new Date(user.last_vote_time + "Z").getTime()) / 1000;
+  // new Date().getTime() gives system time. To make a correct calculation, the system time must be converted to UTC. (@firedream)
+  const secondsago = (new Date().getTime()+new Date().getTimezoneOffset() * 60000 - new Date(user.last_vote_time + "Z").getTime()) / 1000;
   return Math.min(10000, (user.voting_power + (10000 * secondsago / 432000))) / 10000;
 };
