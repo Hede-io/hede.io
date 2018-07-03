@@ -15,6 +15,12 @@ export SERVER_SSL_CERT="/path_to_hede.io/cert.pem"
 
 export SERVER_SSL_KEY="/path_to_hede.io/key.pem"
 
+export HEDE_API=https://api.hede.io/api/
+
+export HEDE_CATEGORY=hede-io
+
+export HEDE_STEEM_ACCOUNT=hede
+
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 npm run dev-server
