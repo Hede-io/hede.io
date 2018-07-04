@@ -211,6 +211,11 @@ app.get('/@:name', serverSideResponse);
 
 app.get('/:category/@:author/:permlink', serverSideResponse);
 app.get('/search/titles', serverSideResponse);
+
+app.get('/settings', (req, res) => {
+  res.send(indexHtml);
+});
+
 app.get('/:title', serverSideResponse);
 
 app.get('/*', (req, res) => {
