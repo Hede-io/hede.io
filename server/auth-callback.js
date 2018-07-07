@@ -33,18 +33,20 @@ function authCallback(opts = {}) {
       //console.log("access token clear:", loginRes.body.access_token);
       const encrypted =  key.encrypt(loginRes.body.access_token, 'base64');
       //console.log("access token encrypted:", encrypted);
-      res.cookie('access_token', encrypted, { maxAge: loginRes.body.expiry - Date.now() });
 
       if (opts.sendCookie === true) {
+        res.cookie('access_token', encrypted, { maxAge: loginRes.body.expiry - Date.now(), sameSite:true});
         res.cookie('session', loginRes.body.session, {
           maxAge: loginRes.body.expiry - Date.now(),
-          sameSite: true
+          sameSite: true,
         });
       }
       if (opts.allowAnyRedirect === true) {
         res.redirect(state ? state : '/');
       } else {
-        res.redirect(state && state[0] === '/' ? state : '/');
+        res.set('Content-Type','text/html');
+        let toRedirect = state && state[0] === '/' ? state : '/';
+        res.status(200).send(`<html><head><meta charset="UTF-8"></meta><script>window.location.replace('${toRedirect}');</script></head></html>`);
       }
     }).catch(err => {
       console.error('Failed to login to API server', err);

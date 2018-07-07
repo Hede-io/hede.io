@@ -194,7 +194,7 @@ async function serverSideResponse(req, res) {
 }
 
 app.get('/callback', authCallback({ sendCookie: true }));
-app.get('/connect', authCallback({ allowAnyRedirect: true }));
+app.get('/connect', authCallback({ allowAnyRedirect: false }));
 
 app.get('/trending(/:category)', serverSideResponse);
 app.get('/hot(/:category)', serverSideResponse);
