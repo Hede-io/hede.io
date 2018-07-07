@@ -32,7 +32,8 @@ function profile() {
   const session = Cookie.get('session');
   const access_token = Cookie.get('access_token');
 
-  return request.post(endpoint).set('session', session).set('token', access_token)
+  return request.post(endpoint).set('session', session)
+  .set('token', access_token).set('Accept', '*').set("Content-Type", "application/json")
   .timeout({
     response: 20000,  // Wait 5 seconds for the server to start sending,
     deadline: 20000, // but allow 1 minute for the file to finish loading.
@@ -47,6 +48,7 @@ function updateMetadata(metadata) {
   const access_token = Cookie.get('access_token');
 
   return request.put(endpoint)
+
                 .timeout({
                   response: 20000,  // Wait 5 seconds for the server to start sending,
                   deadline: 20000, // but allow 1 minute for the file to finish loading.
@@ -54,6 +56,8 @@ function updateMetadata(metadata) {
                 .send({user_metadata: metadata})
                 .set('session', session)
                 .set('token', access_token)
+                .set('Accept', '*')
+                .set("Content-Type", "application/json")
                 .then(res => res.body);
 }
 
@@ -63,6 +67,7 @@ function broadcast(operations) {
   const access_token = Cookie.get('access_token');
 
   return request.post(endpoint)
+
                 .timeout({
                   response: 20000,  // Wait 5 seconds for the server to start sending,
                   deadline: 20000, // but allow 1 minute for the file to finish loading.
@@ -70,6 +75,8 @@ function broadcast(operations) {
                 .send({ operations })
                 .set('session', session)
                 .set('token', access_token)
+                .set('Accept', '*')
+                .set("Content-Type", "application/json")
                 .then(res => res.body);
 }
 

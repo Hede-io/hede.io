@@ -7,7 +7,7 @@ const authCallback = require('./auth-callback');
 const app = express();
 
 app.get('/callback', authCallback({ sendCookie: true }));
-app.get('/connect', authCallback({ allowAnyRedirect: true }));
+app.get('/connect', authCallback({ allowAnyRedirect: false }));
 
 let server;
 if (process.env.SERVER_SSL_CERT && process.env.SERVER_SSL_KEY) {
