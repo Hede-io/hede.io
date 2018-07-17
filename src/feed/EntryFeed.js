@@ -26,6 +26,7 @@ import Write from '../post/Write/Write'
 import BannedScreen from '../statics/BannedScreen';
 
 import { Helmet } from 'react-helmet';
+import {removeHedeReference2 } from '../helpers/regexHelpers';
 
 @connect(
   state => ({
@@ -273,7 +274,9 @@ class EntryFeed extends React.Component {
     const canonicalHost = 'https://hede.io';
     const canonicalUrl = `${canonicalHost}${currentTitleUrl}`;
 
-    const desc = results?results.length>0?results[0].body:"":"";
+    let desc = results?results.length>0?results[0].body:"":"";
+    desc = desc.replace(removeHedeReference2, "").replace(/<br\s?\/\>\s*$/, "");
+
 
 //  languages : ["en", "ar", "id", "zh", "de", "fr", "it", "kr", "pt", "ru", "es", "th", "tr"],
 

@@ -217,7 +217,7 @@ class PostContent extends React.Component {
     if(!domPurifyImp)
       domPurifyImp = domPurify(window);
 
-    const bodyText = domPurifyImp.sanitize(htmlBody, { ALLOWED_TAGS: ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li"] });
+    const bodyText = domPurifyImp.sanitize(htmlBody, { ALLOWED_TAGS: ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td", ] });
     const desc = `${bodyText.substring(0, 140)} by ${author}`;
     const image = postMetaImage || getImage(`@${author}`);
     const canonicalUrl = `${canonicalHost}${content.url}`;
