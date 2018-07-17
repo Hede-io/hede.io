@@ -35,8 +35,8 @@ function profile() {
   return request.post(endpoint).set('session', session)
   .set('token', access_token).set('Accept', '*').set("Content-Type", "application/json")
   .timeout({
-    response: 20000,  // Wait 5 seconds for the server to start sending,
-    deadline: 20000, // but allow 1 minute for the file to finish loading.
+    response: 25000,  // for the server to start sending,
+    deadline: 25000, // for the file to finish loading.
   }).then(res => {
     return res.body;
   });
@@ -50,8 +50,8 @@ function updateMetadata(metadata) {
   return request.put(endpoint)
 
                 .timeout({
-                  response: 20000,  // Wait 5 seconds for the server to start sending,
-                  deadline: 20000, // but allow 1 minute for the file to finish loading.
+                  response: 25000,  // for the server to start sending,
+                  deadline: 25000, // for the file to finish loading.
                 })
                 .send({user_metadata: metadata})
                 .set('session', session)
@@ -69,8 +69,8 @@ function broadcast(operations) {
   return request.post(endpoint)
 
                 .timeout({
-                  response: 20000,  // Wait 5 seconds for the server to start sending,
-                  deadline: 20000, // but allow 1 minute for the file to finish loading.
+                  response: 25000,  // for the server to start sending,
+                  deadline: 25000, // for the file to finish loading.
                 })
                 .send({ operations })
                 .set('session', session)
