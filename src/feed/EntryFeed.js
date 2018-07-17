@@ -280,7 +280,7 @@ class EntryFeed extends React.Component {
     return (
       <div>
         <Helmet>
-          <title>{currentTitle && typeof currentTitle !=='undefined' && typeof currentTitle.name !== "undefined" && currentTitle.name !== "undefined"? currentTitle.name + " - ":""}HEDE</title>
+          <title>{currentTitle && typeof currentTitle !=='undefined' && typeof currentTitle.name !== "undefined" && currentTitle.name !== "undefined"? currentTitle.name + " | ":""}Wiki | Hede</title>
 
             <link rel="canonical" href={canonicalUrl} />
             <meta property="description" content={desc} />
