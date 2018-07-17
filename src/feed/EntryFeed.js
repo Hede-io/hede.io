@@ -291,7 +291,7 @@ class EntryFeed extends React.Component {
             <meta property="og:site_name" content="Hede" />
             <link rel="alternate" hreflang="tr" href={canonicalUrl+"?l=tr"}/>
             <link rel="alternate" hreflang="en" href={canonicalUrl+"?l=en"}/>
-            <link rel="alternate" hreflang="fr" href={canonicalUrl+"?l=fr"}/>
+            {/*<link rel="alternate" hreflang="fr" href={canonicalUrl+"?l=fr"}/>
             <link rel="alternate" hreflang="de" href={canonicalUrl+"?l=de"}/>
             <link rel="alternate" hreflang="it" href={canonicalUrl+"?l=it"}/>
             <link rel="alternate" hreflang="ar" href={canonicalUrl+"?l=ar"}/>
@@ -301,9 +301,8 @@ class EntryFeed extends React.Component {
             <link rel="alternate" hreflang="pt" href={canonicalUrl+"?l=pt"}/>
             <link rel="alternate" hreflang="ru" href={canonicalUrl+"?l=ru"}/>
             <link rel="alternate" hreflang="es" href={canonicalUrl+"?l=es"}/>
-            <link rel="alternate" hreflang="th" href={canonicalUrl+"?l=th"}/>
-            <link rel="alternate" hreflang="tr" href={canonicalUrl+"?l=tr"}/>
-            <meta property="twitter:site" content={'@hede'} />
+           <link rel="alternate" hreflang="th" href={canonicalUrl+"?l=th"}/>*/}
+            <meta property="twitter:site" content={'@hede-io'} />
             <meta property="twitter:title" content={myTitle} />
             <meta property="twitter:description" content={desc} />
             <meta
