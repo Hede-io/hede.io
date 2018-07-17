@@ -217,6 +217,23 @@ class PostContent extends React.Component {
     if(!domPurifyImp)
       domPurifyImp = domPurify(window);
 
+    // Add a hook to make all links open a new window
+    domPurifyImp.addHook('afterSanitizeAttributes', function(node) {
+      // set all elements owning target to target=_blank
+      if ('target' in node) {
+        if(node.getAttribute("href")[0]==='/'){
+          node.setAttribute('onclick', 'event.preventDefault(); window.myHistory.push("'+node.getAttribute("href")+'");');
+          return;
+        }
+        node.setAttribute('target','_blank');
+      }
+      // set non-HTML/MathML links to xlink:show=new
+      if (!node.hasAttribute('target') 
+          && (node.hasAttribute('xlink:href') 
+              || node.hasAttribute('href'))) {
+          node.setAttribute('xlink:show', 'new');
+      }
+    });
     const bodyText = domPurifyImp.sanitize(htmlBody, { ALLOWED_TAGS: ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td", ] });
     const desc = `${bodyText.substring(0, 140)} by ${author}`;
     const image = postMetaImage || getImage(`@${author}`);
