@@ -44,6 +44,9 @@ message.config({
   duration: 3,
 });
 
+
+window.myHistory = history;
+
 const render = (Component) => {
   ReactDOM.render(
     <Provider store={store}>

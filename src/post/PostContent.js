@@ -221,8 +221,11 @@ class PostContent extends React.Component {
     domPurifyImp.addHook('afterSanitizeAttributes', function(node) {
       // set all elements owning target to target=_blank
       if ('target' in node) {
-          if(node.getAttribute("href")[0]!=='/')
-            node.setAttribute('target','_blank');
+        if(node.getAttribute("href")[0]==='/'){
+          node.setAttribute('onclick', 'event.preventDefault(); window.myHistory.push("'+node.getAttribute("href")+'");');
+          return;
+        }
+        node.setAttribute('target','_blank');
       }
       // set non-HTML/MathML links to xlink:show=new
       if (!node.hasAttribute('target') 

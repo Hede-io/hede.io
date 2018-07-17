@@ -60,9 +60,13 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object') {
 
   // Add a hook to make all links open a new window
   domPurifyImp.addHook('afterSanitizeAttributes', function(node) {
+   
     // set all elements owning target to target=_blank
     if ('target' in node) {
-      if(node.getAttribute("href")[0]!=='/')
+       if(node.getAttribute("href")[0]==='/'){
+         node.setAttribute('onclick', 'event.preventDefault(); window.myHistory.push("'+node.getAttribute("href")+'");');
+         return;
+       }
        node.setAttribute('target','_blank');
     }
     // set non-HTML/MathML links to xlink:show=new
