@@ -16,7 +16,7 @@ import PostFeedEmbed from './PostFeedEmbed';
 import './Body.less';
 
 export const remarkable = new Remarkable('commonmark', {
-  html: false, // remarkable renders first then sanitize runs...
+  html: true, // remarkable renders first then sanitize runs...
   breaks: true,
   linkify: false, // linkify is done locally
   typographer: false, // https://github.com/jonschlinkert/remarkable/issues/142#issuecomment-221546793
@@ -77,7 +77,9 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object') {
     }
   });
 
-  parsedBody = domPurifyImp.sanitize(parsedBody, { ALLOWED_TAGS: ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td"] });
+  const options = {ALLOWED_TAGS:  ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td"]};
+  
+  parsedBody = domPurifyImp.sanitize(parsedBody, options);
 
   
   if (returnType === 'text') {
@@ -120,12 +122,14 @@ Body.propTypes = {
   body: PropTypes.string,
   jsonMetadata: PropTypes.object,
   full: PropTypes.bool,
+  isComment: PropTypes.bool
 };
 
 Body.defaultProps = {
   body: '',
   jsonMetadata: {},
   full: false,
+  isComment: false
 };
 
 export default Body;
