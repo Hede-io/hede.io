@@ -77,7 +77,7 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object') {
     }
   });
 
-  const options = {ALLOWED_TAGS:  ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td"]};
+  const options = {ALLOWED_TAGS:  ["br", "blockquote", "img", "link", "a", "p", "iframe", "ul", "ol", "li", "table", "thead", "tr", "td", "h1", "h2", "h3", "h4", "h5", "h6"]};
   
   parsedBody = domPurifyImp.sanitize(parsedBody, options);
 
