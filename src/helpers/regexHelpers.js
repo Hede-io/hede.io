@@ -7,6 +7,6 @@ export const hedeRefRegex = /\(hede\:\s*([^\)]+)\)/gi;
 export const hedeRefRegexInner = /\`([^\`]+)\`/gi;
 
 export const removeHedeReference = /(\<hr\/\>\<em\>Posted\son\s\<a\shref[^\<]*\<\/a\>\<\/em\>\<hr\/\>)/gi;
-export const removeHedeReference2 = /(\<hr\/\>\<em\>Posted\son(?:(?!\<\/em\>)[^]+)*\<\/em\>\<hr\/\>)/gi;
+export const removeHedeReference2 = /(\<hr\/\>\<em\>Posted\son(?:(?!\<\/em\>).)*\<\/em\>\<hr\/\>)/gi;
 
 export default null;
