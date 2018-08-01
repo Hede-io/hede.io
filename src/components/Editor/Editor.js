@@ -862,7 +862,7 @@ class Editor extends React.Component {
                 <Option key="quotation" value="quotation">Quotation</Option>
                 <Option key="spoiler" value="spoiler">Spoiler</Option>
                 <Option key="translation" value="translation">Translation</Option>
-                <Option key="hedelink" value="hedelink">Hede Link to topic</Option>
+                <Option key="hedelink" value="hedelink">Link to topic</Option>
 
               </Select>,
             )}
