@@ -814,7 +814,7 @@ class Editor extends React.Component {
           
         
           
-          {!isUpdating &&
+          {!isUpdating && process.env.HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED &&
           <div className = "Editor__createSteemPost">
             <span>Create a new Steem blog post </span>
             <Switch defaultChecked className="check" checkedChildren="" unCheckedChildren="" onChange={checked => this.setState({"createSteemPost": checked})} />

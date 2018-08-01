@@ -346,7 +346,7 @@ class Write extends React.Component {
     const formLanguage = form.language || "auto";
 
     //check if author wants to create a new post on Steem
-    const parentAuthor = form.createSteemPost ? '' : 'hede-entries';
+    const parentAuthor = form.createSteemPost ? '' : process.env.HEDE_ENTRIES_ACCOUNT;
     const parentPermLink = form.createSteemPost ? (process.env.HEDE_CATEGORY || 'test-category'): this.getParentPermLinkForHedeEntries() ;
 
     data.parentAuthor = parentAuthor;
@@ -357,8 +357,8 @@ class Write extends React.Component {
 
     let firstTag = process.env.HEDE_CATEGORY ||'test-category';
 
-    if(parentAuthor === 'hede-entries')
-      firstTag = 'hede-entries';
+    if(parentAuthor === process.env.HEDE_ENTRIES_ACCOUNT)
+      firstTag = process.env.HEDE_ENTRIES_TAG;
 
     let tags = [firstTag];
 
