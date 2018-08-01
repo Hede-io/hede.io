@@ -272,7 +272,7 @@ class StoryFull extends React.Component {
 
     let replyUI = null;
 
-    if (post.depth !== 0) {
+    if (post.depth !== 0 && post.parent_author !== 'hede-entries') {
       replyUI = (
         <div className="StoryFull__reply">
           <h3 className="StoryFull__reply__title">
