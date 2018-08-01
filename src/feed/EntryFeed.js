@@ -90,6 +90,7 @@ class EntryFeed extends React.Component {
   }
 
   isModerator () {
+    if (!this.props || !this.props.moderators) return false;
     const { moderators, user } = this.props;
     return find(propEq('account', user.name))(moderators)
   }
