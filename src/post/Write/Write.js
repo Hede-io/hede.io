@@ -37,6 +37,7 @@ import { getTitles } from '../../actions/titles';
 
 import {removeHedeReference, removeHedeReference2 } from '../../helpers/regexHelpers';
 
+const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December" ];
 
 @injectIntl
 @withRouter
@@ -93,6 +94,7 @@ class Write extends React.Component {
       initialReward: '50',
       initialType: 'entry',
       initialBody: '',
+      initialParentAuthor: '',
       initialPullRequests: [],
       isUpdating: false,
       warningModal: false,
@@ -197,6 +199,7 @@ class Write extends React.Component {
         initialTitle: jsonMetadata.title,
         initialTitleId: draftPost.hede_title,
         initialSteemTitle: draftPost.title,
+        initialParentAuthor: draftPost.parent_author,
         initialTopics: tags || [],
         initialReward: draftPost.reward || '50',
         initialType: jsonMetadata.type || process.env.DEFAULT_CATEGORY,
@@ -322,6 +325,12 @@ class Write extends React.Component {
     
   };
 
+  getParentPermLinkForHedeEntries = ()=>{
+    const dt = new Date();
+    const nameOfMonth = monthNames[dt.getMonth()].toLowerCase();
+    const year = dt.getUTCFullYear();
+    return `hede-entries-for-${nameOfMonth}-${year}`;
+  }
   getNewPostData = (form) => {
  
     const titleWithUrl = form.titleModerator || form.title || this.title;
@@ -336,11 +345,22 @@ class Write extends React.Component {
     const formTheme = form.theme || "general";
     const formLanguage = form.language || "auto";
 
-    
-    data.parentAuthor = '';
+    //check if author wants to create a new post on Steem
+    const parentAuthor = form.createSteemPost ? '' : 'hede-entries';
+    const parentPermLink = form.createSteemPost ? (process.env.HEDE_CATEGORY || 'test-category'): this.getParentPermLinkForHedeEntries() ;
+
+    data.parentAuthor = parentAuthor;
+    data.parentPermlink = parentPermLink;
+
+
     data.author =  this.originalAuthor || this.props.user.name;
 
-    let tags = [process.env.HEDE_CATEGORY ||'test-category' ];
+    let firstTag = process.env.HEDE_CATEGORY ||'test-category';
+
+    if(parentAuthor === 'hede-entries')
+      firstTag = 'hede-entries';
+
+    let tags = [firstTag];
 
     if(formContentType !== "general")
       tags = [...tags, formContentType]
@@ -440,6 +460,7 @@ class Write extends React.Component {
       titleId: this.titleId
     };
 
+    
     metaData.contentType = formContentType;
 
     metaData.theme = formTheme;
@@ -447,24 +468,26 @@ class Write extends React.Component {
 
     //console.log("metaData.lang", metaData.lang);
 
-    if (tags.length) {
+  
+    if (tags.length)
       metaData.tags = tags;
-    }
+    
+
+    if (images.length)
+      data.image = images
+
     if (users.length) {
       metaData.users = users;
     }
     if (links.length) {
       metaData.links = links;
     }
-    if (images.length) {
-      metaData.image = images;
-    }
+
 
     data.titleId = this.titleId
 
     //console.log("titleId saving:", this.titleId)
 
-    data.parentPermlink = process.env.HEDE_CATEGORY || 'test-category'; // @HEDE forcing category
     data.jsonMetadata = metaData;
 
     if (this.originalBody) {
@@ -546,15 +569,15 @@ class Write extends React.Component {
       parsedPostData,
       initialContentType,
       initialLanguage,
-      initialTheme
+      initialTheme,
+      initialParentAuthor
      } = this.state;
     const { loading, saving, submitting, user } = this.props;
     const isSubmitting = (submitting === Actions.CREATE_ENTRY_REQUEST || submitting === Actions.UPDATE_ENTRY_REQUEST) || loading;
 
     
-
     return (
-     <div style={{marginTop: 30}}>
+     <div style={{marginTop: 30, padding:10}}>
             <Editor
               ref={this.setForm}
               saving={saving}
@@ -568,6 +591,7 @@ class Write extends React.Component {
               language = {initialLanguage}
               theme = {initialTheme}
               body={initialBody}
+              parentAuthor = {initialParentAuthor}
               loading={isSubmitting}
               isUpdating={this.state.isUpdating}
               isReviewed={this.state.isReviewed}
