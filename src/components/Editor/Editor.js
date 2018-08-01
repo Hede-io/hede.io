@@ -745,7 +745,7 @@ class Editor extends React.Component {
       <Form className="Editor" layout="vertical" onSubmit={this.handleSubmit}>
 
 
-        {this.state.showRulesModal && !isUpdating  && <Rules
+        {this.state.showRulesModal  && <Rules
             inEditor={true}
             type={chosenType}
             acceptRules={() => {
