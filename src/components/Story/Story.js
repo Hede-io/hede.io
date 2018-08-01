@@ -227,6 +227,12 @@ class Story extends React.Component {
 
     const postType = post.json_metadata.type;
 
+    let entryUrl = post.url;
+    let indexOfHash = entryUrl.indexOf("#");
+
+    if(indexOfHash>-1)
+      entryUrl = process.env.HEDE_CATEGORY + "/" + entryUrl.substring(indexOfHash + 1);
+
     return (
       <div className="Story">
         {rebloggedUI}
@@ -303,7 +309,7 @@ class Story extends React.Component {
                   </span>
               }
             >
-                 <Link to={post.url}>
+                 <Link to={entryUrl}>
                   <span className="Story__date">
                   &nbsp;&nbsp;<FormattedRelative value={`${post.created}Z`} />
                   </span>

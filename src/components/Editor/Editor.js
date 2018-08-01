@@ -149,7 +149,8 @@ class Editor extends React.Component {
     theme:'',
     titleId: 0,
     rulesAccepted: true,
-    showRulesModal: false
+    showRulesModal: false,
+    createSteemPost: true
 
   };
 
@@ -318,7 +319,9 @@ class Editor extends React.Component {
 
     const parsedBody = post.body.replace(removeHedeReference2, "").replace(/<br\s?\/\>\s*$/, "");
 
-    this.setState({entryValue: parsedBody});
+    const isPostOnSteem = post.parentAuthor === '';
+
+    this.setState({entryValue: parsedBody, createSteemPost: isPostOnSteem});
   };
 
   getValues = (e) => {
@@ -381,11 +384,11 @@ class Editor extends React.Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       //console.log("handleSubmit values", values);
       if (!err && this.input.value !== '') {
-
         this.props.onSubmit({
           ...values,
           body: this.input.value,
-          titleId: this.state.titleId
+          titleId: this.state.titleId,
+          createSteemPost: this.state.createSteemPost
         });
       }else if (this.input.value === '') {
         const errors = {
@@ -724,7 +727,8 @@ class Editor extends React.Component {
   }
 
   isModerator () {
-    const { moderators, user } = this.props;
+    if (!this.props || !this.props.moderators) return false;
+    const { moderators, user } = this.props;    
     return find(propEq('account', user.name))(moderators)
   }
 
@@ -810,7 +814,12 @@ class Editor extends React.Component {
           
         
           
-
+          {!isUpdating && process.env.HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED &&
+          <div className = "Editor__createSteemPost">
+            <span>Create a new Steem blog post </span>
+            <Switch defaultChecked className="check" checkedChildren="" unCheckedChildren="" onChange={checked => this.setState({"createSteemPost": checked})} />
+          </div>
+          }
           <div className = "Editor__showdetail">
              <Switch checkedChildren="Options" unCheckedChildren="Options" onChange={checked => this.setState({"showFormDetail": checked})} />
           </div>

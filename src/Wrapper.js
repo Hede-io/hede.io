@@ -95,7 +95,7 @@ export default class Wrapper extends React.PureComponent {
 
       });
     }
-
+    
     if(!isAuthFetching && loaded && !isAuth){
       //console.log("there was an error while logging in. so clearing cookie")
       Cookie.remove('session');

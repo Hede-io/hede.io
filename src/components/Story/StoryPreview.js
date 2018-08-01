@@ -21,7 +21,7 @@ const StoryPreview = ({ text }) => {
   // console.log("StoryPreview", text);
   return (
     <div>
-      <Body key="text" className="Story__content__body" body={text} />
+      <Body key="text" className="Story__content__body" body={text}/>
     </div>
   );
 };
