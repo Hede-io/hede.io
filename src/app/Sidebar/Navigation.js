@@ -77,7 +77,7 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
   return (
   <div>
     <h4 className="topicHeader" style={{marginBottom:10}}>
-        <FormattedMessage id={'last_topics'} defaultMessage={'Hot Topics - This Week'} />
+        <FormattedMessage id={'last_topics'} defaultMessage={'Latest Topics'} />
     </h4>
     <Button style={{marginBottom:5, flex:1, width:"100%", marginRight:5, borderWidth: 0}} key="getLastTitles" onClick={()=>getLastTitles(getLeftTitles)}>REFRESH</Button>
 

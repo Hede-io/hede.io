@@ -316,7 +316,7 @@ class EntryFeed extends React.Component {
         </Helmet>
         <ScrollToTop />
 
-        <span style={{flex:1, fontWeight: 'bold', fontSize: 18, fontSize:24, marginLeft:20}}><a href={canonicalUrl} style={{color:'#323233'}}>{myTitle}</a></span>
+        <h1 style={{flex:1, fontWeight: 'bold', fontSize:24, marginLeft:20}}><a href={canonicalUrl} style={{color:'#323233'}}>{myTitle}</a></h1>
          
         {this.props.user && this.props.authenticated && !this.props.user.banned && this.q === null && 
            <div className="EntryFeed" style={{marginBottom: 12}}>
