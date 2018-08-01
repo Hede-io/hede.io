@@ -258,7 +258,7 @@ class EntryFeed extends React.Component {
       this.shouldRedirectToMain && tt !== "hede-io--1"
     ){
       //console.log("redirecting to hede.io because title is empty. q:", this.q, ", title:", tt);
-      return <Redirect from='/' to='/hede-io--1'/>
+      return <Redirect from='/' to='/hede-io--1?l=en'/>
     }
 
     const { loading, history, match, location, isModerator, currentTitle } = this.props;
