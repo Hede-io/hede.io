@@ -576,7 +576,7 @@ class Editor extends React.Component {
         this.insertAtCursor('[', '](url)', 1, 1);
         break;
       case 'seealso':
-        this.insertAtCursor('(hede: ', ')', 7, 7);
+        this.insertAtCursor('(see: ', ')', 6, 6);
         break;
       case 'innerlink':
         this.insertAtCursor('`', '`', 1, 1);
@@ -801,6 +801,7 @@ class Editor extends React.Component {
                     value = {this.state.entryValue}
                     onFocus = {this.onFocusEntry}
                     ref={ref => this.setInput(ref)}
+                    maxLength = {1500}
                     type="textarea"
                     placeholder={intl.formatMessage({
                       id: 'story_placeholder',
@@ -896,8 +897,12 @@ class Editor extends React.Component {
                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
               >
               <Option value="en">English</Option>
-              <Option value="ar">Arabic</Option>
               <Option value="az">Azerbaijani</Option>
+              <Option value="es">Spanish</Option>
+              <Option value="tr">Turkish</Option>
+                            
+                            
+              {/*<Option value="ar">Arabic</Option>
               <Option value="id">Bahasa</Option>
               <Option value="cn">Chinese</Option>
               <Option value="nl">Dutch</Option>
@@ -908,9 +913,8 @@ class Editor extends React.Component {
               <Option value="pl">Polish</Option>
               <Option value="pt">Portugese</Option>
               <Option value="ru">Russian</Option>
-              <Option value="es">Spanish</Option>
               <Option value="th">Thai</Option>
-              <Option value="tr">Turkish</Option>
+            */}
 
               </Select>,
             )}
