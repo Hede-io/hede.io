@@ -252,7 +252,7 @@ class Story extends React.Component {
 
           <div className="Story__content">
           {this.props.showTitle &&
-            <Link to={post.url} className="Story__content__title">
+            <Link to={entryUrl} className="Story__content__title">
                 <h2>
                   {post.title || (
                   <span>
