@@ -40,13 +40,13 @@ const EditorToolbar = ({ intl, onSelect }) => {
 
       <Tooltip title={tooltip(intl.formatMessage({ id: 'innerLink', defaultMessage: 'Link to topic' }), 'Ctrl+h')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('innerlink')}>
-          `Hede`
+          `Topic`
         </Button>
       </Tooltip>
 
-      <Tooltip title={tooltip(intl.formatMessage({ id: 'seeAlsoLink', defaultMessage: '(hede:) link to topic' }), 'Ctrl+j')}>
+      <Tooltip title={tooltip(intl.formatMessage({ id: 'seeAlsoLink', defaultMessage: '(see:) link to topic' }), 'Ctrl+j')}>
         <Button className="EditorToolbar__button" onClick={() => onSelect('seealso')}>
-          (Hede:)
+          (See:)
         </Button>
       </Tooltip>
 
