@@ -140,7 +140,7 @@
   "topics_error_empty": "Please enter topics.",
   "topics_error_count": "You have to add 1 to 5 topics.",
   "topics_error_invalid_topic": "Topic {topic} is invalid.",
-  "story_placeholder": "Share your knowledge about {topic} ",
+  "story_placeholder": "Share your personal knowledge about '{topic}' ",
   "story_error_empty": "Story content can't be empty.",
   "editor": "Editor",
   "preview": "Preview",
