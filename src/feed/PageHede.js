@@ -150,7 +150,16 @@ class PageHede extends React.Component {
 
   getLastTitles = ()=>{
     var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
-    let filterLanguage = lang === "tr-TR" ? "all": "en";
+    let filterLanguage = "all";
+
+    if(lang.startsWith("tr-"))
+      filterLanguage = "tr";
+    else if(lang.startsWith("es-"))
+      filterLanguage = "es";
+    else if(lang.startsWith("az-"))
+      filterLanguage = "az";
+    else
+      filterLanguage = "en";
 
     this.props.getLeftTitles({
       limit:50,

@@ -15,7 +15,17 @@ const Option = Select.Option;
 
 //let totalTitles = 0;
 var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
-let filterLanguage = lang === "tr-TR" ? "all": "en";
+let filterLanguage = "all";
+
+if(lang.startsWith("tr-"))
+  filterLanguage = "tr";
+else if(lang.startsWith("es-"))
+  filterLanguage = "es";
+else if(lang.startsWith("az-"))
+  filterLanguage = "az";
+else 
+  filterLanguage = "en";
+
 let currentPage = 1, perPage = 50;
 
 const getLastTitles = (getLeftTitles)=>{
@@ -91,8 +101,11 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
       >
         <Option value="all">All languages</Option>
         <Option value="en">English</Option>
-        <Option value="ar">Arabic</Option>
         <Option value="az">Azerbaijani</Option>
+        <Option value="tr">Turkish</Option>
+        <Option value="es">Spanish</Option>
+  {/*
+        <Option value="ar">Arabic</Option>
         <Option value="id">Bahasa</Option>
         <Option value="cn">Chinese</Option>
         <Option value="nl">Dutch</Option>
@@ -103,10 +116,8 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
         <Option value="pl">Polish</Option>
         <Option value="pt">Portugese</Option>
         <Option value="ru">Russian</Option>
-        <Option value="es">Spanish</Option>
         <Option value="th">Thai</Option>
-        <Option value="tr">Turkish</Option>
-
+  */}
       </Select>
     <Sidenav username={authenticatedUser.name} loading={loading} topics={titles} lang={filterLanguage || "all"} />
     <Pagination size="small" style={{marginBottom:10}} defaultCurrent={1} current={currentPage} total={totalTitles} onChange={(page, pageSize)=>onPageChange(page, pageSize, getLeftTitles)} pageSize={perPage} />
