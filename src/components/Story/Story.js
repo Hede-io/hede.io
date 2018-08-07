@@ -231,7 +231,7 @@ class Story extends React.Component {
     let indexOfHash = entryUrl.indexOf("#");
 
     if(indexOfHash>-1)
-      entryUrl = process.env.HEDE_CATEGORY + "/" + entryUrl.substring(indexOfHash + 1);
+      entryUrl = process.env.HEDE_ENTRIES_TAG + "/" + entryUrl.substring(indexOfHash + 1);
 
     return (
       <div className="Story">
