@@ -305,7 +305,7 @@ class Editor extends React.Component {
       formFieldValues["theme"] = post.theme;
 
     if(post.titleSteem)
-      formFieldValues["titleSteem"] = post.titleSteem;
+      formFieldValues["titleSteem"] = post.titleSteem.toLowerCase("en-US");
 
     if(post.titleModerator)
       formFieldValues["titleModerator"] = post.titleModerator;
