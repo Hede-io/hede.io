@@ -582,7 +582,7 @@ class Editor extends React.Component {
         this.insertAtCursor('`', '`', 1, 1);
         break;
       case 'image':
-        this.insertAtCursor('![', '](url)', 2, 2);
+        this.insertAtCursor('![](', ')', 4, 4);
         break;
       case 'code':
         this.insertAtCursor('``` language\n', '\n```', 4, 12);
