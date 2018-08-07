@@ -165,7 +165,7 @@ class Story extends React.Component {
 
     let popoverMenu = [];
 
-    if (ownPost && post.cashout_time !== '1969-12-31T23:59:59') {
+    if (ownPost) {
       popoverMenu = [
         ...popoverMenu,
         <PopoverMenuItem key={`edit-${post.id}`} >
