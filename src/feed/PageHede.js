@@ -19,6 +19,7 @@ import EntryFeed from './EntryFeed'
 import {getLeftTitles} from "../actions/titles";
 import {setLeftTitlesVisible} from "../actions/ui";
 import { getEntries } from '../actions/entries';
+import { getEntry, setEntry } from '../actions/entry';
 
 import SearchFeed from './SearchFeed';
 /*
@@ -74,6 +75,7 @@ const getEntriesFirstTime = (match, req) =>{
   });
 }
 
+
 @connect(
   state => ({
     authenticated: getIsAuthenticated(state),
@@ -103,7 +105,7 @@ class PageHede extends React.Component {
       return [];
 
     if(match.path === "/:category/@:author/:permlink")
-      return [];
+      return [store.dispatch(getEntry(match.params.author, match.params.permLink))];
     
     
     return [store.dispatch(getEntriesFirstTime(match, req))];
