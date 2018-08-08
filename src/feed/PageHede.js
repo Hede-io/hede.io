@@ -20,6 +20,7 @@ import {getLeftTitles} from "../actions/titles";
 import {setLeftTitlesVisible} from "../actions/ui";
 import { getEntries } from '../actions/entries';
 import { getEntry, setEntry } from '../actions/entry';
+import Cookie from 'js-cookie';
 
 import SearchFeed from './SearchFeed';
 /*
@@ -80,6 +81,7 @@ const getEntriesFirstTime = (match, req) =>{
   state => ({
     authenticated: getIsAuthenticated(state),
     leftTitlesVisible: state.leftTitlesVisible,
+    titles: state.leftTitles,
   }),{
     getLeftTitles,
   }
@@ -154,15 +156,19 @@ class PageHede extends React.Component {
     var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
     let filterLanguage = "all";
 
-    if(lang.startsWith("tr-"))
-      filterLanguage = "tr";
-    else if(lang.startsWith("es-"))
-      filterLanguage = "es";
-    else if(lang.startsWith("az-"))
-      filterLanguage = "az";
-    else
-      filterLanguage = "en";
-
+    if(Cookie.get("language"))
+      filterLanguage = Cookie.get("language");
+    else{
+      if(lang.startsWith("tr-"))
+        filterLanguage = "tr";
+      else if(lang.startsWith("es-"))
+        filterLanguage = "es";
+      else if(lang.startsWith("az-"))
+        filterLanguage = "az";
+      else
+        filterLanguage = "en";
+    }
+    
     this.props.getLeftTitles({
       limit:50,
       skip:0,
@@ -179,7 +185,7 @@ class PageHede extends React.Component {
   }
   
   componentDidMount(){
-   this.getLastTitles();
+      this.getLastTitles();
   }
 
   handleTitleChange = (title) => {
