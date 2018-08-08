@@ -155,7 +155,7 @@ export default class Buttons extends React.Component {
     const commentsLink =
       indexOfHash !== -1 ?  postUrl: { pathname: postUrl, hash: '#comments' };
       // console.log(post.cashout_time);
-    const showEditLink = ownPost && post.cashout_time !== '1969-12-31T23:59:59' && (new Date(post.cashout_time + "Z") < new Date(0));
+    const showEditLink = ownPost;
     //const showReblogLink = !ownPost && post.parent_author === '';
     const showReblogLink = false; // @HEDE forced no reblog
 

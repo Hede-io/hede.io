@@ -133,6 +133,7 @@ class Story extends React.Component {
       defaultVotePercent,
       onLikeClick,
       onShareClick,
+      onEditClick
     } = this.props;
 
 
@@ -330,6 +331,7 @@ class Story extends React.Component {
               defaultVotePercent={defaultVotePercent}
               onLikeClick={onLikeClick}
               onShareClick={onShareClick}
+              onEditClick={onEditClick}
               fullMode={false}
             />
           </div>
