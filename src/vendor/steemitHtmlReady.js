@@ -9,6 +9,7 @@ import embedjs from 'embedjs';
 import linksRe from './steemitLinks';
 import { validateAccountName } from './ChainValidation';
 import { getProxyImageURL } from '../helpers/image';
+import Cookie from 'js-cookie';
 
 const noop = () => {};
 const DOMParser = new xmldom.DOMParser({
@@ -221,7 +222,9 @@ function linkify(content, mutate, hashtags, usertags, images, links) {
     const tagLower = tag2.toLowerCase();
     if (hashtags) hashtags.add(tagLower);
     if (!mutate) return tag;
-    return `${space}<a href="/?q=${tagLower}">${tag2}</a>`;
+    const languageReqUrl = Cookie.get("language") ? `&l=${Cookie.get("language")}` : "";
+
+    return `${space}<a href="/?q=${tagLower}${languageReqUrl}">${tag2}</a>`;
   });
 
   // usertag (mention)
