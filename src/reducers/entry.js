@@ -3,8 +3,12 @@ import * as Actions from '../actions/constants';
 const entry = (state = {}, action) => {
   switch (action.type) {
     case Actions.GET_ENTRY_SUCCESS: {
+      const stateEntry = state;
       const entry = action.response;
       //console.log("entry found:", entry);
+      if(!entry)
+        return state;
+
       return entry;
     }
     case Actions.MODERATOR_ACTION_SUCCESS:

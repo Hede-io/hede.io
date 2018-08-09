@@ -129,11 +129,13 @@ class StoryFull extends React.Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('white-bg');
+    if(typeof document !== "undefined")
+      document.body.classList.add('white-bg');
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('white-bg');
+    if(typeof document !== "undefined")
+      document.body.classList.remove('white-bg');
   }
 
   // Show that the text was copied and dismiss warning after 2 seconds

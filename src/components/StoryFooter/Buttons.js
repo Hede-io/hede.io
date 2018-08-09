@@ -91,6 +91,9 @@ export default class Buttons extends React.Component {
     });
 
   handleCommentClick = () => {
+    if(typeof document === "undefined")
+      return;
+      
     const form = document.getElementById('commentFormInput');
     if (form) {
       form.scrollIntoView(true);

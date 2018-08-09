@@ -106,8 +106,9 @@ class PageHede extends React.Component {
     if(match.path === "/search/titles")
       return [];
 
-    if(match.path === "/:category/@:author/:permlink")
-      return [store.dispatch(getEntry(match.params.author, match.params.permLink))];
+    if(match.path === "/:category/@:author/:permlink"){
+      return [store.dispatch(getEntry(match.params.author, match.params.permlink))];
+    }
     
     
     return [store.dispatch(getEntriesFirstTime(match, req))];
