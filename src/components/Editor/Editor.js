@@ -801,7 +801,7 @@ class Editor extends React.Component {
                     value = {this.state.entryValue}
                     onFocus = {this.onFocusEntry}
                     ref={ref => this.setInput(ref)}
-                    maxLength = {1500}
+                    maxLength = {this.isModerator () ? 8000: 1500}
                     type="textarea"
                     placeholder={intl.formatMessage({
                       id: 'story_placeholder',
