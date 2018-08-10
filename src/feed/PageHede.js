@@ -157,8 +157,8 @@ class PageHede extends React.Component {
     var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
     let filterLanguage = "all";
 
-    if(Cookie.get("language"))
-      filterLanguage = Cookie.get("language");
+    if(Cookie.get("language2"))
+      filterLanguage = Cookie.get("language2");
     else{
       if(lang.startsWith("tr-"))
         filterLanguage = "tr";

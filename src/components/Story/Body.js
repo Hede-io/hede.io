@@ -40,7 +40,7 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object') {
     }
   });
 
-  const languageReqUrl = Cookie.get("language") ? `&l=${Cookie.get("language")}` : "";
+  const languageReqUrl = Cookie.get("language2") ? `&l=${Cookie.get("language2")}` : "";
 
   parsedBody = parsedBody.replace(hedeRefRegex, (m, ref) => {
     return `(hede: [${ref}](/?q=${encodeURIComponent(ref)}${languageReqUrl}))`;

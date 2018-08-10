@@ -17,8 +17,8 @@ const Option = Select.Option;
 //let totalTitles = 0;
 var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
 let filterLanguage = "all";
-if(Cookie.get("language"))
-  filterLanguage = Cookie.get("language");
+if(Cookie.get("language2"))
+  filterLanguage = Cookie.get("language2");
 else{
   if(lang.startsWith("tr-"))
     filterLanguage = "tr";
@@ -28,6 +28,8 @@ else{
     filterLanguage = "az";
   else 
     filterLanguage = "en";
+
+  Cookie.set("language2", filterLanguage);
 }
 
 let currentPage = 1, perPage = 50;
@@ -53,8 +55,9 @@ const getLastTitles = (getLeftTitles)=>{
 const handleChange = (t,v,f)=>{
   filterLanguage = v;
 
-  Cookie.set("language", filterLanguage);
-  
+  if(typeof filterLanguage !== "undefined")
+    Cookie.set("language2", filterLanguage);
+
   f({
     limit:perPage,
     skip:0,
