@@ -18,6 +18,7 @@ import User from '../src/user/User';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 import routes2 from '../src/routes2';
 import routes3 from '../src/routes';
+import { getLeftTitles } from '../src/actions/titles';
 
 const { JSDOM } = require('jsdom');
 
@@ -156,6 +157,30 @@ function loadCachedRoutes(){
 
 loadCachedRoutes();
 
+async function sitemapResponse(req, res){
+  return new Promise((resolve, reject)=>{
+    const store = getStore();
+    store.dispatch( getLeftTitles({
+      limit:1000,
+      skip:0,
+      section: 'all',
+      sortBy: 'created',
+      type: 'all',
+      reset: true,
+      l: 'all',
+      tag:"tag1,tag2",
+    })).then(data=>{
+        let body = "<xml>"
+        _.forEach(data.results, (v,i)=>{
+          body += v.slug;
+        });
+
+        resolve(body);
+    });
+  });
+}
+
+
 async function serverSideResponse(req, res) {
 
   const store = getStore();
@@ -216,6 +241,7 @@ app.get('/settings', (req, res) => {
   res.send(indexHtml);
 });
 
+app.set('/sitemap.xml', sitemapResponse);
 app.get('/:title', serverSideResponse);
 
 app.get('/*', (req, res) => {
