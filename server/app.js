@@ -18,6 +18,7 @@ import User from '../src/user/User';
 import { matchRoutes, renderRoutes } from 'react-router-config';
 import routes2 from '../src/routes2';
 import routes3 from '../src/routes';
+import { getLeftTitles } from '../src/actions/titles';
 
 const { JSDOM } = require('jsdom');
 
@@ -156,8 +157,43 @@ function loadCachedRoutes(){
 
 loadCachedRoutes();
 
-async function serverSideResponse(req, res) {
+async function sitemapResponse(req, res){
+  let prom = new Promise((resolve, reject)=>{
+    const store = getStore();
+    store.dispatch( getLeftTitles({
+      limit:1000,
+      skip:0,
+      section: 'all',
+      sortBy: 'created',
+      type: 'all',
+      reset: true,
+      l: 'all',
+      tag:"tag1,tag2",
+    })).then(data=>{
+        let body = `<?xml version="1.0" encoding="UTF-8"?>
+        <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+        each(data.response.results, (v,i)=>{
+          body += `
+           <url>
+            <loc>https://hede.io/${v.slug}---${v.id}</loc>
+          </url>`;
+        });
+        body += `</urlset>`;
 
+        resolve(body);
+
+    }).catch(e=>reject(e));
+  });
+
+  return await createTimeout(ssrTimeout, 
+    prom
+    .then(html => {return res.end(html);})
+    .catch(error => res.end(error.message))
+  )
+}
+
+
+async function serverSideResponse(req, res) {
   const store = getStore();
   global.postOrigin = `${req.protocol}://${req.get('host')}`;
   const promises = [];
@@ -193,6 +229,7 @@ async function serverSideResponse(req, res) {
   )
 }
 
+
 app.get('/callback', authCallback({ sendCookie: true }));
 app.get('/connect', authCallback({ allowAnyRedirect: false }));
 
@@ -215,6 +252,7 @@ app.get('/search/titles', serverSideResponse);
 app.get('/settings', (req, res) => {
   res.send(indexHtml);
 });
+app.get('/sitemap/sitemap.xml', sitemapResponse);
 
 app.get('/:title', serverSideResponse);
 
