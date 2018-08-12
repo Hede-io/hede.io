@@ -27,6 +27,7 @@ import BannedScreen from '../statics/BannedScreen';
 
 import { Helmet } from 'react-helmet';
 import {removeHedeReference2 } from '../helpers/regexHelpers';
+import Cookie from 'js-cookie';
 
 @connect(
   state => ({
@@ -158,6 +159,12 @@ class EntryFeed extends React.Component {
     this.h = qsParams.get('h');
     this.c = qsParams.get('c');
 
+    /*Override language setting with url (commented out temporarily)
+    const currentLang = Cookie.get("language2");
+    if(this.l && typeof this.l !== "undefined" && currentLang !== this.l)
+      Cookie.set("language2", this.l);
+    */
+
     this.o = qsParams.get('o') || 'a';
 
     this.p = (Number(qsParams.get('p')) || 1);
@@ -258,7 +265,7 @@ class EntryFeed extends React.Component {
       this.shouldRedirectToMain && tt !== "hede-io--1"
     ){
       //console.log("redirecting to hede.io because title is empty. q:", this.q, ", title:", tt);
-      return <Redirect from='/' to='/hede-io--1'/>
+      return <Redirect from='/' to='/hede-io--1?l=en'/>
     }
 
     const { loading, history, match, location, isModerator, currentTitle } = this.props;

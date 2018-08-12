@@ -10,12 +10,28 @@ import {getLeftTitles} from "../../actions/titles";
 import Button from 'antd/lib/button';
 import Select from 'antd/lib/select';
 import Pagination from 'antd/lib/pagination';
+import Cookie from 'js-cookie';
 
 const Option = Select.Option;
 
 //let totalTitles = 0;
 var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
-let filterLanguage = lang === "tr-TR" ? "all": "en";
+let filterLanguage = "all";
+if(Cookie.get("language2"))
+  filterLanguage = Cookie.get("language2");
+else{
+  if(lang.startsWith("tr-"))
+    filterLanguage = "tr";
+  else if(lang.startsWith("es-"))
+    filterLanguage = "es";
+  else if(lang.startsWith("az-"))
+    filterLanguage = "az";
+  else 
+    filterLanguage = "en";
+
+  Cookie.set("language2", filterLanguage);
+}
+
 let currentPage = 1, perPage = 50;
 
 const getLastTitles = (getLeftTitles)=>{
@@ -38,6 +54,9 @@ const getLastTitles = (getLeftTitles)=>{
 
 const handleChange = (t,v,f)=>{
   filterLanguage = v;
+
+  if(typeof filterLanguage !== "undefined")
+    Cookie.set("language2", filterLanguage);
 
   f({
     limit:perPage,
@@ -80,7 +99,7 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
         <FormattedMessage id={'last_topics'} defaultMessage={'Latest Topics'} />
     </h4>
     <Button style={{marginBottom:5, flex:1, width:"100%", marginRight:5, borderWidth: 0}} key="getLastTitles" onClick={()=>getLastTitles(getLeftTitles)}>REFRESH</Button>
-
+  
     <Select
         style={{ width: "100%", marginBottom:5, marginRight: 5 }}
         placeholder="All languages"
@@ -91,8 +110,11 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
       >
         <Option value="all">All languages</Option>
         <Option value="en">English</Option>
-        <Option value="ar">Arabic</Option>
         <Option value="az">Azerbaijani</Option>
+        <Option value="tr">Turkish</Option>
+        <Option value="es">Spanish</Option>
+  {/*
+        <Option value="ar">Arabic</Option>
         <Option value="id">Bahasa</Option>
         <Option value="cn">Chinese</Option>
         <Option value="nl">Dutch</Option>
@@ -103,10 +125,8 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
         <Option value="pl">Polish</Option>
         <Option value="pt">Portugese</Option>
         <Option value="ru">Russian</Option>
-        <Option value="es">Spanish</Option>
         <Option value="th">Thai</Option>
-        <Option value="tr">Turkish</Option>
-
+  */}
       </Select>
     <Sidenav username={authenticatedUser.name} loading={loading} topics={titles} lang={filterLanguage || "all"} />
     <Pagination size="small" style={{marginBottom:10}} defaultCurrent={1} current={currentPage} total={totalTitles} onChange={(page, pageSize)=>onPageChange(page, pageSize, getLeftTitles)} pageSize={perPage} />

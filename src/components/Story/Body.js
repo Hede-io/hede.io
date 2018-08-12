@@ -9,9 +9,10 @@ import Remarkable from 'remarkable';
 import embedjs from 'embedjs';
 import { jsonParse } from '../../helpers/formatter';
 import sanitizeConfig from '../../vendor/SanitizeConfig';
-import { imageRegex, hedeRefRegex, hedeRefRegexInner, removeHedeReference, removeHedeReference2 } from '../../helpers/regexHelpers';
+import { imageRegex, hedeRefRegex, seeRefRegex, hedeRefRegexInner, removeHedeReference, removeHedeReference2 } from '../../helpers/regexHelpers';
 import htmlReady from '../../vendor/steemitHtmlReady';
 import PostFeedEmbed from './PostFeedEmbed';
+import Cookie from 'js-cookie';
 
 import './Body.less';
 
@@ -39,12 +40,16 @@ export function getHtml(body, jsonMetadata = {}, returnType = 'Object') {
     }
   });
 
-  parsedBody = parsedBody.replace(hedeRefRegex, (m, ref) => {
-    return `(hede: [${ref}](/?q=${encodeURIComponent(ref)}))`;
-  });
+  const languageReqUrl = Cookie.get("language2") ? `&l=${Cookie.get("language2")}` : "";
 
+  parsedBody = parsedBody.replace(hedeRefRegex, (m, ref) => {
+    return `(hede: [${ref}](/?q=${encodeURIComponent(ref)}${languageReqUrl}))`;
+  });
+  parsedBody = parsedBody.replace(seeRefRegex, (m, ref) => {
+    return `(see: [${ref}](/?q=${encodeURIComponent(ref)}${languageReqUrl}))`;
+  });
   parsedBody = parsedBody.replace(hedeRefRegexInner, (m, ref) => {
-    return `[${ref}](/?q=${encodeURIComponent(ref)})`;
+    return `[${ref}](/?q=${encodeURIComponent(ref)}${languageReqUrl})`;
   });
 
   parsedBody = parsedBody.replace(removeHedeReference2, "").replace(/<br\s?\/\>\s*$/, "");

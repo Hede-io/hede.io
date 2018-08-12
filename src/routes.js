@@ -10,6 +10,7 @@ import Activity from './activity/Activity';
 
 //import Page from './feed/Page';
 import PageHede from './feed/PageHede';
+
 import SearchFeed from './feed/SearchFeed';
 
 import Replies from './replies/Replies';
@@ -95,6 +96,7 @@ export default (
       <Route path="/search/titles" component={PageHede} />
    
       <Route exact path="/:title" component={PageHede} />
+
       <Route render={() => (
           <span>
             There is no router that fits for your request

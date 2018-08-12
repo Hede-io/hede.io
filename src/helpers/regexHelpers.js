@@ -3,6 +3,7 @@ export const imageRegex = /https?:\/\/(?:[-a-zA-Z0-9._]*[-a-zA-Z0-9])(?::\d{2,5}
 export const httpRegex = /(https?:\/\/[^\s]+)/gi;
 
 export const hedeRefRegex = /\(hede\:\s*([^\)]+)\)/gi;
+export const seeRefRegex = /\(see\:\s*([^\)]+)\)/gi;
 
 export const hedeRefRegexInner = /\`([^\`]+)\`/gi;
 

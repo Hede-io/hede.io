@@ -133,6 +133,7 @@ class Story extends React.Component {
       defaultVotePercent,
       onLikeClick,
       onShareClick,
+      onEditClick
     } = this.props;
 
 
@@ -165,7 +166,7 @@ class Story extends React.Component {
 
     let popoverMenu = [];
 
-    if (ownPost && post.cashout_time !== '1969-12-31T23:59:59') {
+    if (ownPost) {
       popoverMenu = [
         ...popoverMenu,
         <PopoverMenuItem key={`edit-${post.id}`} >
@@ -231,7 +232,7 @@ class Story extends React.Component {
     let indexOfHash = entryUrl.indexOf("#");
 
     if(indexOfHash>-1)
-      entryUrl = process.env.HEDE_CATEGORY + "/" + entryUrl.substring(indexOfHash + 1);
+      entryUrl = process.env.HEDE_ENTRIES_TAG + "/" + entryUrl.substring(indexOfHash + 1);
 
     return (
       <div className="Story">
@@ -252,7 +253,7 @@ class Story extends React.Component {
 
           <div className="Story__content">
           {this.props.showTitle &&
-            <Link to={post.url} className="Story__content__title">
+            <Link to={entryUrl} className="Story__content__title">
                 <h2>
                   {post.title || (
                   <span>
@@ -330,6 +331,7 @@ class Story extends React.Component {
               defaultVotePercent={defaultVotePercent}
               onLikeClick={onLikeClick}
               onShareClick={onShareClick}
+              onEditClick={onEditClick}
               fullMode={false}
             />
           </div>

@@ -24,15 +24,15 @@ export const Rules = ({type, acceptRules, inEditor}) => {
         <h2><CategoryIcon from="from-rules"  type="entry"/> Entry Rules</h2>
         {inEditor ? <p><small><a href="https://hede.io/rules" target="_blank"></a></small></p> : null}
         <ul>
-          <li>✅ Please share your knowledge only and directly about the topic. Sub-topics should be written in their own title.</li>
-          <li>✅ Definition is highly advised but not required.</li>
-          <li>✅ Write for large audience. Lots of people will read this so give background information.</li>
+          <li>✅ Please describe the topic and answer "what is it?" first.</li>
+          <li>✅ Please share your personal knowledge directly about the topic. You can always link to sub-topics.</li>
+          <li>✅ Write for a large audience. Lots of people will read this so give background information.</li>
           <li>🚫 Don't duplicate another entry's content if you will not add more value into it.</li>
           <li>🚫 Don't respond or comment to another user's entry in your's. To do so, open that entry and write your comment under it.</li>
           <li>🚫 Don't ask questions or request information in the entry.</li>
 
         </ul>
-        <p>Not respecting the rules might result in lower votes or make your hede account suspended.</p>
+        <p>Not respecting the guidelines might result in lower votes.</p>
         {inEditor ? <AcceptRules acceptRules={acceptRules} />  : null}
       </div>
     )

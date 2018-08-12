@@ -129,11 +129,13 @@ class StoryFull extends React.Component {
   }
 
   componentDidMount() {
-    document.body.classList.add('white-bg');
+    if(typeof document !== "undefined")
+      document.body.classList.add('white-bg');
   }
 
   componentWillUnmount() {
-    document.body.classList.remove('white-bg');
+    if(typeof document !== "undefined")
+      document.body.classList.remove('white-bg');
   }
 
   // Show that the text was copied and dismiss warning after 2 seconds
@@ -195,7 +197,7 @@ class StoryFull extends React.Component {
       "pendingBanner": 'Your entry cannot be approved for editor picks yet, because it has a distracting **banner** or other irrelevant large image. See the [Hede Rules](https://hede.io/rules). Please edit your post to exclude any banners, at [this link](https://hede.io/hede-io/@' + this.props.post.author + '/' + this.props.post.permlink + '), as shown below: \n' + editImage,
       "flaggedDefault": 'Your entry cannot be approved for editor picks because it does not follow the [Hede Rules](https://hede.io/rules).',
       "flaggedDuplicate": 'Your entry was removed because it is a duplicate. It is very similar to a entry that was already accepted [here](#PLACE-DUPLICATE-LINK-HERE).',
-      "flaggedContentType": 'Your entry was removed because it does not refer to or relate to any of content types that are allowed on Hede. Allowed content types:  Information, Opinion, News, Suggestion, Example, Quotation, Spoiler, Translation, Confession, Memory or Hede Reference (hede:).',
+      "flaggedContentType": 'Your entry was removed because it does not refer to or relate to any of content types that are allowed on Hede. Allowed content types:  Information, Opinion, News, Suggestion, Example, Quotation, Spoiler, Translation, Confession, Memory or Hede Link to topics (hede:).',
       "flaggedSpam": 'Your entry was removed because it does not follow the [Hede Rules](https://hede.io/rules), and is considered as **spam**.',
       "flaggedPlagiarism": 'Your entry was removed because it does not follow the [Hede Rules](https://hede.io/rules), and is considered as **plagiarism**. Plagiarism is not allowed on Hede, and posts that engage in plagiarism will be flagged and hidden forever.',
       "flaggedTooShort": 'Your entry was removed because it is not as informative as other entries. See the [Hede Rules](https://hede.io/rules). Entries need to be informative and descriptive in order to help readers and developers understand them.',
@@ -294,7 +296,7 @@ class StoryFull extends React.Component {
 
     let popoverMenu = [];
 
-    if (isModerator || (ownPost && post.cashout_time !== '1969-12-31T23:59:59')) {
+    if (isModerator || ownPost) {
       popoverMenu = [...popoverMenu, <PopoverMenuItem key="edit">
         {saving ? <Icon type="loading" /> : <i className="iconfont icon-write" />}
         <FormattedMessage id="edit_post" defaultMessage="Edit post" />

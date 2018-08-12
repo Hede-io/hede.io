@@ -412,8 +412,8 @@ class Write extends React.Component {
       postBody.match(httpRegex).forEach(v=>setUrl(v));
     }
   
-    if(images.indexOf("https://hede.io/img/hede_thumbnail3.png") === -1)
-      images.push("https://hede.io/img/hede_thumbnail3.png");
+    if(images.indexOf("https://hede.io/img/thumbnail_h3.png") === -1)
+      images.push("https://hede.io/img/thumbnail_h3.png");
 
     // eslint-disable-next-line
     while ((matches = imageRegex.exec(postBody))) {

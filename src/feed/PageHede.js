@@ -19,6 +19,8 @@ import EntryFeed from './EntryFeed'
 import {getLeftTitles} from "../actions/titles";
 import {setLeftTitlesVisible} from "../actions/ui";
 import { getEntries } from '../actions/entries';
+import { getEntry, setEntry } from '../actions/entry';
+import Cookie from 'js-cookie';
 
 import SearchFeed from './SearchFeed';
 /*
@@ -74,10 +76,12 @@ const getEntriesFirstTime = (match, req) =>{
   });
 }
 
+
 @connect(
   state => ({
     authenticated: getIsAuthenticated(state),
     leftTitlesVisible: state.leftTitlesVisible,
+    titles: state.leftTitles,
   }),{
     getLeftTitles,
   }
@@ -102,8 +106,9 @@ class PageHede extends React.Component {
     if(match.path === "/search/titles")
       return [];
 
-    if(match.path === "/:category/@:author/:permlink")
-      return [];
+    if(match.path === "/:category/@:author/:permlink"){
+      return [store.dispatch(getEntry(match.params.author, match.params.permlink))];
+    }
     
     
     return [store.dispatch(getEntriesFirstTime(match, req))];
@@ -150,8 +155,21 @@ class PageHede extends React.Component {
 
   getLastTitles = ()=>{
     var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
-    let filterLanguage = lang === "tr-TR" ? "all": "en";
+    let filterLanguage = "all";
 
+    if(Cookie.get("language2"))
+      filterLanguage = Cookie.get("language2");
+    else{
+      if(lang.startsWith("tr-"))
+        filterLanguage = "tr";
+      else if(lang.startsWith("es-"))
+        filterLanguage = "es";
+      else if(lang.startsWith("az-"))
+        filterLanguage = "az";
+      else
+        filterLanguage = "en";
+    }
+    
     this.props.getLeftTitles({
       limit:50,
       skip:0,
@@ -168,7 +186,7 @@ class PageHede extends React.Component {
   }
   
   componentDidMount(){
-   this.getLastTitles();
+      this.getLastTitles();
   }
 
   handleTitleChange = (title) => {

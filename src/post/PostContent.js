@@ -118,7 +118,7 @@ class PostContent extends React.Component {
   componentDidMount() {
     const { hash } = window.location;
     // PostContent renders only when content is loaded so it's good moment to scroll to comments.
-    if (hash.indexOf('comments') !== -1 || /#@[a-zA-Z-.]+\/[a-zA-Z-]+/.test(hash)) {
+    if (hash.indexOf('comments') !== -1 || /#@[a-zA-Z-.]+\/[a-zA-Z-]+/.test(hash) && typeof document !== "undefined") {
       const el = document.getElementById('comments');
       if (el) el.scrollIntoView({ block: 'start' });
     }
@@ -213,9 +213,13 @@ class PostContent extends React.Component {
     const { title, category, created, author, body } = content;
     const postMetaImage = postMetaData.image && postMetaData.image[0];
     const htmlBody = getHtml(body, {}, "text");
-    var div = document.createElement("div");
-    div.innerHTML = htmlBody;
-    var textDesc = div.textContent || div.innerText || "";
+    let textDesc = htmlBody;
+
+    if(typeof document !== "undefined"){
+      let div = document.createElement("div");
+      div.innerHTML = htmlBody;
+      textDesc = div.textContent || div.innerText || "";
+    }
     const desc = `${textDesc.substring(0, 140)} by ${author}`;
     const image = postMetaImage || getImage(`@${author}`);
     const canonicalUrl = `${canonicalHost}${content.url}`;

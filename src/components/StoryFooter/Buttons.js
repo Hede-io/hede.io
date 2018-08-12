@@ -91,6 +91,9 @@ export default class Buttons extends React.Component {
     });
 
   handleCommentClick = () => {
+    if(typeof document === "undefined")
+      return;
+      
     const form = document.getElementById('commentFormInput');
     if (form) {
       form.scrollIntoView(true);
@@ -146,10 +149,16 @@ export default class Buttons extends React.Component {
     const likeClass = classNames({ active: postState.isLiked, Buttons__activeIcon: postState.isLiked, Buttons__link: true, Buttons__likeBtn: true, Buttons__reactIcon: true });
     const rebloggedClass = classNames({ active: postState.isReblogged, Buttons__link: true });
 
+    let postUrl = post.url;
+    let indexOfHash = postUrl.indexOf("#");
+
+    if(indexOfHash>-1)
+      postUrl = process.env.HEDE_ENTRIES_TAG + "/" + postUrl.substring(indexOfHash + 1);
+
     const commentsLink =
-      post.url.indexOf('#') !== -1 ? post.url : { pathname: post.url, hash: '#comments' };
+      indexOfHash !== -1 ?  postUrl: { pathname: postUrl, hash: '#comments' };
       // console.log(post.cashout_time);
-    const showEditLink = ownPost && post.cashout_time !== '1969-12-31T23:59:59' && (new Date(post.cashout_time + "Z") < new Date(0));
+    const showEditLink = ownPost;
     //const showReblogLink = !ownPost && post.parent_author === '';
     const showReblogLink = false; // @HEDE forced no reblog
 
