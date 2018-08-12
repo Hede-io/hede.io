@@ -175,7 +175,7 @@ async function sitemapResponse(req, res){
         each(data.response.results, (v,i)=>{
           body += `
            <url>
-            <loc>https://hede.io/${v.slug}---${v.id}</loc>
+            <loc>https://hede.io/${v.slug}--${v.id}</loc>
           </url>`;
         });
         body += `</urlset>`;
