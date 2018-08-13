@@ -95,13 +95,13 @@ const onPageChange = (p, s, f) => {
 const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTitles }) => {
   return (
   <div>
-    <h4 className="topicHeader" style={{marginBottom:10}}>
-        <FormattedMessage id={'last_topics'} defaultMessage={'Latest Topics'} />
+     <h4 className="topicHeader" style={{marginBottom:10}}>
+        <FormattedMessage id={'last_topics'} defaultMessage={'LATEST TOPICS'} />
     </h4>
     <Button style={{marginBottom:5, flex:1, width:"100%", marginRight:5, borderWidth: 0}} key="getLastTitles" onClick={()=>getLastTitles(getLeftTitles)}>REFRESH</Button>
   
     <Select
-        style={{ width: "100%", marginBottom:5, marginRight: 5 }}
+        style={{ width: "100%", marginBottom:5, marginRight: 5, color:'#b8c4cc' }}
         placeholder="All languages"
         optionFilterProp="children"
         onChange={val => handleChange("language", val, getLeftTitles)}
@@ -128,6 +128,7 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
         <Option value="th">Thai</Option>
   */}
       </Select>
+   
     <Sidenav username={authenticatedUser.name} loading={loading} topics={titles} lang={filterLanguage || "all"} />
     <Pagination size="small" style={{marginBottom:10}} defaultCurrent={1} current={currentPage} total={totalTitles} onChange={(page, pageSize)=>onPageChange(page, pageSize, getLeftTitles)} pageSize={perPage} />
 
