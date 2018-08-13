@@ -293,7 +293,7 @@ class Story extends React.Component {
             {!this.props.showTitle &&
               <Link to={`/@${post.author}`}>
                 <h4 className="Story__firstLine">
-                  {/*<Avatar username={post.author} size={30} className="Story__avatar"/>*/} <span className="Story__author">{post.author}</span>
+                  <Avatar username={post.author} size={30} className="Story__avatar"/> <span className="Story__author">{post.author}</span>
                   {/*<Tooltip title={intl.formatMessage({ id: 'reputation_score' })}>
                     <Tag className="Story__reputationTag nomobile">{formatter.reputation(post.author_reputation)}</Tag>
                     </Tooltip>*/}
