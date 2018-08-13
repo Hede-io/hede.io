@@ -577,7 +577,7 @@ class Write extends React.Component {
 
     
     return (
-     <div style={{marginTop: 30, padding:10}}>
+     <div style={{marginTop: 30, padding:10, backgroundColor: '#ebebff'}}>
             <Editor
               ref={this.setForm}
               saving={saving}
