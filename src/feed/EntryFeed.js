@@ -302,6 +302,8 @@ class EntryFeed extends React.Component {
             <meta property="og:site_name" content="Hede" />
             <link rel="alternate" hreflang="tr" href={canonicalUrl+"?l=tr"}/>
             <link rel="alternate" hreflang="en" href={canonicalUrl+"?l=en"}/>
+            <link rel="alternate" hreflang="es" href={canonicalUrl+"?l=es"}/>
+
             {/*<link rel="alternate" hreflang="fr" href={canonicalUrl+"?l=fr"}/>
             <link rel="alternate" hreflang="de" href={canonicalUrl+"?l=de"}/>
             <link rel="alternate" hreflang="it" href={canonicalUrl+"?l=it"}/>
@@ -311,7 +313,6 @@ class EntryFeed extends React.Component {
             <link rel="alternate" hreflang="kr" href={canonicalUrl+"?l=kr"}/>
             <link rel="alternate" hreflang="pt" href={canonicalUrl+"?l=pt"}/>
             <link rel="alternate" hreflang="ru" href={canonicalUrl+"?l=ru"}/>
-            <link rel="alternate" hreflang="es" href={canonicalUrl+"?l=es"}/>
            <link rel="alternate" hreflang="th" href={canonicalUrl+"?l=th"}/>*/}
             <meta property="twitter:site" content={'@hede-io'} />
             <meta property="twitter:title" content={myTitle} />
@@ -335,7 +336,6 @@ class EntryFeed extends React.Component {
         }
         
         
-
         <Feed
             content={ results }
             isFetching={ isFetching }
@@ -348,13 +348,14 @@ class EntryFeed extends React.Component {
           <Button style={{marginBottom:5, flex:1, width:"100%"}} onClick={this.onLoadMoreClick}>Load More</Button>
         */}
 
-        {results.length>0 &&
-          <Pagination className="EntryFeed__pagination" defaultCurrent={1} current={this.p} total={this.total} onChange={this.setPage} pageSize={25} />
-        }
         {results.length<=0 && !isFetching && <EmptyFeed
           text={'No entries have been found. Write the first entry to start the topic'}
         />}
 
+        {results.length>0 &&
+          <Pagination className="EntryFeed__pagination" defaultCurrent={1} current={this.p} total={this.total} onChange={this.setPage} pageSize={25} />
+        }
+        
         {this.props.user && this.props.authenticated && !this.props.user.banned!==1 && 
 
            <Write title={this.props.currentTitle}/>

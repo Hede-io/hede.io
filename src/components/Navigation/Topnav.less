@@ -68,7 +68,7 @@
     display: block;
     background-color: rgb(255, 255, 255) !important;
     .ant-select, .SearchSelector, .ant-select-selection, .ant-select-selection--single {
-      background-color: @white !important;
+      background-color: @topnav-color !important;
       color: @white !important;
     }
   }
@@ -144,8 +144,8 @@
 .Searchmobile {
   // border-bottom: 1px solid #e9e7e7 !important;
   .ant-input {
-    background-color: @white !important;
-    color:#1e1e1e !important;
+    background-color: @topnav-search-bar!important;
+    color:#fff !important;
   }
 
   ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -174,8 +174,10 @@
     background-color: @white !important;
   }
   .search-btn{
-    background-color: @white !important;
+    background-color: @topnav-search-bar !important;
     border: 0px;
+    color: @white;
+    border-radius: 0px;
     //border: @ioslightyellow !important;
   }
 
@@ -235,7 +237,7 @@
 }
 
 .Topnav {
-  background-color: @white !important;
+  background-color: @topnav-color !important;
   // border-bottom: 1px solid #e9e7e7;
   height: 56px;
   line-height: 56px;
@@ -371,9 +373,9 @@
   }
 
   .SearchSelector {
-    color: white !important;
-    border-left: 0.5px solid #e9e7e7;
-    border-right: 0.5px solid #e9e7e7;
+    color: @topnav-search-bar !important;
+    border-left: 0.5px solid @topnav-border-color;
+    border-right: 0.5px solid @topnav-border-color;
     height: 56px;
   }
 
@@ -390,7 +392,7 @@
     justify-content: flex-end;
 
     &__menu {
-      background-color: @white !important;
+      background-color: @topnav-color !important;
       color: rgba(255, 255, 255, 0.65) !important;
       flex-shrink: 0;
       height: 55px !important;
