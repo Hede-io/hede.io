@@ -290,7 +290,7 @@ class Editor extends React.Component {
     let formFieldValues = {
       title: post.title,
       // @HEDE filtering out hede-io since it's always added/re-added when posting
-      topics: post.topics.filter(topic => (topic !== process.env.HEDE_CATEGORY && topic !== post.language  && topic !== post.theme  && topic !== post.contentType )),
+      topics: post.topics.filter(topic => (topic !== process.env.HEDE_CATEGORY && topic !== process.env.HEDE_ENTRIES_TAG && topic !== post.language  && topic !== post.theme  && topic !== post.contentType )),
       reward: post.reward,
       type: post.type || process.env.DEFAULT_CATEGORY,
     };

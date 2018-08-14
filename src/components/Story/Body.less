@@ -1,5 +1,6 @@
 @import (reference) "../../styles/modules/variables.less";
 @import (reference) "../../styles/fonts.less";
+@import (reference) "../../styles/custom.less";
 
 .Body {
   //font-family: @font-text;
@@ -51,7 +52,7 @@
   }
 
   a {
-    color:#ffc000;
+    color:@primary-text-color;
   }
   // Paragraph
 
@@ -301,4 +302,5 @@
   .hljs-strong {
     font-weight: bold;
   }
+
 }
