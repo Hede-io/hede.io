@@ -13,9 +13,11 @@
     justify-content: space-between;
 
     & > a {
-      color: #99aab5;
       font-weight: 400;
-
+      color: rgba(0, 0, 0, 0.65);
+      @media screen and (min-width: 737px) {
+        color: #99aab5;
+      }
       &:focus {
         text-decoration: none;
       }
