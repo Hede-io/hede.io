@@ -150,7 +150,7 @@ class Topnav extends React.Component {
               
             <Input
               ref={input => this.searchInput = input}
-              placeholder="Show or Start a topic"
+              placeholder="Search or start a topic"
               onKeyPress={(event) => {
                 const q = event.target.value;
                 const searchSection = this.state.searchSection;
