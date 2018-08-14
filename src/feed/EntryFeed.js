@@ -327,13 +327,13 @@ class EntryFeed extends React.Component {
 
         <h1 style={{flex:1, fontWeight: 'bold', fontSize:24, marginLeft:20}}><a href={canonicalUrl} style={{color:'#323233'}}>{myTitle}</a></h1>
          
-        {this.props.user && this.props.authenticated && !this.props.user.banned && this.q === null && 
+         {/*this.props.user && this.props.authenticated && !this.props.user.banned && this.q === null && 
            <div className="EntryFeed" style={{marginBottom: 12}}>
           
-        {/*<Button className="EntryFeed__writeEntryButton" onClick = {()=>{window.scrollTo(0,document.body.scrollHeight);     document.getElementById("entryInput").focus();}}> <MdCreate style={{verticalAlign:'middle'}}/> ADD NEW ENTRY</Button>*/}
+       <Button className="EntryFeed__writeEntryButton" onClick = {()=>{window.scrollTo(0,document.body.scrollHeight);     document.getElementById("entryInput").focus();}}> <MdCreate style={{verticalAlign:'middle'}}/> ADD NEW ENTRY</Button>}
           </div>
 
-        }
+      */}
         
         
         <Feed
