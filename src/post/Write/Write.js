@@ -98,6 +98,7 @@ class Write extends React.Component {
       initialPullRequests: [],
       isUpdating: false,
       warningModal: false,
+      limitExceeded: false,
       //parsedPostData: null,
       banned: false,
       warningProblem: false,
@@ -302,6 +303,14 @@ class Write extends React.Component {
    
   };
 
+  isAdmin = () => {
+    const { user } = this.props;    
+    return user.name === process.env.HEDE_ADMIN;
+  }
+
+  getMaxLength = () => this.isAdmin () ? 8000: 1500;
+  
+
   onSubmit = (form) => {
     //const { getStats } = this.props;
     const data = this.getNewPostData(form);
@@ -318,8 +327,11 @@ class Write extends React.Component {
     const bodyLength = data.body.length;
 
     if (bodyLength + 150 < 300) {
-      this.setState({warningModal : true, formData: data});
-    } else {
+      this.setState({warningModal : true, limitExceeded: false, formData: data});
+    } else if(bodyLength > this.getMaxLength()) {
+      this.setState({warningProblem : true, problemText: "Your entry is too long. Maximum lenght for entry is " + this.getMaxLength() + "characters", formData: data});
+
+    }else{
       this.proceedSubmit(data);
     }
     

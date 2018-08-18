@@ -21,6 +21,8 @@ import Switch from 'antd/lib/switch';
 import propEq from 'ramda/src/propEq';
 import find from 'ramda/src/find';
 
+import TextLimit from '../TextLimit/TextLimit'; 
+
 import Dropzone from 'react-dropzone';
 import EditorToolbar from './EditorToolbar';
 import * as EditorTemplates from './templates';
@@ -258,11 +260,7 @@ class Editor extends React.Component {
   }
 
   setInput = (input) => {
-    if (input && input.refs && input.refs.input) {
-      this.originalInput = input.refs.input;
-      // eslint-disable-next-line react/no-find-dom-node
-      this.input = findDOMNode(input.refs.input);
-    }
+    this.input = input;
   }; 
 
   handleChange = (type, value) =>{
@@ -305,10 +303,10 @@ class Editor extends React.Component {
       formFieldValues["theme"] = post.theme;
 
     if(post.titleSteem)
-      formFieldValues["titleSteem"] = post.titleSteem.toLowerCase("en-US");
+      formFieldValues["titleSteem"] = post.titleSteem;
 
     if(post.titleModerator)
-      formFieldValues["titleModerator"] = post.titleModerator;
+      formFieldValues["titleModerator"] = post.titleModerator.toLowerCase("en-US");
 
     this.props.form.setFieldsValue(formFieldValues);
     if (this.input && post.body !== '') {
@@ -732,6 +730,14 @@ class Editor extends React.Component {
     return find(propEq('account', user.name))(moderators)
   }
 
+  isAdmin = ()=> {
+    const { user } = this.props;    
+    return user.name === process.env.HEDE_ADMIN;
+  }
+
+  getMaxLength = () => this.isAdmin () ? 8000: 1500;
+  
+
   render() {
     const { getFieldDecorator } = this.props.form;
     const { intl, loading, isUpdating, isReviewed, type, saving, user, parsedPostData } = this.props;
@@ -793,15 +799,14 @@ class Editor extends React.Component {
             <div className="Editor__dropzone-base">
              
                 <HotKeys keyMap={Editor.hotkeys} handlers={this.handlers}>
-                  <Input
+                
+                  <TextLimit
                     id = "entryInput"
                     className= "EntryInput"
                     autosize={{ minRows: 6, maxRows: 12 }}
-                    onChange={this.onUpdate}
-                    value = {this.state.entryValue}
                     onFocus = {this.onFocusEntry}
-                    ref={ref => this.setInput(ref)}
-                    maxLength = {this.isModerator () ? 8000: 1500}
+                    inputRef={ref => this.setInput(ref)}
+                    maxLength = {this.getMaxLength()}
                     type="textarea"
                     placeholder={intl.formatMessage({
                       id: 'story_placeholder',
@@ -812,8 +817,7 @@ class Editor extends React.Component {
             </div>
          
           </Form.Item>
-          
-        
+                  
           
           {!isUpdating && process.env.HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED &&
           <div className = "Editor__createSteemPost">
@@ -826,7 +830,7 @@ class Editor extends React.Component {
           </div>
           <div style={{display:this.state.showFormDetail?'block':'none'}}>
 
-       {this.isModerator() &&  
+       {this.isAdmin() &&  
           <Form.Item
             label={
               <span className="Editor__label">
