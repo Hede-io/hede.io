@@ -202,6 +202,12 @@ class EntryFeed extends React.Component {
       (!tt || (tt && tt.length==0)) && window.innerWidth > 736
     ){
       this.shouldRedirectToMain = true;
+      this.titleSlug = "hede-io";
+      this.titleId = 1;
+      var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):null;
+      if(lang)
+        this.l = lang;
+
     }else
       this.shouldRedirectToMain = false;
 
@@ -261,12 +267,12 @@ class EntryFeed extends React.Component {
 
   render() {
     const tt = this.props.match.params.title;
-    if(
+    /*if(
       this.shouldRedirectToMain && tt !== "hede-io--1"
     ){
       //console.log("redirecting to hede.io because title is empty. q:", this.q, ", title:", tt);
       return <Redirect from='/' to='/hede-io--1?l=en'/>
-    }
+    }*/
 
     const { loading, history, match, location, isModerator, currentTitle } = this.props;
     const { searchSection } = match.params;
