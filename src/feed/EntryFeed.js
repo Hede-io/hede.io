@@ -205,8 +205,11 @@ class EntryFeed extends React.Component {
       this.titleSlug = "hede-io";
       this.titleId = 1;
       var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):null;
-      if(lang)
-        this.l = lang;
+      if(lang){
+        lang = lang.substring(0,2);
+        if(lang === "es" || lang === "tr")
+          this.l = lang;
+      }
 
     }else
       this.shouldRedirectToMain = false;
