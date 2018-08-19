@@ -147,7 +147,7 @@ export default class User extends React.Component {
     const url = `${busyHost}/@${username}`;
     const displayedUsername = profile.name || username || '';
     const hasCover = !!profile.cover_image;
-    const title = `${displayedUsername} | Wiki | Hede`;
+    const title = `${displayedUsername} - Wiki - Hede`;
 
     const isSameUser = authenticated && authenticatedUser.name === username;
 
@@ -158,6 +158,8 @@ export default class User extends React.Component {
             {title}
           </title>
           <link rel="canonical" href={canonicalUrl} />
+          <meta name="robots" content="noindex"/>
+
           <meta property="description" content={desc} />
 
           <meta property="og:title" content={title} />

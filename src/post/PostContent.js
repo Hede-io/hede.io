@@ -224,7 +224,7 @@ class PostContent extends React.Component {
     const image = postMetaImage || getImage(`@${author}`);
     const canonicalUrl = `${canonicalHost}${content.url}`;
     const url = `${busyHost}${content.url}`;
-    const metaTitle = `${title} - ${author} | Wiki | Hede`;
+    const metaTitle = `${title} - ${author} - Wiki - Hede`;
     
     return (
       <div>

@@ -57,6 +57,7 @@ module.exports = {
         STEEMJS_URL: JSON.stringify(process.env.STEEMJS_URL || 'wss://steemd-int.steemit.com'),
         HEDE_ENTRIES_ACCOUNT: JSON.stringify(process.env.HEDE_ENTRIES_ACCOUNT || 'hede-entries'),
         HEDE_ENTRIES_TAG: JSON.stringify(process.env.HEDE_ENTRIES_TAG || 'hede-entries'),
+        HEDE_ADMIN: JSON.stringify(process.env.HEDE_ADMIN || 'ercu'),
         HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED: JSON.stringify(process.env.HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED || false),
         IS_BROWSER: JSON.stringify(true),
       },

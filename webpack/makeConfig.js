@@ -66,6 +66,7 @@ function makePlugins(options) {
         HEDE_DOMAIN: JSON.stringify(process.env.HEDE_DOMAIN || 'hede.io'),
         HEDE_ENTRIES_ACCOUNT: JSON.stringify(process.env.HEDE_ENTRIES_ACCOUNT || 'hede-entries'),
         HEDE_ENTRIES_TAG: JSON.stringify(process.env.HEDE_ENTRIES_TAG || 'hede-entries'),
+        HEDE_ADMIN: JSON.stringify(process.env.HEDE_ADMIN || 'ercu'),
         HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED: JSON.stringify(process.env.HEDE_ENTRIES_WITH_STEEM_COMMENTS_ENABLED || false),
         DEFAULT_CATEGORY: JSON.stringify('entry'),
         IS_BROWSER: JSON.stringify(true),

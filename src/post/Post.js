@@ -9,6 +9,7 @@ import Loading from '../components/Icon/Loading';
 import PostContent from './PostContent';
 import RightSidebar from '../app/Sidebar/RightSidebar';
 import LeftSidebar from '../app/Sidebar/LeftSidebar';
+import { Helmet } from 'react-helmet';
 
 import Affix from '../components/Utils/Affix';
 import ScrollToTopOnMount from '../components/Utils/ScrollToTopOnMount';
@@ -122,6 +123,9 @@ export default class Post extends React.Component {
 
     return (
       <div className="main-panel">
+        <Helmet>
+          <meta name="robots" content="noindex"/>
+        </Helmet>
         <ScrollToTopOnMount />
        {!isLoading
                 ? <PostContent history={history} content={entry} /> : <Loading />}
