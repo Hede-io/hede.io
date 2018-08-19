@@ -367,7 +367,7 @@ class StoryFull extends React.Component {
     const EmailIcon = generateShareIcon('email');
     const LivejournalIcon = generateShareIcon('livejournal');
   
-    const shareTitle = `${post.title} - Hede.io`
+    const shareTitle = `${post.json_metadata.title} - Hede.io`
     const shareUrl = "https://hede.io/" + post.url;
 
     return (
@@ -592,7 +592,7 @@ class StoryFull extends React.Component {
         <Link to={titleUrl}>
            
           <h1 className="StoryFull__title">
-            {post.title}
+            {post.json_metadata.title}
           </h1>
         </Link>
         <h3 className="StoryFull__comments_title">
