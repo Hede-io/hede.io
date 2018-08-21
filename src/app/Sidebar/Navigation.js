@@ -110,10 +110,10 @@ const Navigation = ({ authenticatedUser, loading, titles, getLeftTitles, totalTi
       >
         <Option value="all">All languages</Option>
         <Option value="en">English</Option>
-        <Option value="az">Azerbaijani</Option>
-        <Option value="tr">Turkish</Option>
         <Option value="es">Spanish</Option>
+        <Option value="tr">Turkish</Option>
   {/*
+        <Option value="az">Azerbaijani</Option>
         <Option value="ar">Arabic</Option>
         <Option value="id">Bahasa</Option>
         <Option value="cn">Chinese</Option>
