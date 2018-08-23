@@ -222,7 +222,7 @@ function linkify(content, mutate, hashtags, usertags, images, links) {
     const tagLower = tag2.toLowerCase();
     if (hashtags) hashtags.add(tagLower);
     if (!mutate) return tag;
-    const languageReqUrl = Cookie.get("language") ? `&l=${Cookie.get("language")}` : "";
+    const languageReqUrl = Cookie.get("language2") ? `&l=${Cookie.get("language2")}` : "";
 
     return `${space}<a href="/?q=${tagLower}${languageReqUrl}">${tag2}</a>`;
   });

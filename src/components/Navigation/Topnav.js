@@ -26,6 +26,7 @@ import Notifications from './Notifications/Notifications';
 import PopoverMenu, { PopoverMenuItem } from '../PopoverMenu/PopoverMenu';
 import { searchTitles } from '../../actions/titles';
 import {setLeftTitlesVisible} from "../../actions/ui";
+import Cookie from 'js-cookie';
 
 import './Topnav.less';
 
@@ -361,6 +362,7 @@ class Topnav extends React.Component {
         </div>
       );
     }
+    const mainPage = "/" + Cookie.get("language2") ? `?l=${Cookie.get("language2")}` : "";
 
     return (
       <div>
@@ -372,7 +374,7 @@ class Topnav extends React.Component {
                   <span style={{textDecoration: "none"}}><i style={{color:'#ffffff'}} className="iconfont icon-createtask"/></span>
                 
               </Link>
-              <Link className="Topnav__brand" to="/">
+              <Link className="Topnav__brand" to={mainPage}>
                 <img src="https://hede.io/img/HedeLogo.png"/>
               </Link>
               <span className="Topnav__version"><Link to="/" className="Topnav__version">{window.innerWidth > 736 && <span>&nbsp;&nbsp;</span>}beta</Link></span>
