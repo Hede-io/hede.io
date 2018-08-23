@@ -377,7 +377,7 @@ class Topnav extends React.Component {
         </div>
       );
     }
-    const mainPage = "/" + Cookie.get("language2") ? `?l=${Cookie.get("language2")}` : "";
+    const mainPage = "/" + (Cookie.get("language2") ? `?l=${Cookie.get("language2")}` : "");
 
     return (
       <div>
