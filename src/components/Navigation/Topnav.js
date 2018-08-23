@@ -198,12 +198,27 @@ class Topnav extends React.Component {
 
 
     onSelect = (value) =>{
+      let filterLanguage = "";
+      var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
+
+      if(Cookie.get("language2"))
+        filterLanguage = Cookie.get("language2");
+      else{
+        lang = lang.substring(0,2);
+        if(lang === "es" || lang === "tr")
+          filterLanguage = lang;
+        else
+          filterLanguage = "en";
+      }
+
+      const languageReqUrl = filterLanguage.length>0  && filterLanguage !=="all" ? `&l=${Cookie.get("language2")}` : "";
+
       if(value.startsWith('search:'))
-        this.props.history.push(`/search/titles?q=${value.substring(7)}`);
+        this.props.history.push(`/search/titles?q=${value.substring(7)}${languageReqUrl}`);
       else if(value.startsWith('show:'))
-        this.props.history.push(`/?q=${value.substring(5)}`);
+        this.props.history.push(`/?q=${value.substring(5)}${languageReqUrl}`);
       else
-        this.props.history.push(`/${value}`);
+        this.props.history.push(`/${value}?${languageReqUrl}`);
 
         //this.setState({searchQuery: this.state.searchQuery.replace("show:", "").replace("search:", "")});
     }
