@@ -901,12 +901,13 @@ class Editor extends React.Component {
                 filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
               >
               <Option value="en">English</Option>
-              <Option value="az">Azerbaijani</Option>
               <Option value="es">Spanish</Option>
               <Option value="tr">Turkish</Option>
                             
                             
-              {/*<Option value="ar">Arabic</Option>
+              {/*
+              <Option value="az">Azerbaijani</Option>
+              <Option value="ar">Arabic</Option>
               <Option value="id">Bahasa</Option>
               <Option value="cn">Chinese</Option>
               <Option value="nl">Dutch</Option>

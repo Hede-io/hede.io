@@ -26,6 +26,7 @@ import Notifications from './Notifications/Notifications';
 import PopoverMenu, { PopoverMenuItem } from '../PopoverMenu/PopoverMenu';
 import { searchTitles } from '../../actions/titles';
 import {setLeftTitlesVisible} from "../../actions/ui";
+import Cookie from 'js-cookie';
 
 import './Topnav.less';
 
@@ -197,12 +198,27 @@ class Topnav extends React.Component {
 
 
     onSelect = (value) =>{
+      let filterLanguage = "";
+      var lang = typeof navigator!=="undefined"?(navigator.language || navigator.userLanguage):"all";
+
+      if(Cookie.get("language2"))
+        filterLanguage = Cookie.get("language2");
+      else{
+        lang = lang.substring(0,2);
+        if(lang === "es" || lang === "tr")
+          filterLanguage = lang;
+        else
+          filterLanguage = "en";
+      }
+
+      const languageReqUrl = filterLanguage.length>0  && filterLanguage !=="all" ? `&l=${Cookie.get("language2")}` : "";
+
       if(value.startsWith('search:'))
-        this.props.history.push(`/search/titles?q=${value.substring(7)}`);
+        this.props.history.push(`/search/titles?q=${value.substring(7)}${languageReqUrl}`);
       else if(value.startsWith('show:'))
-        this.props.history.push(`/?q=${value.substring(5)}`);
+        this.props.history.push(`/?q=${value.substring(5)}${languageReqUrl}`);
       else
-        this.props.history.push(`/${value}`);
+        this.props.history.push(`/${value}?${languageReqUrl}`);
 
         //this.setState({searchQuery: this.state.searchQuery.replace("show:", "").replace("search:", "")});
     }
@@ -361,6 +377,7 @@ class Topnav extends React.Component {
         </div>
       );
     }
+    const mainPage = "/" + (Cookie.get("language2") ? `?l=${Cookie.get("language2")}` : "");
 
     return (
       <div>
@@ -372,7 +389,7 @@ class Topnav extends React.Component {
                   <span style={{textDecoration: "none"}}><i style={{color:'#ffffff'}} className="iconfont icon-createtask"/></span>
                 
               </Link>
-              <Link className="Topnav__brand" to="/">
+              <Link className="Topnav__brand" to={mainPage}>
                 <img src="https://hede.io/img/HedeLogo.png"/>
               </Link>
               <span className="Topnav__version"><Link to="/" className="Topnav__version">{window.innerWidth > 736 && <span>&nbsp;&nbsp;</span>}beta</Link></span>

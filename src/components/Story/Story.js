@@ -255,7 +255,7 @@ class Story extends React.Component {
           {this.props.showTitle &&
             <Link to={entryUrl} className="Story__content__title">
                 <h2>
-                  {post.title || (
+                  {post.json_metadata.title || (
                   <span>
                       <Tag color="#4f545c">RE</Tag>
                     {post.root_title}

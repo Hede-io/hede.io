@@ -244,12 +244,15 @@ const TopicFilters = ({topic, tags, filters, location, history}) =>{
 
           {keys(groupByLanguage).map((k)=>
                (<div key={k + '-' + groupByLanguage[k]} id="announcement1" className="Announcement__single">
-                {groupByLanguage[k]>0?
+                {
                 (qsParams.get("l") !== k?
-                  <a className="Announcement__content" href={getLanguageLink(k)} onClick={(e)=>onLanguageClick(e, k)}>{k} ({groupByLanguage[k]})</a>
+                  (groupByLanguage[k]>0?
+                    <a className="Announcement__content" href={getLanguageLink(k)} onClick={(e)=>onLanguageClick(e, k)}>{k} ({groupByLanguage[k]})</a>
+                    :null
+                  )
                 :
                   <a className="Announcement__content" href={removeFilterLink("l")} onClick={(e)=>onRemoveFilter(e, "l")}>{k} ({groupByLanguage[k]}) X</a>
-                ):null
+                )
                }
               </div>)
            
