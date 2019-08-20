@@ -89,7 +89,7 @@
     "matchmedia": "^0.1.2",
     "mdi": "^2.1.19",
     "mdi-react": "^2.0.46-hotfix.0",
-    "morgan": "^1.8.2",
+    "morgan": "^1.9.1",
     "newrelic": "^1.40.0",
     "node-rsa": "^1.0.0",
     "nodemon": "^1.9.2",
