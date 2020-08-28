@@ -63,7 +63,7 @@
     "debug": "~2.2.0",
     "del": "^3.0.0",
     "diff-match-patch": "^1.0.0",
-    "dompurify": "^1.0.3",
+    "dompurify": "^2.0.3",
     "dotenv": "^4.0.0",
     "embedjs": "^0.0.9",
     "emotion": "^9.2.6",
