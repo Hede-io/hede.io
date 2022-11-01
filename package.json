@@ -71,7 +71,7 @@
     "express-static-gzip": "^0.3.2",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "hard-source-webpack-plugin": "^0.6.4",
     "history": "^4.6.3",
     "html-loader": "^0.4.5",
