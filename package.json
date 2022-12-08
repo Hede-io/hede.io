@@ -67,7 +67,7 @@
     "dotenv": "^4.0.0",
     "embedjs": "^0.0.9",
     "emotion": "^9.2.6",
-    "express": "^4.15.4",
+    "express": "^4.17.3",
     "express-static-gzip": "^0.3.2",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
